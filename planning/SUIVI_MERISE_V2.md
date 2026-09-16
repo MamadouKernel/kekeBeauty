@@ -1,5 +1,7 @@
 # Suivi de la consolidation MERISE V2
 
+État plus récent : voir `ETAT_IMPLEMENTATION.md`. Les parcours Blazor de connexion de développement, catalogue, création, acceptation/refus et annulation sont désormais raccordés à PostgreSQL. Les cinq descriptions ClickUp KB-008/032/033/037/038 ont été actualisées. Le bilan ci-dessous conserve l'état historique de la seule consolidation MERISE.
+
 Référence : `merise/CONCEPTION_MERISE_V2.md`. Schéma PostgreSQL Docker chargé, 53 tables / 64 FK, 20 tests négatifs + 4 contrôles positifs passés. Les scripts de recette utilisent V2 ; V1 historique.
 
 ## Synchronisation ClickUp effectuée

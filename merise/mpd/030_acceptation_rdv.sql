@@ -1,38 +1,22 @@
 -- Traitement serveur de l'acceptation. Appel sous READ COMMITTED.
 -- Les autres mutations de planning doivent verrouiller le salon avant d'ecrire.
 BEGIN;
-CREATE OR REPLACE FUNCTION kb.accepter_rdv(p_rdv bigint, p_auteur bigint)
-RETURNS text LANGUAGE plpgsql AS $$
+CREATE OR REPLACE FUNCTION kb.verifier_creneau_rdv(p_rdv bigint)
+RETURNS void LANGUAGE plpgsql AS $$
 DECLARE
     salon bigint; r kb.rendez_vous; pol kb.politique_rdv;
-    instant timestamptz; ligne record; res record; evenement bigint; tz text;
+    instant timestamptz; ligne record; res record; tz text;
     jour date; v_debut time; v_fin time; charge bigint;
 BEGIN
     IF current_setting('transaction_isolation') <> 'read committed' THEN
-        RAISE EXCEPTION 'READ COMMITTED requis' USING ERRCODE='25001';
-    END IF;
+        RAISE EXCEPTION 'READ COMMITTED requis' USING ERRCODE='25001'; END IF;
     SELECT p.etablissement_id INTO salon FROM kb.rendez_vous v
     JOIN kb.politique_rdv p USING(politique_id) WHERE v.rdv_id=p_rdv;
     IF salon IS NULL THEN RAISE EXCEPTION 'RDV introuvable' USING ERRCODE='P0002'; END IF;
-    -- Ordre commun a tous les futurs traitements : salon, RDV, ressources.
     SELECT fuseau INTO tz FROM kb.etablissement WHERE etablissement_id=salon FOR UPDATE;
     SELECT * INTO r FROM kb.rendez_vous WHERE rdv_id=p_rdv FOR UPDATE;
     SELECT * INTO pol FROM kb.politique_rdv WHERE politique_id=r.politique_id;
     instant := clock_timestamp();
-    IF NOT EXISTS (
-        SELECT 1 FROM kb.gerant g JOIN kb.permission_gestion pg USING(gerant_id)
-        JOIN kb.compte c ON c.compte_id=g.compte_id
-        WHERE pg.etablissement_id=salon AND g.compte_id=p_auteur
-          AND c.etat='actif' AND pg.permission_code='rdv_decider'
-    ) THEN RAISE EXCEPTION 'Non habilite' USING ERRCODE='42501'; END IF;
-    -- Rejeu apres succes : aucun nouvel evenement ni nouvelle notification.
-    IF r.etat='accepte' THEN RETURN 'deja_accepte'; END IF;
-    IF r.etat <> 'en_attente_salon' THEN
-        RAISE EXCEPTION 'Etat incompatible' USING ERRCODE='23514';
-    END IF;
-    IF pol.blocage_attente AND (r.expire_le IS NULL OR r.expire_le <= instant) THEN
-        RAISE EXCEPTION 'Maintien expire ou absent' USING ERRCODE='23514';
-    END IF;
     IF NOT EXISTS (SELECT 1 FROM kb.etablissement WHERE etablissement_id=salon AND etat_publication='publie') THEN
         RAISE EXCEPTION 'Salon non publie' USING ERRCODE='23514';
     END IF;
@@ -125,6 +109,41 @@ BEGIN
           RAISE EXCEPTION 'Capacite insuffisante' USING ERRCODE='23P01'; END IF;
       END LOOP;
     END LOOP;
+END $$;
+REVOKE ALL ON FUNCTION kb.verifier_creneau_rdv(bigint) FROM PUBLIC;
+CREATE OR REPLACE FUNCTION kb.accepter_rdv(p_rdv bigint, p_auteur bigint)
+RETURNS text LANGUAGE plpgsql AS $$
+DECLARE
+    salon bigint; r kb.rendez_vous; pol kb.politique_rdv;
+    instant timestamptz; ligne record; res record; evenement bigint; tz text;
+    jour date; v_debut time; v_fin time; charge bigint;
+BEGIN
+    IF current_setting('transaction_isolation') <> 'read committed' THEN
+        RAISE EXCEPTION 'READ COMMITTED requis' USING ERRCODE='25001';
+    END IF;
+    SELECT p.etablissement_id INTO salon FROM kb.rendez_vous v
+    JOIN kb.politique_rdv p USING(politique_id) WHERE v.rdv_id=p_rdv;
+    IF salon IS NULL THEN RAISE EXCEPTION 'RDV introuvable' USING ERRCODE='P0002'; END IF;
+    -- Ordre commun a tous les futurs traitements : salon, RDV, ressources.
+    SELECT fuseau INTO tz FROM kb.etablissement WHERE etablissement_id=salon FOR UPDATE;
+    SELECT * INTO r FROM kb.rendez_vous WHERE rdv_id=p_rdv FOR UPDATE;
+    SELECT * INTO pol FROM kb.politique_rdv WHERE politique_id=r.politique_id;
+    instant := clock_timestamp();
+    IF NOT EXISTS (
+        SELECT 1 FROM kb.gerant g JOIN kb.permission_gestion pg USING(gerant_id)
+        JOIN kb.compte c ON c.compte_id=g.compte_id
+        WHERE pg.etablissement_id=salon AND g.compte_id=p_auteur
+          AND c.etat='actif' AND pg.permission_code='rdv_decider'
+    ) THEN RAISE EXCEPTION 'Non habilite' USING ERRCODE='42501'; END IF;
+    -- Rejeu apres succes : aucun nouvel evenement ni nouvelle notification.
+    IF r.etat='accepte' THEN RETURN 'deja_accepte'; END IF;
+    IF r.etat <> 'en_attente_salon' THEN
+        RAISE EXCEPTION 'Etat incompatible' USING ERRCODE='23514';
+    END IF;
+    IF pol.blocage_attente AND (r.expire_le IS NULL OR r.expire_le <= instant) THEN
+        RAISE EXCEPTION 'Maintien expire ou absent' USING ERRCODE='23514';
+    END IF;
+    PERFORM kb.verifier_creneau_rdv(p_rdv);
     INSERT INTO kb.decision_salon(rdv_id,auteur_compte_id,resultat) VALUES (p_rdv,p_auteur,'accepte');
     UPDATE kb.rendez_vous SET etat='accepte' WHERE rdv_id=p_rdv;
     INSERT INTO kb.evenement_rdv(rdv_id,auteur_id,nature) VALUES(p_rdv,p_auteur,'accepte') RETURNING evenement_id INTO evenement;

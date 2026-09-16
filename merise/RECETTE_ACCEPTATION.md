@@ -1,3 +1,9 @@
+# Mise à jour applicative
+
+Le validateur de créneau est maintenant partagé entre acceptation et création. Les 13 scénarios de ce document ont été rejoués après cette extraction. La création, le refus, l'annulation et leur intégration Blazor disposent également de 21 scénarios documentés dans `planning/ETAT_IMPLEMENTATION.md`. Les limites de l'ancien état ci-dessous doivent être lues avec cette mise à jour.
+
+---
+
 # Acceptation des rendez-vous — traitement PostgreSQL
 
 Implémentation : `mpd/030_acceptation_rdv.sql`, fonction `kb.accepter_rdv(rdv_id, auteur_compte_id)`. Installée dans la base locale `keke_merise`. Aucun changement de tables : les relations MERISE V2 sont conservées.

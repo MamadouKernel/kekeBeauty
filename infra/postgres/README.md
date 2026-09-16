@@ -1,5 +1,7 @@
 # PostgreSQL de conception — Docker Desktop
 
+Mise à jour applicative : cette base est désormais raccordée à Blazor. Exécuter `Update-Application.ps1` après l'initialisation V2 pour installer les traitements et l'identité. Voir `planning/ETAT_IMPLEMENTATION.md` pour les tests et les limites actuelles ; les paragraphes ci-dessous décrivent également l'installation initiale.
+
 Traitement additionnel installé : `merise/mpd/030_acceptation_rdv.sql`. Recette : `python infra/postgres/test_acceptation.py --docker '<chemin docker.exe>'`. Ce test crée une base isolée dont le nom est affiché et la conserve pour inspection ; aucune suppression automatique. Voir `merise/RECETTE_ACCEPTATION.md`.
 
 Projet Compose `kekebeauty-merise`, service `db`, base `keke_merise`, utilisateur `keke_owner`. Image officielle PostgreSQL 17. Volume persistant dédié. Accès Windows sur `127.0.0.1:55432`, limité à cette machine pour éviter le conflit avec Kalenso sur 5432. Ce serveur valide le modèle ; ce n'est pas une base de production ni encore la base de l'application Blazor.

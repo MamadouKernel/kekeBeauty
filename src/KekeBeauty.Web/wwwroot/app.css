@@ -74,3 +74,8 @@ h1:focus {
 .kb-service { display: flex; justify-content: space-between; gap: 1rem; padding: .9rem 1rem; }
 .kb-service + .kb-service { border-top: 1px solid #ded5e5; }
 .kb-note { color: #555; font-size: .9rem; margin-top: .6rem; }
+
+.auth-card { max-width: 42rem; padding: 1.5rem; margin: 1.5rem 0; border: 1px solid #ddd; border-radius: 1rem; }
+.auth-card label { display:block; margin:1rem 0 .4rem; }
+.auth-card input:not([type=hidden]) { display:block; padding:.7rem; margin-bottom:1rem; max-width:100%; }
+.auth-card button { margin:.3rem; }

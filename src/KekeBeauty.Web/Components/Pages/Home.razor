@@ -1,21 +1,27 @@
-﻿@page "/"
-
-<PageTitle>Keke Beauty - Annuaire de la beauté</PageTitle>
-
+@page "/"
+@using KekeBeauty.Web.Services
+@inject CatalogService Catalog
+<PageTitle>Keke Beauty — Votre rendez-vous beauté</PageTitle>
 <section class="kb-hero">
-    <p class="kb-eyebrow">Annuaire de la beauté</p>
-    <h1>Trouvez un établissement de beauté près de vous</h1>
-    <p>Découvrez les prestations, les tarifs et les coordonnées des salons. La recherche géolocalisée et les rendez-vous seront ajoutés après validation des règles métier.</p>
-    <a class="kb-button" href="salon-demo">Voir la fiche de démonstration</a>
+    <p class="kb-eyebrow">Votre beauté, votre rendez-vous</p>
+    <h1>Trouvez votre prochain salon</h1>
+    <p>Découvrez les prestations et demandez un rendez-vous. Le salon confirme votre demande ; vous payez sur place.</p>
+    <form method="get" action="/">
+        <label for="search">Salon ou commune</label>
+        <input id="search" name="q" value="@Query" maxlength="120" placeholder="Nom du salon, commune…" />
+        <button class="btn btn-primary">Rechercher</button>
+    </form>
 </section>
-
-<section class="kb-section" aria-labelledby="demo-title">
-    <h2 id="demo-title">Première fiche en recette</h2>
-    <p>Cette fiche utilise des données fictives. Elle sert à vérifier l'interface avant la création du catalogue et de la base de données.</p>
-    <article class="kb-card">
-        <span class="kb-badge">Démonstration</span>
-        <h3>Salon Éclat</h3>
-        <p>Coiffure et soins de beauté</p>
-        <a href="salon-demo">Consulter les prestations et tarifs</a>
-    </article>
+<section class="kb-section">
+    <h2>Les établissements</h2>
+    @if (salons.Count == 0) { <p>Aucun établissement ne correspond à votre recherche pour le moment.</p> }
+    @foreach (var salon in salons)
+    {
+        <article class="kb-card"><h3>@salon.Name</h3><p>@salon.Location</p><p>@salon.Description</p><a href="@($"salons/{salon.Id}")">Prestations et réservation</a></article>
+    }
 </section>
+@code {
+    [SupplyParameterFromQuery(Name="q")] public string? Query { get; set; }
+    private List<Salon> salons=[];
+    protected override async Task OnParametersSetAsync() => salons=await Catalog.Search(Query??"");
+}

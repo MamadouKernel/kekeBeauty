@@ -1,0 +1,19 @@
+@page "/connexion"
+<PageTitle>Connexion — Keke Beauty</PageTitle>
+<section class="auth-card">
+    <h1>Connexion par téléphone</h1>
+    <p>Retrouvez vos rendez-vous avec votre numéro de téléphone.</p>
+    @if (Error is not null)
+    {
+        <p role="alert">@(Error switch { "format" => "Numéro invalide. Utilisez le format international +225…", "limite" => "Trop de demandes. Réessayez dans quinze minutes.", _ => "Code incorrect, expiré ou déjà utilisé. Recommencez la connexion." })</p>
+    }
+    <form action="/auth/request" method="post" data-enhance="false">
+        <AntiforgeryToken />
+        <label for="phone">Numéro au format international</label>
+        <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+225…" maxlength="24" required />
+        <button type="submit" class="btn btn-primary">Recevoir un code</button>
+    </form>
+</section>
+@code {
+    [SupplyParameterFromQuery(Name = "erreur")] public string? Error { get; set; }
+}
