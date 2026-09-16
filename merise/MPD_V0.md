@@ -1,5 +1,7 @@
 # Keke Beauty — Modèle physique des données initial
 
+> Version de référence : [Conception MERISE V1](CONCEPTION_MERISE_V1.md) — décisions validées, DD, MCD, MLD, MCT, MOT, MPD et audit actualisés. Cette V0 est conservée pour historique ; ses hypothèses remplacées ne sont plus applicables.
+
 Statut : **proposition technique non déployée**. Ce MPD applique le MLD initial aux domaines de référence, annuaire, catalogue et KYC avec PostgreSQL comme SGBD de travail. Le choix définitif du SGBD, du pays, des rôles et des règles de réservation doit encore être confirmé. Le fichier [DDL candidat](mpd/001_socle_provisoire.sql) est destiné à une base isolée de conception ; il n'est ni une migration approuvée ni une instruction de mise en production.
 
 ## Conventions physiques

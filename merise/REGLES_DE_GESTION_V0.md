@@ -1,5 +1,7 @@
 # Règles de gestion initiales — Keke Beauty
 
+> Version de référence : [Conception MERISE V1](CONCEPTION_MERISE_V1.md) — décisions validées, DD, MCD, MLD, MCT, MOT, MPD et audit actualisés. Cette V0 est conservée pour historique ; ses hypothèses remplacées ne sont plus applicables.
+
 Actualisation du 16 septembre 2026 : les réponses et amendements RG-018 à RG-027 dans [DECISIONS_METIER_V1.md](DECISIONS_METIER_V1.md) prévalent sur les questions ouvertes correspondantes ci-dessous. Les valeurs de configuration restent à définir avant activation.
 
 Statut : **version de travail à confirmer par le Product Owner**. Une règle « CDC » vient du document ; une règle « proposée » complète un cas que le document ne tranche pas. Les décisions ouvertes ne doivent pas être codées comme vérités métier avant validation. Ces identifiants seront repris dans le DD, le MCD, le MCT, le MLD, le MOT et le MPD.

@@ -1,5 +1,7 @@
 # Keke Beauty — Modèle conceptuel des données initial
 
+> Version de référence : [Conception MERISE V1](CONCEPTION_MERISE_V1.md) — décisions validées, DD, MCD, MLD, MCT, MOT, MPD et audit actualisés. Cette V0 est conservée pour historique ; ses hypothèses remplacées ne sont plus applicables.
+
 Statut : **proposition à valider**. Le MCD décrit les objets du métier et leurs associations sans type SQL ni clé étrangère. Les cardinalités marquées « hypothèse » dépendent des réponses au questionnaire. Une cardinalité `0,N` signifie zéro ou plusieurs occurrences ; `1,1` signifie exactement une occurrence.
 
 ## Entités et identifiants conceptuels

@@ -1,5 +1,7 @@
 # Keke Beauty — Modèle organisationnel des traitements initial
 
+> Version de référence : [Conception MERISE V1](CONCEPTION_MERISE_V1.md) — décisions validées, DD, MCD, MLD, MCT, MOT, MPD et audit actualisés. Cette V0 est conservée pour historique ; ses hypothèses remplacées ne sont plus applicables.
+
 Statut : **organisation proposée**. Le MOT reprend les opérations du MCT et précise acteur, moment, lieu logique et moyen. Les rôles exacts, horaires de support et procédures d'escalade seront confirmés avec le commanditaire. « Système » désigne l'application et ses intégrations, pas une personne.
 
 | Traitement MCT | Responsable de l'action | Quand et déclenchement | Où et avec quel moyen | Contrôle et trace attendus |

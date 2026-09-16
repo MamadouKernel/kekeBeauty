@@ -1,5 +1,7 @@
 # Keke Beauty — Dictionnaire des données initial
 
+> Version de référence : [Conception MERISE V1](CONCEPTION_MERISE_V1.md) — décisions validées, DD, MCD, MLD, MCT, MOT, MPD et audit actualisés. Cette V0 est conservée pour historique ; ses hypothèses remplacées ne sont plus applicables.
+
 Statut : version de travail, à valider avec les réponses au questionnaire. Ce document décrit le sens métier des données sans imposer encore de tables ni de types SQL. Les identifiants de données seront repris dans le MCD, le MLD et le MPD.
 
 | ID | Donnée | Sens et contrainte métier connus | Source | Décision ouverte |

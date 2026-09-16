@@ -1,5 +1,9 @@
 # Mise à jour ClickUp en attente du quota
 
+## Actualisation du 16 septembre 2026
+
+Le quota est revenu. KB-002 (`123tcvwe4gu`) a été mise à jour avec les dix décisions validées et les liens vers la consolidation MERISE V1, le MLD et le MPD candidat. 52 tables et 66 références vérifiées statiquement ; aucune exécution PostgreSQL. La tâche n'est pas déclarée terminée. Les éléments ci-dessous décrivent l'ancien blocage ; la création des tâches KB-041 à KB-084 et les fiches de sprint restent à réaliser.
+
 Le connecteur ClickUp de l'espace `1200440000000052` a répondu `RATE_LIMIT_EXCEEDED` lors d'une tentative de lecture. La limite du jour est de 100/100 appels. Aucune mise à jour externe n'a été effectuée dans ce tour.
 
 ## État déjà connu

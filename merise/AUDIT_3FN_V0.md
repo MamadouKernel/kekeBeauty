@@ -1,5 +1,7 @@
 # Keke Beauty — Audit initial des 1FN 2FN et 3FN
 
+> Version de référence : [Conception MERISE V1](CONCEPTION_MERISE_V1.md) — décisions validées, DD, MCD, MLD, MCT, MOT, MPD et audit actualisés. Cette V0 est conservée pour historique ; ses hypothèses remplacées ne sont plus applicables.
+
 Portée : les 19 relations détaillées du [MLD initial](MLD_V0.md) et reprises dans le [DDL candidat](mpd/001_socle_provisoire.sql). Cet audit repose sur les dépendances fonctionnelles **actuellement connues**. Les domaines RDV et abonnements n'ont pas encore de MPD et ne peuvent pas être déclarés conformes.
 
 Pour chaque relation, la 1FN exige une occurrence par ligne et des attributs élémentaires au sens du métier ; la 2FN exclut une propriété qui dépend seulement d'une partie d'une clé composée ; la 3FN exclut une propriété non-clé qui dépend transitivement d'une clé via une autre propriété non-clé. Une clé technique ne prouve pas ces propriétés à elle seule.

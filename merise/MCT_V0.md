@@ -1,5 +1,7 @@
 # Keke Beauty — Modèle conceptuel des traitements initial
 
+> Version de référence : [Conception MERISE V1](CONCEPTION_MERISE_V1.md) — décisions validées, DD, MCD, MLD, MCT, MOT, MPD et audit actualisés. Cette V0 est conservée pour historique ; ses hypothèses remplacées ne sont plus applicables.
+
 Statut : **proposition à valider**. Le MCT décrit ce qui déclenche une opération métier et ce qu'elle produit, indépendamment de l'écran, du service technique ou de la personne qui l'exécute. Le MOT précisera ensuite acteur, lieu, moment et moyen.
 
 | ID | Événement entrant | Conditions métier | Opération conceptuelle | Résultats / événements sortants | Règles |

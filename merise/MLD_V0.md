@@ -1,5 +1,7 @@
 # Keke Beauty — Modèle logique des données initial
 
+> Version de référence : [Conception MERISE V1](CONCEPTION_MERISE_V1.md) — décisions validées, DD, MCD, MLD, MCT, MOT, MPD et audit actualisés. Cette V0 est conservée pour historique ; ses hypothèses remplacées ne sont plus applicables.
+
 Actualisation : voir [DECISIONS_METIER_V1.md](DECISIONS_METIER_V1.md) pour les extensions proposées de réservation, ressources, politiques versionnées et encaissements en espèces. Les propositions structurelles V0 ci-dessous ne constituent plus la cible complète ; réconciliation et audit requis avant migration.
 
 Statut : **version de travail**. Ce MLD transforme les entités et associations du MCD en relations, sans types SQL. Les relations du domaine annuaire et KYC sont détaillées ; les relations de réservation et de facturation restent des propositions structurales dont les cardinalités et états ne sont pas validés. Aucune migration n'en découle encore.
