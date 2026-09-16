@@ -1,5 +1,7 @@
 # PostgreSQL de conception — Docker Desktop
 
+Traitement additionnel installé : `merise/mpd/030_acceptation_rdv.sql`. Recette : `python infra/postgres/test_acceptation.py --docker '<chemin docker.exe>'`. Ce test crée une base isolée dont le nom est affiché et la conserve pour inspection ; aucune suppression automatique. Voir `merise/RECETTE_ACCEPTATION.md`.
+
 Projet Compose `kekebeauty-merise`, service `db`, base `keke_merise`, utilisateur `keke_owner`. Image officielle PostgreSQL 17. Volume persistant dédié. Accès Windows sur `127.0.0.1:55432`, limité à cette machine pour éviter le conflit avec Kalenso sur 5432. Ce serveur valide le modèle ; ce n'est pas une base de production ni encore la base de l'application Blazor.
 
 Le schéma V2 est chargé dans la base locale. Les scripts V1 sont historiques ; utiliser uniquement les scripts V2 ci-dessous. Le correctif 022 est déjà inclus dans l’initialisation 020.

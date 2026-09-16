@@ -12,6 +12,8 @@ Plateforme de découverte et de réservation d'établissements de beauté. Lance
 
 ## Développement
 
+Traitement d'acceptation PostgreSQL installé : [fonction et recette concurrente](merise/RECETTE_ACCEPTATION.md), 13 scénarios réussis. L'intégration Blazor et les autres mutations du planning restent à réaliser.
+
 `dotnet run --project src/KekeBeauty.Web/KekeBeauty.Web.csproj`
 
 ## Base locale

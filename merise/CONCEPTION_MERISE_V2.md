@@ -1,5 +1,7 @@
 # Keke Beauty — MERISE V2, référence courante
 
+Actualisation : le traitement `kb.accepter_rdv` est désormais implémenté et testé, y compris deux acceptations concurrentes. Voir [RECETTE_ACCEPTATION.md](RECETTE_ACCEPTATION.md) pour sa portée exacte. Les traitements de création, report et modification de capacité doivent encore adopter le même protocole ; les listes de travaux ci-dessous décrivent le périmètre complet.
+
 Cette version applique les dernières réponses du porteur de projet et sa validation du caractère paramétrable des cinq derniers points. Les V0/V1 sont des historiques. MPD chargé dans PostgreSQL 17.11 Docker ; résultats et limites dans [VERIFICATION_V2.md](VERIFICATION_V2.md). L'application Blazor n'est pas encore connectée à ce schéma.
 
 ## 1. Règles de gestion (RG)
