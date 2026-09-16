@@ -1,0 +1,12 @@
+**/bin/
+**/obj/
+.vs/
+.env
+.env.*
+!.env.example
+**/*.user
+**/*.pfx
+**/*.p12
+planning/__pycache__/
+output/questionnaire/qa/
+src/KekeBeauty.Web/App_Data/

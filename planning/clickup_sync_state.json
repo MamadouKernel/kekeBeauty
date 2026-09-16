@@ -1,0 +1,375 @@
+{
+  "workspace_id": "1200440000000052",
+  "folder": {
+    "success": true,
+    "folder_id": "1200440000018402"
+  },
+  "backlog_list": {
+    "success": true,
+    "list_id": "1200440000019114",
+    "list_url": "https://app.clickup.com/1200440000000052/v/l/li/1200440000019114"
+  },
+  "sprint_lists": {
+    "1": {
+      "success": true,
+      "list_id": "1200440000019117",
+      "list_url": "https://app.clickup.com/1200440000000052/v/l/li/1200440000019117"
+    },
+    "2": {
+      "success": true,
+      "list_id": "1200440000019118",
+      "list_url": "https://app.clickup.com/1200440000000052/v/l/li/1200440000019118"
+    },
+    "3": {
+      "success": true,
+      "list_id": "1200440000019119",
+      "list_url": "https://app.clickup.com/1200440000000052/v/l/li/1200440000019119"
+    },
+    "4": {
+      "success": true,
+      "list_id": "1200440000019120",
+      "list_url": "https://app.clickup.com/1200440000000052/v/l/li/1200440000019120"
+    },
+    "5": {
+      "success": true,
+      "list_id": "1200440000019121",
+      "list_url": "https://app.clickup.com/1200440000000052/v/l/li/1200440000019121"
+    },
+    "6": {
+      "success": true,
+      "list_id": "1200440000019122",
+      "list_url": "https://app.clickup.com/1200440000000052/v/l/li/1200440000019122"
+    },
+    "7": {
+      "success": true,
+      "list_id": "1200440000019123",
+      "list_url": "https://app.clickup.com/1200440000000052/v/l/li/1200440000019123"
+    },
+    "8": {
+      "success": true,
+      "list_id": "1200440000019124",
+      "list_url": "https://app.clickup.com/1200440000000052/v/l/li/1200440000019124"
+    },
+    "9": {
+      "success": true,
+      "list_id": "1200440000019125",
+      "list_url": "https://app.clickup.com/1200440000000052/v/l/li/1200440000019125"
+    },
+    "10": {
+      "success": true,
+      "list_id": "1200440000019126",
+      "list_url": "https://app.clickup.com/1200440000000052/v/l/li/1200440000019126"
+    },
+    "11": {
+      "success": true,
+      "list_id": "1200440000019127",
+      "list_url": "https://app.clickup.com/1200440000000052/v/l/li/1200440000019127"
+    },
+    "12": {
+      "success": true,
+      "list_id": "1200440000019129",
+      "list_url": "https://app.clickup.com/1200440000000052/v/l/li/1200440000019129"
+    }
+  },
+  "created_tasks": {
+    "KB-001": {
+      "success": true,
+      "task_id": "123tcvwe4gt",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4gt"
+    },
+    "KB-002": {
+      "success": true,
+      "task_id": "123tcvwe4gu",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4gu"
+    },
+    "KB-003": {
+      "success": true,
+      "task_id": "123tcvwe4gv",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4gv"
+    },
+    "KB-004": {
+      "success": true,
+      "task_id": "123tcvwe4gw",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4gw"
+    },
+    "KB-005": {
+      "success": true,
+      "task_id": "123tcvwe4gx",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4gx"
+    },
+    "KB-006": {
+      "success": true,
+      "task_id": "123tcvwe4gy",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4gy"
+    },
+    "KB-007": {
+      "success": true,
+      "task_id": "123tcvwe4gz",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4gz"
+    },
+    "KB-008": {
+      "success": true,
+      "task_id": "123tcvwe4h0",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4h0"
+    },
+    "KB-009": {
+      "success": true,
+      "task_id": "123tcvwe4h3",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4h3"
+    },
+    "KB-010": {
+      "success": true,
+      "task_id": "123tcvwe4h5",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4h5"
+    },
+    "KB-011": {
+      "success": true,
+      "task_id": "123tcvwe4h6",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4h6"
+    },
+    "KB-012": {
+      "success": true,
+      "task_id": "123tcvwe4h7",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4h7"
+    },
+    "KB-013": {
+      "success": true,
+      "task_id": "123tcvwe4h8",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4h8"
+    },
+    "KB-014": {
+      "success": true,
+      "task_id": "123tcvwe4ha",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4ha"
+    },
+    "KB-015": {
+      "success": true,
+      "task_id": "123tcvwe4hb",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4hb"
+    },
+    "KB-016": {
+      "success": true,
+      "task_id": "123tcvwe4hc",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4hc"
+    },
+    "KB-017": {
+      "success": true,
+      "task_id": "123tcvwe4hd",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4hd"
+    },
+    "KB-018": {
+      "success": true,
+      "task_id": "123tcvwe4hf",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4hf"
+    },
+    "KB-019": {
+      "success": true,
+      "task_id": "123tcvwe4hg",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4hg"
+    },
+    "KB-020": {
+      "success": true,
+      "task_id": "123tcvwe4hj",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4hj"
+    },
+    "KB-021": {
+      "success": true,
+      "task_id": "123tcvwe4hm",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4hm"
+    },
+    "KB-022": {
+      "success": true,
+      "task_id": "123tcvwe4hn",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4hn"
+    },
+    "KB-023": {
+      "success": true,
+      "task_id": "123tcvwe4hq",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4hq"
+    },
+    "KB-024": {
+      "success": true,
+      "task_id": "123tcvwe4ht",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4ht"
+    },
+    "KB-025": {
+      "success": true,
+      "task_id": "123tcvwe4hv",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4hv"
+    },
+    "KB-026": {
+      "success": true,
+      "task_id": "123tcvwe4hy",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4hy"
+    },
+    "KB-027": {
+      "success": true,
+      "task_id": "123tcvwe4hz",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4hz"
+    },
+    "KB-028": {
+      "success": true,
+      "task_id": "123tcvwe4j1",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4j1"
+    },
+    "KB-029": {
+      "success": true,
+      "task_id": "123tcvwe4j9",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4j9"
+    },
+    "KB-030": {
+      "success": true,
+      "task_id": "123tcvwe4jj",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4jj"
+    },
+    "KB-031": {
+      "success": true,
+      "task_id": "123tcvwe4jk",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4jk"
+    },
+    "KB-032": {
+      "success": true,
+      "task_id": "123tcvwe4jn",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4jn"
+    },
+    "KB-033": {
+      "success": true,
+      "task_id": "123tcvwe4jq",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4jq"
+    },
+    "KB-034": {
+      "success": true,
+      "task_id": "123tcvwe4jr",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4jr"
+    },
+    "KB-035": {
+      "success": true,
+      "task_id": "123tcvwe4jw",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4jw"
+    },
+    "KB-036": {
+      "success": true,
+      "task_id": "123tcvwe4jy",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4jy"
+    },
+    "KB-037": {
+      "success": true,
+      "task_id": "123tcvwe4jz",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4jz"
+    },
+    "KB-038": {
+      "success": true,
+      "task_id": "123tcvwe4k0",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4k0"
+    },
+    "KB-039": {
+      "success": true,
+      "task_id": "123tcvwe4k1",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4k1"
+    },
+    "KB-040": {
+      "success": true,
+      "task_id": "123tcvwe4k2",
+      "custom_id": null,
+      "task_url": "https://app.clickup.com/t/123tcvwe4k2"
+    }
+  },
+  "remaining_ids": [
+    "KB-041",
+    "KB-042",
+    "KB-043",
+    "KB-044",
+    "KB-045",
+    "KB-046",
+    "KB-047",
+    "KB-048",
+    "KB-049",
+    "KB-050",
+    "KB-051",
+    "KB-052",
+    "KB-053",
+    "KB-054",
+    "KB-055",
+    "KB-056",
+    "KB-057",
+    "KB-058",
+    "KB-059",
+    "KB-060",
+    "KB-061",
+    "KB-062",
+    "KB-063",
+    "KB-064",
+    "KB-065",
+    "KB-066",
+    "KB-067",
+    "KB-068",
+    "KB-069",
+    "KB-070",
+    "KB-071",
+    "KB-072",
+    "KB-073",
+    "KB-074",
+    "KB-075",
+    "KB-076",
+    "KB-077",
+    "KB-078",
+    "KB-079",
+    "KB-080",
+    "KB-081",
+    "KB-082",
+    "KB-083",
+    "KB-084"
+  ],
+  "native_dependencies_created": [],
+  "sprint_pilot_tasks_created": [],
+  "limitations": {
+    "multiple_lists": "Plan limit reached; use sprint pilot tasks with links to source backlog tasks",
+    "connector": "Daily MCP limit 100/100 reached; reported retry delay 83539 seconds at failure"
+  },
+  "next_steps": [
+    "After quota reset, inspect existing tasks and reconcile IDs before creating anything",
+    "Create remaining KB tasks KB-041 through KB-084 in Product Backlog",
+    "Create 12 sprint pilot tasks with links to existing KB tasks, sprint goal, review and retrospective checklists",
+    "Dependencies are already written in descriptions; add native links if quota permits, recording each completion",
+    "Verify final counts and provide links"
+  ]
+}

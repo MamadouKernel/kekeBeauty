@@ -1,0 +1,22 @@
+# Mise à jour ClickUp en attente du quota
+
+Le connecteur ClickUp de l'espace `1200440000000052` a répondu `RATE_LIMIT_EXCEEDED` lors d'une tentative de lecture. La limite du jour est de 100/100 appels. Aucune mise à jour externe n'a été effectuée dans ce tour.
+
+## État déjà connu
+
+- Dossier Keke Beauty - Scrum : `1200440000018402`.
+- Product Backlog : `1200440000019114`, avec KB-001 à KB-040 créés.
+- Douze listes de sprint créées. Les listes multiples de tâches sont limitées par le forfait, donc les tâches restent dans le Product Backlog.
+- Les identifiants exacts sont conservés dans `clickup_sync_state.json` ; ne pas recréer les tâches déjà présentes.
+
+## Mise à jour prioritaire dès que le quota revient
+
+1. Lire et vérifier les tâches KB-001 à KB-007 et les statuts réellement disponibles.
+2. KB-001/002 : noter que le questionnaire de cadrage existe, mais que les décisions métier restent ouvertes. Ne pas les marquer terminées.
+3. KB-004/005 : noter que le socle Blazor .NET 10 existe et compile, sans déclarer l'architecture ou les fournisseurs définitifs validés.
+4. KB-006 : noter que l'accueil et la fiche fictive répondent en local, et qu'une recette externe et son acceptation restent à faire.
+5. Ajouter les références aux règles de gestion, au DD, au MCD et au MCT initial ; préciser que MLD, MOT, MPD et vérification 3FN sont à venir après validation des questions métier.
+6. Créer KB-041 à KB-084 avec les descriptions de `backlog.json`, puis une fiche de pilotage dans chaque sprint avec liens vers les tâches de sa prévision.
+7. Vérifier les comptes, enregistrer les nouveaux identifiants et informer l'utilisateur du résultat réel.
+
+La clé fournie par l'utilisateur ne doit jamais être enregistrée dans ces fichiers ni utilisée en parallèle du connecteur pour contourner son quota.

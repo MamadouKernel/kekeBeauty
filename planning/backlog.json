@@ -1,0 +1,1747 @@
+{
+  "version": "1.0-proposition",
+  "sprint_duration_weeks": 2,
+  "calendar_confirmed": false,
+  "sprints": [
+    {
+      "number": 1,
+      "title": "Cadrage et première consultation",
+      "goal": "Consulter une première fiche de démonstration sur un environnement de recette.",
+      "points": 28
+    },
+    {
+      "number": 2,
+      "title": "Identité et inscription partenaire",
+      "goal": "Un client se connecte et un partenaire dépose un dossier sécurisé.",
+      "points": 31
+    },
+    {
+      "number": 3,
+      "title": "Validation et catalogue partenaire",
+      "goal": "Un établissement vérifié publie une fiche et des prestations exploitables.",
+      "points": 29
+    },
+    {
+      "number": 4,
+      "title": "Recherche et mise en relation",
+      "goal": "Un client trouve un salon pertinent et peut le contacter ou s’y rendre.",
+      "points": 28
+    },
+    {
+      "number": 5,
+      "title": "Disponibilités et demande de rendez-vous",
+      "goal": "Un client demande un créneau réellement disponible sans double réservation.",
+      "points": 31
+    },
+    {
+      "number": 6,
+      "title": "Gestion des rendez-vous et notifications",
+      "goal": "Client et partenaire suivent un rendez-vous confirmé, refusé ou modifié.",
+      "points": 29
+    },
+    {
+      "number": 7,
+      "title": "Abonnements et paiement Mobile Money",
+      "goal": "Un établissement souscrit et obtient ses droits après paiement vérifié.",
+      "points": 29
+    },
+    {
+      "number": 8,
+      "title": "Cartes, renouvellements et finances",
+      "goal": "Les abonnements sont encaissés, rapprochés et suivis sur leur cycle de vie.",
+      "points": 31
+    },
+    {
+      "number": 9,
+      "title": "Administration et exploitation métier",
+      "goal": "L’équipe Keke Beauty administre le service et traite les incidents métier.",
+      "points": 29
+    },
+    {
+      "number": 10,
+      "title": "Qualité et préparation des plateformes",
+      "goal": "Le produit est utilisable sur les plateformes retenues et prêt pour la recette finale.",
+      "points": 33
+    },
+    {
+      "number": 11,
+      "title": "Recette finale et lancement",
+      "goal": "Une version acceptée est mise en service avec des partenaires prêts à l’utiliser.",
+      "points": 29
+    },
+    {
+      "number": 12,
+      "title": "Stabilisation et transfert",
+      "goal": "Le service est stable, mesuré et exploitable durablement par l’équipe.",
+      "points": 21
+    }
+  ],
+  "items": [
+    {
+      "id": "KB-001",
+      "title": "Valider le périmètre et les décisions produit",
+      "sprint": 1,
+      "points": 3,
+      "dependencies": [],
+      "source": "CDC 1, 3.3",
+      "criteria": [
+        "Pays et devise, web/mobile, budget, date et équipe consignés avec responsable et échéance",
+        "périmètre de lancement et indicateurs de succès approuvés par le Product Owner."
+      ],
+      "priority": "high",
+      "epic": "Cadrage et socle",
+      "type": "Exigence CDC",
+      "rank": 1,
+      "description": "## Objectif\nValider le périmètre et les décisions produit\n\n## Traçabilité\nRéférence : CDC 1, 3.3\nIdentifiant : KB-001\nEpic : Cadrage et socle\nNature : Exigence CDC\nOrdre initial : 1 (à arbitrer par le Product Owner)\nSprint prévisionnel : 01\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : Aucune\n\n## Critères d’acceptation\n- [ ] Pays et devise, web/mobile, budget, date et équipe consignés avec responsable et échéance\n- [ ] périmètre de lancement et indicateurs de succès approuvés par le Product Owner.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-002",
+      "title": "Établir les règles métier des rendez-vous et abonnements",
+      "sprint": 1,
+      "points": 3,
+      "dependencies": [
+        "KB-001"
+      ],
+      "source": "CDC 3.1–3.3",
+      "criteria": [
+        "Durée, employés/capacité, fuseau horaire, délais, annulations et absences décidés",
+        "droits gratuits/payants, engagement annuel, impayés et renouvellement explicités."
+      ],
+      "priority": "high",
+      "epic": "Cadrage et socle",
+      "type": "Exigence CDC",
+      "rank": 2,
+      "description": "## Objectif\nÉtablir les règles métier des rendez-vous et abonnements\n\n## Traçabilité\nRéférence : CDC 3.1–3.3\nIdentifiant : KB-002\nEpic : Cadrage et socle\nNature : Exigence CDC\nOrdre initial : 2 (à arbitrer par le Product Owner)\nSprint prévisionnel : 01\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-001\n\n## Critères d’acceptation\n- [ ] Durée, employés/capacité, fuseau horaire, délais, annulations et absences décidés\n- [ ] droits gratuits/payants, engagement annuel, impayés et renouvellement explicités.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-003",
+      "title": "Valider la direction graphique et les parcours",
+      "sprint": 1,
+      "points": 5,
+      "dependencies": [
+        "KB-001"
+      ],
+      "source": "CDC 2",
+      "criteria": [
+        "Un logo choisi parmi les propositions ou une alternative validée",
+        "prototype violet/blanc couvrant recherche, fiche, RDV et espace partenaire testé avec utilisateurs représentatifs."
+      ],
+      "priority": "high",
+      "epic": "Cadrage et socle",
+      "type": "Exigence CDC",
+      "rank": 3,
+      "description": "## Objectif\nValider la direction graphique et les parcours\n\n## Traçabilité\nRéférence : CDC 2\nIdentifiant : KB-003\nEpic : Cadrage et socle\nNature : Exigence CDC\nOrdre initial : 3 (à arbitrer par le Product Owner)\nSprint prévisionnel : 01\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-001\n\n## Critères d’acceptation\n- [ ] Un logo choisi parmi les propositions ou une alternative validée\n- [ ] prototype violet/blanc couvrant recherche, fiche, RDV et espace partenaire testé avec utilisateurs représentatifs.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-004",
+      "title": "Choisir l’architecture et vérifier les fournisseurs",
+      "sprint": 1,
+      "points": 5,
+      "dependencies": [
+        "KB-001"
+      ],
+      "source": "CDC 4",
+      "criteria": [
+        "Décisions documentées pour clients, serveur, données, hébergement et cartographie",
+        "faisabilité, coûts et accès de test SMS, paiement et liens Yango vérifiés avec solution de repli."
+      ],
+      "priority": "high",
+      "epic": "Cadrage et socle",
+      "type": "Exigence CDC",
+      "rank": 4,
+      "description": "## Objectif\nChoisir l’architecture et vérifier les fournisseurs\n\n## Traçabilité\nRéférence : CDC 4\nIdentifiant : KB-004\nEpic : Cadrage et socle\nNature : Exigence CDC\nOrdre initial : 4 (à arbitrer par le Product Owner)\nSprint prévisionnel : 01\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-001\n\n## Critères d’acceptation\n- [ ] Décisions documentées pour clients, serveur, données, hébergement et cartographie\n- [ ] faisabilité, coûts et accès de test SMS, paiement et liens Yango vérifiés avec solution de repli.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-005",
+      "title": "Installer le dépôt et la chaîne de livraison",
+      "sprint": 1,
+      "points": 5,
+      "dependencies": [
+        "KB-004"
+      ],
+      "source": "Complément livraison",
+      "criteria": [
+        "Installation reproductible et contrôles automatiques sur une modification",
+        "recette déployée avec configuration séparée et secrets absents du dépôt."
+      ],
+      "priority": "high",
+      "epic": "Cadrage et socle",
+      "type": "Complément de réalisation",
+      "rank": 5,
+      "description": "## Objectif\nInstaller le dépôt et la chaîne de livraison\n\n## Traçabilité\nRéférence : Complément livraison\nIdentifiant : KB-005\nEpic : Cadrage et socle\nNature : Complément de réalisation\nOrdre initial : 5 (à arbitrer par le Product Owner)\nSprint prévisionnel : 01\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-004\n\n## Critères d’acceptation\n- [ ] Installation reproductible et contrôles automatiques sur une modification\n- [ ] recette déployée avec configuration séparée et secrets absents du dépôt.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-006",
+      "title": "Afficher une fiche de démonstration accessible",
+      "sprint": 1,
+      "points": 5,
+      "dependencies": [
+        "KB-003",
+        "KB-005"
+      ],
+      "source": "CDC 3.1",
+      "criteria": [
+        "Fiche alimentée par un jeu de données de démonstration avec nom, description, prestations et tarifs",
+        "affichage mobile et bureau, chargement et erreur contrôlés."
+      ],
+      "priority": "high",
+      "epic": "Cadrage et socle",
+      "type": "Exigence CDC",
+      "rank": 6,
+      "description": "## Objectif\nAfficher une fiche de démonstration accessible\n\n## Traçabilité\nRéférence : CDC 3.1\nIdentifiant : KB-006\nEpic : Cadrage et socle\nNature : Exigence CDC\nOrdre initial : 6 (à arbitrer par le Product Owner)\nSprint prévisionnel : 01\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-003, KB-005\n\n## Critères d’acceptation\n- [ ] Fiche alimentée par un jeu de données de démonstration avec nom, description, prestations et tarifs\n- [ ] affichage mobile et bureau, chargement et erreur contrôlés.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-007",
+      "title": "Définir le fonctionnement Scrum et la qualité",
+      "sprint": 1,
+      "points": 2,
+      "dependencies": [
+        "KB-001"
+      ],
+      "source": "Complément Scrum",
+      "criteria": [
+        "Product Owner, Scrum Master et Developers identifiés",
+        "Definition of Done, cadence, registre des décisions et critères de recette partagés."
+      ],
+      "priority": "high",
+      "epic": "Cadrage et socle",
+      "type": "Complément de réalisation",
+      "rank": 7,
+      "description": "## Objectif\nDéfinir le fonctionnement Scrum et la qualité\n\n## Traçabilité\nRéférence : Complément Scrum\nIdentifiant : KB-007\nEpic : Cadrage et socle\nNature : Complément de réalisation\nOrdre initial : 7 (à arbitrer par le Product Owner)\nSprint prévisionnel : 01\nEstimation indicative : 2 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-001\n\n## Critères d’acceptation\n- [ ] Product Owner, Scrum Master et Developers identifiés\n- [ ] Definition of Done, cadence, registre des décisions et critères de recette partagés.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-008",
+      "title": "Demander un code de connexion par SMS",
+      "sprint": 2,
+      "points": 5,
+      "dependencies": [
+        "KB-004",
+        "KB-005"
+      ],
+      "source": "CDC 3.1, 4",
+      "criteria": [
+        "Numéro normalisé selon le pays",
+        "code limité dans le temps, quota de demandes et délai de renvoi testés sans révéler l’existence d’un compte."
+      ],
+      "priority": "high",
+      "epic": "Identité et accès",
+      "type": "Exigence CDC",
+      "rank": 8,
+      "description": "## Objectif\nDemander un code de connexion par SMS\n\n## Traçabilité\nRéférence : CDC 3.1, 4\nIdentifiant : KB-008\nEpic : Identité et accès\nNature : Exigence CDC\nOrdre initial : 8 (à arbitrer par le Product Owner)\nSprint prévisionnel : 02\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-004, KB-005\n\n## Critères d’acceptation\n- [ ] Numéro normalisé selon le pays\n- [ ] code limité dans le temps, quota de demandes et délai de renvoi testés sans révéler l’existence d’un compte.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-009",
+      "title": "Valider le code et gérer la session client",
+      "sprint": 2,
+      "points": 5,
+      "dependencies": [
+        "KB-008"
+      ],
+      "source": "CDC 3.1",
+      "criteria": [
+        "Code valide utilisable une fois",
+        "code expiré ou incorrect refusé, limite de tentatives, expiration et déconnexion testées."
+      ],
+      "priority": "high",
+      "epic": "Identité et accès",
+      "type": "Exigence CDC",
+      "rank": 9,
+      "description": "## Objectif\nValider le code et gérer la session client\n\n## Traçabilité\nRéférence : CDC 3.1\nIdentifiant : KB-009\nEpic : Identité et accès\nNature : Exigence CDC\nOrdre initial : 9 (à arbitrer par le Product Owner)\nSprint prévisionnel : 02\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-008\n\n## Critères d’acceptation\n- [ ] Code valide utilisable une fois\n- [ ] code expiré ou incorrect refusé, limite de tentatives, expiration et déconnexion testées.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-010",
+      "title": "Appliquer les rôles et restrictions d’interaction",
+      "sprint": 2,
+      "points": 5,
+      "dependencies": [
+        "KB-009"
+      ],
+      "source": "CDC 3.1, 5",
+      "criteria": [
+        "Client, partenaire et administrateur distingués côté serveur",
+        "interactions réservées aux comptes connectés et accès aux données d’autrui refusés."
+      ],
+      "priority": "high",
+      "epic": "Identité et accès",
+      "type": "Exigence CDC",
+      "rank": 10,
+      "description": "## Objectif\nAppliquer les rôles et restrictions d’interaction\n\n## Traçabilité\nRéférence : CDC 3.1, 5\nIdentifiant : KB-010\nEpic : Identité et accès\nNature : Exigence CDC\nOrdre initial : 10 (à arbitrer par le Product Owner)\nSprint prévisionnel : 02\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-009\n\n## Critères d’acceptation\n- [ ] Client, partenaire et administrateur distingués côté serveur\n- [ ] interactions réservées aux comptes connectés et accès aux données d’autrui refusés.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-011",
+      "title": "Créer le profil partenaire et ses coordonnées",
+      "sprint": 2,
+      "points": 5,
+      "dependencies": [
+        "KB-010"
+      ],
+      "source": "CDC 3.2",
+      "criteria": [
+        "Nom, contacts, horaires, adresse et position GPS enregistrés avec validation",
+        "partenaire peut reprendre son dossier incomplet."
+      ],
+      "priority": "high",
+      "epic": "Identité et accès",
+      "type": "Exigence CDC",
+      "rank": 11,
+      "description": "## Objectif\nCréer le profil partenaire et ses coordonnées\n\n## Traçabilité\nRéférence : CDC 3.2\nIdentifiant : KB-011\nEpic : Identité et accès\nNature : Exigence CDC\nOrdre initial : 11 (à arbitrer par le Product Owner)\nSprint prévisionnel : 02\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-010\n\n## Critères d’acceptation\n- [ ] Nom, contacts, horaires, adresse et position GPS enregistrés avec validation\n- [ ] partenaire peut reprendre son dossier incomplet.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-012",
+      "title": "Téléverser la devanture et la pièce du gérant",
+      "sprint": 2,
+      "points": 5,
+      "dependencies": [
+        "KB-011"
+      ],
+      "source": "CDC 3.2, 5",
+      "criteria": [
+        "Formats et tailles contrôlés",
+        "pièce d’identité stockée séparément en accès privé, lecture non autorisée refusée."
+      ],
+      "priority": "high",
+      "epic": "Identité et accès",
+      "type": "Exigence CDC",
+      "rank": 12,
+      "description": "## Objectif\nTéléverser la devanture et la pièce du gérant\n\n## Traçabilité\nRéférence : CDC 3.2, 5\nIdentifiant : KB-012\nEpic : Identité et accès\nNature : Exigence CDC\nOrdre initial : 12 (à arbitrer par le Product Owner)\nSprint prévisionnel : 02\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-011\n\n## Critères d’acceptation\n- [ ] Formats et tailles contrôlés\n- [ ] pièce d’identité stockée séparément en accès privé, lecture non autorisée refusée.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-013",
+      "title": "Soumettre et suivre le dossier de vérification",
+      "sprint": 2,
+      "points": 3,
+      "dependencies": [
+        "KB-012"
+      ],
+      "source": "CDC 3.2, 5",
+      "criteria": [
+        "Soumission impossible si pièces obligatoires manquent",
+        "états brouillon, soumis et à corriger affichés sans activer le partenaire prématurément."
+      ],
+      "priority": "high",
+      "epic": "Identité et accès",
+      "type": "Exigence CDC",
+      "rank": 13,
+      "description": "## Objectif\nSoumettre et suivre le dossier de vérification\n\n## Traçabilité\nRéférence : CDC 3.2, 5\nIdentifiant : KB-013\nEpic : Identité et accès\nNature : Exigence CDC\nOrdre initial : 13 (à arbitrer par le Product Owner)\nSprint prévisionnel : 02\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-012\n\n## Critères d’acceptation\n- [ ] Soumission impossible si pièces obligatoires manquent\n- [ ] états brouillon, soumis et à corriger affichés sans activer le partenaire prématurément.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-014",
+      "title": "Protéger les données personnelles dès l’inscription",
+      "sprint": 2,
+      "points": 3,
+      "dependencies": [
+        "KB-010"
+      ],
+      "source": "Complément exploitation",
+      "criteria": [
+        "Informations collectées et finalités affichées",
+        "accès, conservation et suppression des données et justificatifs documentés selon le pays retenu, sans pièces ni OTP dans les journaux."
+      ],
+      "priority": "high",
+      "epic": "Identité et accès",
+      "type": "Complément de réalisation",
+      "rank": 14,
+      "description": "## Objectif\nProtéger les données personnelles dès l’inscription\n\n## Traçabilité\nRéférence : Complément exploitation\nIdentifiant : KB-014\nEpic : Identité et accès\nNature : Complément de réalisation\nOrdre initial : 14 (à arbitrer par le Product Owner)\nSprint prévisionnel : 02\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-010\n\n## Critères d’acceptation\n- [ ] Informations collectées et finalités affichées\n- [ ] accès, conservation et suppression des données et justificatifs documentés selon le pays retenu, sans pièces ni OTP dans les journaux.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-015",
+      "title": "Traiter les dossiers de vérification dans l’administration",
+      "sprint": 3,
+      "points": 5,
+      "dependencies": [
+        "KB-013"
+      ],
+      "source": "CDC 5",
+      "criteria": [
+        "Administrateur autorisé examine les pièces et valide ou rejette avec motif",
+        "historique conservé et activation réservée aux dossiers validés."
+      ],
+      "priority": "normal",
+      "epic": "Catalogue et validation",
+      "type": "Exigence CDC",
+      "rank": 15,
+      "description": "## Objectif\nTraiter les dossiers de vérification dans l’administration\n\n## Traçabilité\nRéférence : CDC 5\nIdentifiant : KB-015\nEpic : Catalogue et validation\nNature : Exigence CDC\nOrdre initial : 15 (à arbitrer par le Product Owner)\nSprint prévisionnel : 03\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-013\n\n## Critères d’acceptation\n- [ ] Administrateur autorisé examine les pièces et valide ou rejette avec motif\n- [ ] historique conservé et activation réservée aux dossiers validés.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-016",
+      "title": "Corriger et resoumettre un dossier refusé",
+      "sprint": 3,
+      "points": 3,
+      "dependencies": [
+        "KB-015"
+      ],
+      "source": "CDC 3.2, 5",
+      "criteria": [
+        "Partenaire voit le motif et remplace les éléments demandés",
+        "resoumission repasse en examen sans auto-validation."
+      ],
+      "priority": "normal",
+      "epic": "Catalogue et validation",
+      "type": "Exigence CDC",
+      "rank": 16,
+      "description": "## Objectif\nCorriger et resoumettre un dossier refusé\n\n## Traçabilité\nRéférence : CDC 3.2, 5\nIdentifiant : KB-016\nEpic : Catalogue et validation\nNature : Exigence CDC\nOrdre initial : 16 (à arbitrer par le Product Owner)\nSprint prévisionnel : 03\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-015\n\n## Critères d’acceptation\n- [ ] Partenaire voit le motif et remplace les éléments demandés\n- [ ] resoumission repasse en examen sans auto-validation.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-017",
+      "title": "Gérer les prestations et leurs tarifs",
+      "sprint": 3,
+      "points": 5,
+      "dependencies": [
+        "KB-011",
+        "KB-002"
+      ],
+      "source": "CDC 3.2",
+      "criteria": [
+        "Créer, modifier et retirer une prestation",
+        "montants et devise validés, durée/capacité conforme aux règles métier et prestation retirée non réservable."
+      ],
+      "priority": "normal",
+      "epic": "Catalogue et validation",
+      "type": "Exigence CDC",
+      "rank": 17,
+      "description": "## Objectif\nGérer les prestations et leurs tarifs\n\n## Traçabilité\nRéférence : CDC 3.2\nIdentifiant : KB-017\nEpic : Catalogue et validation\nNature : Exigence CDC\nOrdre initial : 17 (à arbitrer par le Product Owner)\nSprint prévisionnel : 03\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-011, KB-002\n\n## Critères d’acceptation\n- [ ] Créer, modifier et retirer une prestation\n- [ ] montants et devise validés, durée/capacité conforme aux règles métier et prestation retirée non réservable.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-018",
+      "title": "Gérer les photos de l’établissement",
+      "sprint": 3,
+      "points": 3,
+      "dependencies": [
+        "KB-012"
+      ],
+      "source": "CDC 3.1, 3.2",
+      "criteria": [
+        "Ajouter, ordonner, remplacer et supprimer ses photos",
+        "contrôle des fichiers, optimisation et image de remplacement fonctionnels."
+      ],
+      "priority": "normal",
+      "epic": "Catalogue et validation",
+      "type": "Exigence CDC",
+      "rank": 18,
+      "description": "## Objectif\nGérer les photos de l’établissement\n\n## Traçabilité\nRéférence : CDC 3.1, 3.2\nIdentifiant : KB-018\nEpic : Catalogue et validation\nNature : Exigence CDC\nOrdre initial : 18 (à arbitrer par le Product Owner)\nSprint prévisionnel : 03\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-012\n\n## Critères d’acceptation\n- [ ] Ajouter, ordonner, remplacer et supprimer ses photos\n- [ ] contrôle des fichiers, optimisation et image de remplacement fonctionnels.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-019",
+      "title": "Gérer les vidéos courtes de l’établissement",
+      "sprint": 3,
+      "points": 5,
+      "dependencies": [
+        "KB-018"
+      ],
+      "source": "CDC 2, 3.1",
+      "criteria": [
+        "Durée et poids maximum décidés et appliqués",
+        "lecture sur plateformes retenues, miniature et échec de traitement pris en charge."
+      ],
+      "priority": "normal",
+      "epic": "Catalogue et validation",
+      "type": "Exigence CDC",
+      "rank": 19,
+      "description": "## Objectif\nGérer les vidéos courtes de l’établissement\n\n## Traçabilité\nRéférence : CDC 2, 3.1\nIdentifiant : KB-019\nEpic : Catalogue et validation\nNature : Exigence CDC\nOrdre initial : 19 (à arbitrer par le Product Owner)\nSprint prévisionnel : 03\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-018\n\n## Critères d’acceptation\n- [ ] Durée et poids maximum décidés et appliqués\n- [ ] lecture sur plateformes retenues, miniature et échec de traitement pris en charge.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-020",
+      "title": "Publier et mettre à jour la fiche établissement",
+      "sprint": 3,
+      "points": 5,
+      "dependencies": [
+        "KB-015",
+        "KB-017",
+        "KB-018"
+      ],
+      "source": "CDC 3.1, 3.2",
+      "criteria": [
+        "Fiche publiée uniquement après validation et champs requis",
+        "modification autorisée au propriétaire et visibilité conforme au statut de modération."
+      ],
+      "priority": "normal",
+      "epic": "Catalogue et validation",
+      "type": "Exigence CDC",
+      "rank": 20,
+      "description": "## Objectif\nPublier et mettre à jour la fiche établissement\n\n## Traçabilité\nRéférence : CDC 3.1, 3.2\nIdentifiant : KB-020\nEpic : Catalogue et validation\nNature : Exigence CDC\nOrdre initial : 20 (à arbitrer par le Product Owner)\nSprint prévisionnel : 03\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-015, KB-017, KB-018\n\n## Critères d’acceptation\n- [ ] Fiche publiée uniquement après validation et champs requis\n- [ ] modification autorisée au propriétaire et visibilité conforme au statut de modération.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-021",
+      "title": "Administrer les catégories et zones géographiques",
+      "sprint": 3,
+      "points": 3,
+      "dependencies": [
+        "KB-010",
+        "KB-001"
+      ],
+      "source": "CDC 5",
+      "criteria": [
+        "Catégories et hiérarchie pays/région/ville/commune administrables",
+        "doublons et suppression d’éléments déjà utilisés contrôlés."
+      ],
+      "priority": "normal",
+      "epic": "Catalogue et validation",
+      "type": "Exigence CDC",
+      "rank": 21,
+      "description": "## Objectif\nAdministrer les catégories et zones géographiques\n\n## Traçabilité\nRéférence : CDC 5\nIdentifiant : KB-021\nEpic : Catalogue et validation\nNature : Exigence CDC\nOrdre initial : 21 (à arbitrer par le Product Owner)\nSprint prévisionnel : 03\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-010, KB-001\n\n## Critères d’acceptation\n- [ ] Catégories et hiérarchie pays/région/ville/commune administrables\n- [ ] doublons et suppression d’éléments déjà utilisés contrôlés.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-022",
+      "title": "Rechercher par catégorie de beauté",
+      "sprint": 4,
+      "points": 5,
+      "dependencies": [
+        "KB-020",
+        "KB-021"
+      ],
+      "source": "CDC 3.1",
+      "criteria": [
+        "Filtre appliqué aux établissements publiés",
+        "pagination, chargement, absence de résultat et remise à zéro gérés."
+      ],
+      "priority": "normal",
+      "epic": "Découverte et contact",
+      "type": "Exigence CDC",
+      "rank": 22,
+      "description": "## Objectif\nRechercher par catégorie de beauté\n\n## Traçabilité\nRéférence : CDC 3.1\nIdentifiant : KB-022\nEpic : Découverte et contact\nNature : Exigence CDC\nOrdre initial : 22 (à arbitrer par le Product Owner)\nSprint prévisionnel : 04\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-020, KB-021\n\n## Critères d’acceptation\n- [ ] Filtre appliqué aux établissements publiés\n- [ ] pagination, chargement, absence de résultat et remise à zéro gérés.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-023",
+      "title": "Filtrer par pays, région, ville et commune",
+      "sprint": 4,
+      "points": 5,
+      "dependencies": [
+        "KB-021",
+        "KB-022"
+      ],
+      "source": "CDC 3.1",
+      "criteria": [
+        "Filtres en cascade cohérents",
+        "changement de pays réinitialise les descendants incompatibles et se combine à la catégorie."
+      ],
+      "priority": "normal",
+      "epic": "Découverte et contact",
+      "type": "Exigence CDC",
+      "rank": 23,
+      "description": "## Objectif\nFiltrer par pays, région, ville et commune\n\n## Traçabilité\nRéférence : CDC 3.1\nIdentifiant : KB-023\nEpic : Découverte et contact\nNature : Exigence CDC\nOrdre initial : 23 (à arbitrer par le Product Owner)\nSprint prévisionnel : 04\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-021, KB-022\n\n## Critères d’acceptation\n- [ ] Filtres en cascade cohérents\n- [ ] changement de pays réinitialise les descendants incompatibles et se combine à la catégorie.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-024",
+      "title": "Découvrir les établissements proches",
+      "sprint": 4,
+      "points": 5,
+      "dependencies": [
+        "KB-004",
+        "KB-022"
+      ],
+      "source": "CDC 1, 3.1, 4",
+      "criteria": [
+        "Localisation demandée explicitement",
+        "résultats et distances cohérents, recherche manuelle disponible si permission refusée ou position indisponible."
+      ],
+      "priority": "normal",
+      "epic": "Découverte et contact",
+      "type": "Exigence CDC",
+      "rank": 24,
+      "description": "## Objectif\nDécouvrir les établissements proches\n\n## Traçabilité\nRéférence : CDC 1, 3.1, 4\nIdentifiant : KB-024\nEpic : Découverte et contact\nNature : Exigence CDC\nOrdre initial : 24 (à arbitrer par le Product Owner)\nSprint prévisionnel : 04\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-004, KB-022\n\n## Critères d’acceptation\n- [ ] Localisation demandée explicitement\n- [ ] résultats et distances cohérents, recherche manuelle disponible si permission refusée ou position indisponible.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-025",
+      "title": "Consulter la fiche complète et ses médias",
+      "sprint": 4,
+      "points": 3,
+      "dependencies": [
+        "KB-019",
+        "KB-020",
+        "KB-022"
+      ],
+      "source": "CDC 3.1",
+      "criteria": [
+        "Description, tarifs, prestations et carrousel visibles",
+        "média absent ou indisponible ne bloque pas la consultation."
+      ],
+      "priority": "normal",
+      "epic": "Découverte et contact",
+      "type": "Exigence CDC",
+      "rank": 25,
+      "description": "## Objectif\nConsulter la fiche complète et ses médias\n\n## Traçabilité\nRéférence : CDC 3.1\nIdentifiant : KB-025\nEpic : Découverte et contact\nNature : Exigence CDC\nOrdre initial : 25 (à arbitrer par le Product Owner)\nSprint prévisionnel : 04\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-019, KB-020, KB-022\n\n## Critères d’acceptation\n- [ ] Description, tarifs, prestations et carrousel visibles\n- [ ] média absent ou indisponible ne bloque pas la consultation.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-026",
+      "title": "Appeler l’établissement depuis sa fiche",
+      "sprint": 4,
+      "points": 2,
+      "dependencies": [
+        "KB-025",
+        "KB-010"
+      ],
+      "source": "CDC 3.1",
+      "criteria": [
+        "Bouton ouvre le composeur sur appareil compatible avec le bon numéro",
+        "alternative de copie visible et interaction suit la règle de connexion."
+      ],
+      "priority": "normal",
+      "epic": "Découverte et contact",
+      "type": "Exigence CDC",
+      "rank": 26,
+      "description": "## Objectif\nAppeler l’établissement depuis sa fiche\n\n## Traçabilité\nRéférence : CDC 3.1\nIdentifiant : KB-026\nEpic : Découverte et contact\nNature : Exigence CDC\nOrdre initial : 26 (à arbitrer par le Product Owner)\nSprint prévisionnel : 04\nEstimation indicative : 2 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-025, KB-010\n\n## Critères d’acceptation\n- [ ] Bouton ouvre le composeur sur appareil compatible avec le bon numéro\n- [ ] alternative de copie visible et interaction suit la règle de connexion.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-027",
+      "title": "Ouvrir l’itinéraire Maps et Yango",
+      "sprint": 4,
+      "points": 5,
+      "dependencies": [
+        "KB-004",
+        "KB-025"
+      ],
+      "source": "CDC 3.1, 4",
+      "criteria": [
+        "Destination GPS exacte transmise aux applications retenues",
+        "cas application absente couvert par repli vérifié sur appareils cibles."
+      ],
+      "priority": "normal",
+      "epic": "Découverte et contact",
+      "type": "Exigence CDC",
+      "rank": 27,
+      "description": "## Objectif\nOuvrir l’itinéraire Maps et Yango\n\n## Traçabilité\nRéférence : CDC 3.1, 4\nIdentifiant : KB-027\nEpic : Découverte et contact\nNature : Exigence CDC\nOrdre initial : 27 (à arbitrer par le Product Owner)\nSprint prévisionnel : 04\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-004, KB-025\n\n## Critères d’acceptation\n- [ ] Destination GPS exacte transmise aux applications retenues\n- [ ] cas application absente couvert par repli vérifié sur appareils cibles.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-028",
+      "title": "Valider le parcours annuaire en conditions réelles",
+      "sprint": 4,
+      "points": 3,
+      "dependencies": [
+        "KB-023",
+        "KB-024",
+        "KB-026",
+        "KB-027"
+      ],
+      "source": "Complément qualité",
+      "criteria": [
+        "Parcours recherche → fiche → contact testé sur réseau lent et écrans cibles",
+        "navigation clavier, libellés et contraste vérifiés, anomalies bloquantes corrigées."
+      ],
+      "priority": "normal",
+      "epic": "Découverte et contact",
+      "type": "Complément de réalisation",
+      "rank": 28,
+      "description": "## Objectif\nValider le parcours annuaire en conditions réelles\n\n## Traçabilité\nRéférence : Complément qualité\nIdentifiant : KB-028\nEpic : Découverte et contact\nNature : Complément de réalisation\nOrdre initial : 28 (à arbitrer par le Product Owner)\nSprint prévisionnel : 04\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-023, KB-024, KB-026, KB-027\n\n## Critères d’acceptation\n- [ ] Parcours recherche → fiche → contact testé sur réseau lent et écrans cibles\n- [ ] navigation clavier, libellés et contraste vérifiés, anomalies bloquantes corrigées.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-029",
+      "title": "Activer la réservation pour un partenaire éligible",
+      "sprint": 5,
+      "points": 3,
+      "dependencies": [
+        "KB-002",
+        "KB-020"
+      ],
+      "source": "CDC 3.1, 3.3",
+      "criteria": [
+        "Partenaire choisit d’activer/désactiver la réservation",
+        "contrôle d’éligibilité côté serveur avec données de test, annuaire accessible selon les droits définis."
+      ],
+      "priority": "normal",
+      "epic": "Réservation",
+      "type": "Exigence CDC",
+      "rank": 29,
+      "description": "## Objectif\nActiver la réservation pour un partenaire éligible\n\n## Traçabilité\nRéférence : CDC 3.1, 3.3\nIdentifiant : KB-029\nEpic : Réservation\nNature : Exigence CDC\nOrdre initial : 29 (à arbitrer par le Product Owner)\nSprint prévisionnel : 05\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-002, KB-020\n\n## Critères d’acceptation\n- [ ] Partenaire choisit d’activer/désactiver la réservation\n- [ ] contrôle d’éligibilité côté serveur avec données de test, annuaire accessible selon les droits définis.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-030",
+      "title": "Définir les horaires et exceptions de réservation",
+      "sprint": 5,
+      "points": 5,
+      "dependencies": [
+        "KB-002",
+        "KB-017",
+        "KB-029"
+      ],
+      "source": "CDC 3.2",
+      "criteria": [
+        "Horaires réguliers, pauses, fermetures et jours exceptionnels éditables",
+        "créneaux calculés selon durée, capacité et fuseau décidés."
+      ],
+      "priority": "normal",
+      "epic": "Réservation",
+      "type": "Exigence CDC",
+      "rank": 30,
+      "description": "## Objectif\nDéfinir les horaires et exceptions de réservation\n\n## Traçabilité\nRéférence : CDC 3.2\nIdentifiant : KB-030\nEpic : Réservation\nNature : Exigence CDC\nOrdre initial : 30 (à arbitrer par le Product Owner)\nSprint prévisionnel : 05\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-002, KB-017, KB-029\n\n## Critères d’acceptation\n- [ ] Horaires réguliers, pauses, fermetures et jours exceptionnels éditables\n- [ ] créneaux calculés selon durée, capacité et fuseau décidés.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-031",
+      "title": "Afficher le calendrier des disponibilités",
+      "sprint": 5,
+      "points": 5,
+      "dependencies": [
+        "KB-030"
+      ],
+      "source": "CDC 3.1",
+      "criteria": [
+        "Calendrier reflète les créneaux valides",
+        "indisponibilités en rouge et indiquées par un texte/symbole, dates passées non sélectionnables."
+      ],
+      "priority": "normal",
+      "epic": "Réservation",
+      "type": "Exigence CDC",
+      "rank": 31,
+      "description": "## Objectif\nAfficher le calendrier des disponibilités\n\n## Traçabilité\nRéférence : CDC 3.1\nIdentifiant : KB-031\nEpic : Réservation\nNature : Exigence CDC\nOrdre initial : 31 (à arbitrer par le Product Owner)\nSprint prévisionnel : 05\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-030\n\n## Critères d’acceptation\n- [ ] Calendrier reflète les créneaux valides\n- [ ] indisponibilités en rouge et indiquées par un texte/symbole, dates passées non sélectionnables.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-032",
+      "title": "Envoyer une demande de rendez-vous",
+      "sprint": 5,
+      "points": 5,
+      "dependencies": [
+        "KB-009",
+        "KB-031"
+      ],
+      "source": "CDC 3.1",
+      "criteria": [
+        "Client choisit service et créneau et confirme le récapitulatif",
+        "demande persistée avec statut initial explicite et référence unique."
+      ],
+      "priority": "normal",
+      "epic": "Réservation",
+      "type": "Exigence CDC",
+      "rank": 32,
+      "description": "## Objectif\nEnvoyer une demande de rendez-vous\n\n## Traçabilité\nRéférence : CDC 3.1\nIdentifiant : KB-032\nEpic : Réservation\nNature : Exigence CDC\nOrdre initial : 32 (à arbitrer par le Product Owner)\nSprint prévisionnel : 05\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-009, KB-031\n\n## Critères d’acceptation\n- [ ] Client choisit service et créneau et confirme le récapitulatif\n- [ ] demande persistée avec statut initial explicite et référence unique.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-033",
+      "title": "Empêcher les conflits de réservation",
+      "sprint": 5,
+      "points": 5,
+      "dependencies": [
+        "KB-032"
+      ],
+      "source": "CDC 3.2",
+      "criteria": [
+        "Deux demandes concurrentes ne dépassent jamais la capacité",
+        "répétition d’une requête ne crée pas de doublon et conflit expliqué au client."
+      ],
+      "priority": "high",
+      "epic": "Réservation",
+      "type": "Exigence CDC",
+      "rank": 33,
+      "description": "## Objectif\nEmpêcher les conflits de réservation\n\n## Traçabilité\nRéférence : CDC 3.2\nIdentifiant : KB-033\nEpic : Réservation\nNature : Exigence CDC\nOrdre initial : 33 (à arbitrer par le Product Owner)\nSprint prévisionnel : 05\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-032\n\n## Critères d’acceptation\n- [ ] Deux demandes concurrentes ne dépassent jamais la capacité\n- [ ] répétition d’une requête ne crée pas de doublon et conflit expliqué au client.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-034",
+      "title": "Consulter ses rendez-vous côté client",
+      "sprint": 5,
+      "points": 3,
+      "dependencies": [
+        "KB-032",
+        "KB-010"
+      ],
+      "source": "Complément parcours RDV",
+      "criteria": [
+        "Liste et détail présentent date locale, salon, service et état",
+        "client ne consulte que ses rendez-vous."
+      ],
+      "priority": "normal",
+      "epic": "Réservation",
+      "type": "Complément de réalisation",
+      "rank": 34,
+      "description": "## Objectif\nConsulter ses rendez-vous côté client\n\n## Traçabilité\nRéférence : Complément parcours RDV\nIdentifiant : KB-034\nEpic : Réservation\nNature : Complément de réalisation\nOrdre initial : 34 (à arbitrer par le Product Owner)\nSprint prévisionnel : 05\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-032, KB-010\n\n## Critères d’acceptation\n- [ ] Liste et détail présentent date locale, salon, service et état\n- [ ] client ne consulte que ses rendez-vous.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-035",
+      "title": "Actualiser les disponibilités en temps réel",
+      "sprint": 5,
+      "points": 5,
+      "dependencies": [
+        "KB-033"
+      ],
+      "source": "CDC 3.2",
+      "criteria": [
+        "Changement de disponibilité propagé aux vues connectées",
+        "reconnexion recharge l’état serveur et sélection devenue invalide est refusée proprement."
+      ],
+      "priority": "normal",
+      "epic": "Réservation",
+      "type": "Exigence CDC",
+      "rank": 35,
+      "description": "## Objectif\nActualiser les disponibilités en temps réel\n\n## Traçabilité\nRéférence : CDC 3.2\nIdentifiant : KB-035\nEpic : Réservation\nNature : Exigence CDC\nOrdre initial : 35 (à arbitrer par le Product Owner)\nSprint prévisionnel : 05\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-033\n\n## Critères d’acceptation\n- [ ] Changement de disponibilité propagé aux vues connectées\n- [ ] reconnexion recharge l’état serveur et sélection devenue invalide est refusée proprement.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-036",
+      "title": "Afficher le tableau de bord des demandes partenaire",
+      "sprint": 6,
+      "points": 5,
+      "dependencies": [
+        "KB-032",
+        "KB-010"
+      ],
+      "source": "CDC 3.2",
+      "criteria": [
+        "Demandes et calendrier limités à son établissement",
+        "filtres de date et statut, vue vide et compteurs cohérents."
+      ],
+      "priority": "normal",
+      "epic": "Suivi RDV et communication",
+      "type": "Exigence CDC",
+      "rank": 36,
+      "description": "## Objectif\nAfficher le tableau de bord des demandes partenaire\n\n## Traçabilité\nRéférence : CDC 3.2\nIdentifiant : KB-036\nEpic : Suivi RDV et communication\nNature : Exigence CDC\nOrdre initial : 36 (à arbitrer par le Product Owner)\nSprint prévisionnel : 06\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-032, KB-010\n\n## Critères d’acceptation\n- [ ] Demandes et calendrier limités à son établissement\n- [ ] filtres de date et statut, vue vide et compteurs cohérents.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-037",
+      "title": "Confirmer ou refuser une demande",
+      "sprint": 6,
+      "points": 3,
+      "dependencies": [
+        "KB-036",
+        "KB-033"
+      ],
+      "source": "CDC 3.1, 3.2",
+      "criteria": [
+        "Transitions valides seulement, motif de refus disponible",
+        "confirmation réserve et refus libère selon les règles sans conflit concurrent."
+      ],
+      "priority": "normal",
+      "epic": "Suivi RDV et communication",
+      "type": "Exigence CDC",
+      "rank": 37,
+      "description": "## Objectif\nConfirmer ou refuser une demande\n\n## Traçabilité\nRéférence : CDC 3.1, 3.2\nIdentifiant : KB-037\nEpic : Suivi RDV et communication\nNature : Exigence CDC\nOrdre initial : 37 (à arbitrer par le Product Owner)\nSprint prévisionnel : 06\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-036, KB-033\n\n## Critères d’acceptation\n- [ ] Transitions valides seulement, motif de refus disponible\n- [ ] confirmation réserve et refus libère selon les règles sans conflit concurrent.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-038",
+      "title": "Annuler un rendez-vous avec les règles convenues",
+      "sprint": 6,
+      "points": 3,
+      "dependencies": [
+        "KB-037",
+        "KB-002"
+      ],
+      "source": "CDC 3.2",
+      "criteria": [
+        "Acteurs autorisés et délais appliqués",
+        "créneau libéré, historique préservé et annulation répétée sans effet supplémentaire."
+      ],
+      "priority": "normal",
+      "epic": "Suivi RDV et communication",
+      "type": "Exigence CDC",
+      "rank": 38,
+      "description": "## Objectif\nAnnuler un rendez-vous avec les règles convenues\n\n## Traçabilité\nRéférence : CDC 3.2\nIdentifiant : KB-038\nEpic : Suivi RDV et communication\nNature : Exigence CDC\nOrdre initial : 38 (à arbitrer par le Product Owner)\nSprint prévisionnel : 06\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-037, KB-002\n\n## Critères d’acceptation\n- [ ] Acteurs autorisés et délais appliqués\n- [ ] créneau libéré, historique préservé et annulation répétée sans effet supplémentaire.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-039",
+      "title": "Reprogrammer un rendez-vous",
+      "sprint": 6,
+      "points": 5,
+      "dependencies": [
+        "KB-037",
+        "KB-033"
+      ],
+      "source": "CDC 3.2",
+      "criteria": [
+        "Nouveau créneau vérifié avant libération de l’ancien",
+        "accord client selon décision métier et échec conserve le rendez-vous initial."
+      ],
+      "priority": "normal",
+      "epic": "Suivi RDV et communication",
+      "type": "Exigence CDC",
+      "rank": 39,
+      "description": "## Objectif\nReprogrammer un rendez-vous\n\n## Traçabilité\nRéférence : CDC 3.2\nIdentifiant : KB-039\nEpic : Suivi RDV et communication\nNature : Exigence CDC\nOrdre initial : 39 (à arbitrer par le Product Owner)\nSprint prévisionnel : 06\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-037, KB-033\n\n## Critères d’acceptation\n- [ ] Nouveau créneau vérifié avant libération de l’ancien\n- [ ] accord client selon décision métier et échec conserve le rendez-vous initial.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-040",
+      "title": "Envoyer les confirmations et refus par SMS",
+      "sprint": 6,
+      "points": 5,
+      "dependencies": [
+        "KB-037",
+        "KB-004"
+      ],
+      "source": "CDC 3.1, 4",
+      "criteria": [
+        "SMS contient salon, date, heure et résultat",
+        "envoi dédupliqué avec reprise après panne et suivi d’échec accessible."
+      ],
+      "priority": "normal",
+      "epic": "Suivi RDV et communication",
+      "type": "Exigence CDC",
+      "rank": 40,
+      "description": "## Objectif\nEnvoyer les confirmations et refus par SMS\n\n## Traçabilité\nRéférence : CDC 3.1, 4\nIdentifiant : KB-040\nEpic : Suivi RDV et communication\nNature : Exigence CDC\nOrdre initial : 40 (à arbitrer par le Product Owner)\nSprint prévisionnel : 06\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-037, KB-004\n\n## Critères d’acceptation\n- [ ] SMS contient salon, date, heure et résultat\n- [ ] envoi dédupliqué avec reprise après panne et suivi d’échec accessible.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-041",
+      "title": "Afficher les notifications dans l’application",
+      "sprint": 6,
+      "points": 5,
+      "dependencies": [
+        "KB-040",
+        "KB-009"
+      ],
+      "source": "CDC 3.1, 4",
+      "criteria": [
+        "Confirmation, refus, annulation et reprogrammation apparaissent au bon destinataire",
+        "état lu/non lu et ouverture du bon rendez-vous, accès tiers refusé."
+      ],
+      "priority": "normal",
+      "epic": "Suivi RDV et communication",
+      "type": "Exigence CDC",
+      "rank": 41,
+      "description": "## Objectif\nAfficher les notifications dans l’application\n\n## Traçabilité\nRéférence : CDC 3.1, 4\nIdentifiant : KB-041\nEpic : Suivi RDV et communication\nNature : Exigence CDC\nOrdre initial : 41 (à arbitrer par le Product Owner)\nSprint prévisionnel : 06\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-040, KB-009\n\n## Critères d’acceptation\n- [ ] Confirmation, refus, annulation et reprogrammation apparaissent au bon destinataire\n- [ ] état lu/non lu et ouverture du bon rendez-vous, accès tiers refusé.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-042",
+      "title": "Recetter le cycle complet des rendez-vous",
+      "sprint": 6,
+      "points": 3,
+      "dependencies": [
+        "KB-035",
+        "KB-038",
+        "KB-039",
+        "KB-040",
+        "KB-041"
+      ],
+      "source": "Complément qualité",
+      "criteria": [
+        "Scénarios multi-clients incluant concurrence, changement d’horaire, panne SMS et reconnexion réussis",
+        "démonstration de bout en bout acceptée."
+      ],
+      "priority": "normal",
+      "epic": "Suivi RDV et communication",
+      "type": "Complément de réalisation",
+      "rank": 42,
+      "description": "## Objectif\nRecetter le cycle complet des rendez-vous\n\n## Traçabilité\nRéférence : Complément qualité\nIdentifiant : KB-042\nEpic : Suivi RDV et communication\nNature : Complément de réalisation\nOrdre initial : 42 (à arbitrer par le Product Owner)\nSprint prévisionnel : 06\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-035, KB-038, KB-039, KB-040, KB-041\n\n## Critères d’acceptation\n- [ ] Scénarios multi-clients incluant concurrence, changement d’horaire, panne SMS et reconnexion réussis\n- [ ] démonstration de bout en bout acceptée.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-043",
+      "title": "Configurer les offres et prix d’abonnement",
+      "sprint": 7,
+      "points": 3,
+      "dependencies": [
+        "KB-002",
+        "KB-010"
+      ],
+      "source": "CDC 3.3, 5",
+      "criteria": [
+        "Administration édite prix et fonctionnalités par offre",
+        "historique tarifaire préserve les contrats existants, montants et devise validés."
+      ],
+      "priority": "normal",
+      "epic": "Souscription et paiement",
+      "type": "Exigence CDC",
+      "rank": 43,
+      "description": "## Objectif\nConfigurer les offres et prix d’abonnement\n\n## Traçabilité\nRéférence : CDC 3.3, 5\nIdentifiant : KB-043\nEpic : Souscription et paiement\nNature : Exigence CDC\nOrdre initial : 43 (à arbitrer par le Product Owner)\nSprint prévisionnel : 07\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-002, KB-010\n\n## Critères d’acceptation\n- [ ] Administration édite prix et fonctionnalités par offre\n- [ ] historique tarifaire préserve les contrats existants, montants et devise validés.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-044",
+      "title": "Souscrire un engagement annuel avec échéancier",
+      "sprint": 7,
+      "points": 5,
+      "dependencies": [
+        "KB-043"
+      ],
+      "source": "CDC 3.3",
+      "criteria": [
+        "Engagement minimum d’un an distinct de la périodicité mensuelle/annuelle",
+        "montant, échéances et conditions acceptées sont conservés."
+      ],
+      "priority": "normal",
+      "epic": "Souscription et paiement",
+      "type": "Exigence CDC",
+      "rank": 44,
+      "description": "## Objectif\nSouscrire un engagement annuel avec échéancier\n\n## Traçabilité\nRéférence : CDC 3.3\nIdentifiant : KB-044\nEpic : Souscription et paiement\nNature : Exigence CDC\nOrdre initial : 44 (à arbitrer par le Product Owner)\nSprint prévisionnel : 07\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-043\n\n## Critères d’acceptation\n- [ ] Engagement minimum d’un an distinct de la périodicité mensuelle/annuelle\n- [ ] montant, échéances et conditions acceptées sont conservés.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-045",
+      "title": "Intégrer le paiement Mobile Money",
+      "sprint": 7,
+      "points": 5,
+      "dependencies": [
+        "KB-044",
+        "KB-004"
+      ],
+      "source": "CDC 3.3, 4",
+      "criteria": [
+        "Initiation chez l’agrégateur avec référence unique",
+        "Wave, Orange, MTN, Moov et autres canaux applicables sont vérifiés par pays, couverture manquante signalée avant lancement."
+      ],
+      "priority": "high",
+      "epic": "Souscription et paiement",
+      "type": "Exigence CDC",
+      "rank": 45,
+      "description": "## Objectif\nIntégrer le paiement Mobile Money\n\n## Traçabilité\nRéférence : CDC 3.3, 4\nIdentifiant : KB-045\nEpic : Souscription et paiement\nNature : Exigence CDC\nOrdre initial : 45 (à arbitrer par le Product Owner)\nSprint prévisionnel : 07\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-044, KB-004\n\n## Critères d’acceptation\n- [ ] Initiation chez l’agrégateur avec référence unique\n- [ ] Wave, Orange, MTN, Moov et autres canaux applicables sont vérifiés par pays, couverture manquante signalée avant lancement.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-046",
+      "title": "Vérifier les retours de paiement de façon idempotente",
+      "sprint": 7,
+      "points": 5,
+      "dependencies": [
+        "KB-045"
+      ],
+      "source": "CDC 3.3, 4",
+      "criteria": [
+        "Authenticité du retour vérifiée auprès du fournisseur",
+        "notifications doubles, retardées ou désordonnées ne créditent pas deux fois et montant/devise/contrat concordent."
+      ],
+      "priority": "high",
+      "epic": "Souscription et paiement",
+      "type": "Exigence CDC",
+      "rank": 46,
+      "description": "## Objectif\nVérifier les retours de paiement de façon idempotente\n\n## Traçabilité\nRéférence : CDC 3.3, 4\nIdentifiant : KB-046\nEpic : Souscription et paiement\nNature : Exigence CDC\nOrdre initial : 46 (à arbitrer par le Product Owner)\nSprint prévisionnel : 07\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-045\n\n## Critères d’acceptation\n- [ ] Authenticité du retour vérifiée auprès du fournisseur\n- [ ] notifications doubles, retardées ou désordonnées ne créditent pas deux fois et montant/devise/contrat concordent.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-047",
+      "title": "Appliquer les droits après paiement confirmé",
+      "sprint": 7,
+      "points": 5,
+      "dependencies": [
+        "KB-046",
+        "KB-029"
+      ],
+      "source": "CDC 3.3",
+      "criteria": [
+        "Droits avancés activés côté serveur après confirmation fiable",
+        "paiement en attente/échoué ne les active pas, droits expirés testés."
+      ],
+      "priority": "high",
+      "epic": "Souscription et paiement",
+      "type": "Exigence CDC",
+      "rank": 47,
+      "description": "## Objectif\nAppliquer les droits après paiement confirmé\n\n## Traçabilité\nRéférence : CDC 3.3\nIdentifiant : KB-047\nEpic : Souscription et paiement\nNature : Exigence CDC\nOrdre initial : 47 (à arbitrer par le Product Owner)\nSprint prévisionnel : 07\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-046, KB-029\n\n## Critères d’acceptation\n- [ ] Droits avancés activés côté serveur après confirmation fiable\n- [ ] paiement en attente/échoué ne les active pas, droits expirés testés.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-048",
+      "title": "Gérer les paiements abandonnés et les reprises",
+      "sprint": 7,
+      "points": 3,
+      "dependencies": [
+        "KB-046"
+      ],
+      "source": "Complément paiement",
+      "criteria": [
+        "États attente, réussi, échoué et expiré affichés",
+        "reprise possible sans double contrat et contrôle serveur après retour du navigateur."
+      ],
+      "priority": "high",
+      "epic": "Souscription et paiement",
+      "type": "Complément de réalisation",
+      "rank": 48,
+      "description": "## Objectif\nGérer les paiements abandonnés et les reprises\n\n## Traçabilité\nRéférence : Complément paiement\nIdentifiant : KB-048\nEpic : Souscription et paiement\nNature : Complément de réalisation\nOrdre initial : 48 (à arbitrer par le Product Owner)\nSprint prévisionnel : 07\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-046\n\n## Critères d’acceptation\n- [ ] États attente, réussi, échoué et expiré affichés\n- [ ] reprise possible sans double contrat et contrôle serveur après retour du navigateur.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-049",
+      "title": "Consulter ses justificatifs et échéances",
+      "sprint": 7,
+      "points": 3,
+      "dependencies": [
+        "KB-046"
+      ],
+      "source": "CDC 3.3",
+      "criteria": [
+        "Historique accessible au bon partenaire avec référence, montant, période et état",
+        "justificatif conforme au format décidé et aucun secret de paiement exposé."
+      ],
+      "priority": "normal",
+      "epic": "Souscription et paiement",
+      "type": "Exigence CDC",
+      "rank": 49,
+      "description": "## Objectif\nConsulter ses justificatifs et échéances\n\n## Traçabilité\nRéférence : CDC 3.3\nIdentifiant : KB-049\nEpic : Souscription et paiement\nNature : Exigence CDC\nOrdre initial : 49 (à arbitrer par le Product Owner)\nSprint prévisionnel : 07\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-046\n\n## Critères d’acceptation\n- [ ] Historique accessible au bon partenaire avec référence, montant, période et état\n- [ ] justificatif conforme au format décidé et aucun secret de paiement exposé.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-050",
+      "title": "Intégrer les paiements Visa et Mastercard",
+      "sprint": 8,
+      "points": 5,
+      "dependencies": [
+        "KB-046"
+      ],
+      "source": "CDC 3.3",
+      "criteria": [
+        "Parcours fournisseur pour les cartes retenues testé en réussite, refus et authentification requise",
+        "aucune donnée carte sensible stockée par l’application."
+      ],
+      "priority": "high",
+      "epic": "Cycle financier",
+      "type": "Exigence CDC",
+      "rank": 50,
+      "description": "## Objectif\nIntégrer les paiements Visa et Mastercard\n\n## Traçabilité\nRéférence : CDC 3.3\nIdentifiant : KB-050\nEpic : Cycle financier\nNature : Exigence CDC\nOrdre initial : 50 (à arbitrer par le Product Owner)\nSprint prévisionnel : 08\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-046\n\n## Critères d’acceptation\n- [ ] Parcours fournisseur pour les cartes retenues testé en réussite, refus et authentification requise\n- [ ] aucune donnée carte sensible stockée par l’application.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-051",
+      "title": "Gérer les échéances et renouvellements",
+      "sprint": 8,
+      "points": 5,
+      "dependencies": [
+        "KB-044",
+        "KB-047"
+      ],
+      "source": "CDC 3.3",
+      "criteria": [
+        "Échéances mensuelles et annuelles calculées correctement",
+        "reconduction/résiliation suit le contrat décidé, aucun prélèvement automatique supposé sans capacité fournisseur et accord."
+      ],
+      "priority": "normal",
+      "epic": "Cycle financier",
+      "type": "Exigence CDC",
+      "rank": 51,
+      "description": "## Objectif\nGérer les échéances et renouvellements\n\n## Traçabilité\nRéférence : CDC 3.3\nIdentifiant : KB-051\nEpic : Cycle financier\nNature : Exigence CDC\nOrdre initial : 51 (à arbitrer par le Product Owner)\nSprint prévisionnel : 08\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-044, KB-047\n\n## Critères d’acceptation\n- [ ] Échéances mensuelles et annuelles calculées correctement\n- [ ] reconduction/résiliation suit le contrat décidé, aucun prélèvement automatique supposé sans capacité fournisseur et accord.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-052",
+      "title": "Relancer les abonnements impayés",
+      "sprint": 8,
+      "points": 3,
+      "dependencies": [
+        "KB-051",
+        "KB-040"
+      ],
+      "source": "CDC 5",
+      "criteria": [
+        "Relances aux échéances convenues, dédupliquées",
+        "paiement récent annule la relance, échecs d’envoi visibles."
+      ],
+      "priority": "normal",
+      "epic": "Cycle financier",
+      "type": "Exigence CDC",
+      "rank": 52,
+      "description": "## Objectif\nRelancer les abonnements impayés\n\n## Traçabilité\nRéférence : CDC 5\nIdentifiant : KB-052\nEpic : Cycle financier\nNature : Exigence CDC\nOrdre initial : 52 (à arbitrer par le Product Owner)\nSprint prévisionnel : 08\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-051, KB-040\n\n## Critères d’acceptation\n- [ ] Relances aux échéances convenues, dédupliquées\n- [ ] paiement récent annule la relance, échecs d’envoi visibles.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-053",
+      "title": "Suspendre et rétablir les fonctionnalités avancées",
+      "sprint": 8,
+      "points": 5,
+      "dependencies": [
+        "KB-051",
+        "KB-047"
+      ],
+      "source": "CDC 3.3",
+      "criteria": [
+        "Délai de grâce décidé appliqué",
+        "droits restaurés après régularisation et traitement des RDV existants conforme à la règle validée."
+      ],
+      "priority": "normal",
+      "epic": "Cycle financier",
+      "type": "Exigence CDC",
+      "rank": 53,
+      "description": "## Objectif\nSuspendre et rétablir les fonctionnalités avancées\n\n## Traçabilité\nRéférence : CDC 3.3\nIdentifiant : KB-053\nEpic : Cycle financier\nNature : Exigence CDC\nOrdre initial : 53 (à arbitrer par le Product Owner)\nSprint prévisionnel : 08\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-051, KB-047\n\n## Critères d’acceptation\n- [ ] Délai de grâce décidé appliqué\n- [ ] droits restaurés après régularisation et traitement des RDV existants conforme à la règle validée.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-054",
+      "title": "Rapprocher les paiements avec le fournisseur",
+      "sprint": 8,
+      "points": 5,
+      "dependencies": [
+        "KB-046",
+        "KB-050"
+      ],
+      "source": "Complément exploitation",
+      "criteria": [
+        "Transactions orphelines et écarts montant/état détectés",
+        "rattrapage contrôlé, audité et sans double activation."
+      ],
+      "priority": "high",
+      "epic": "Cycle financier",
+      "type": "Complément de réalisation",
+      "rank": 54,
+      "description": "## Objectif\nRapprocher les paiements avec le fournisseur\n\n## Traçabilité\nRéférence : Complément exploitation\nIdentifiant : KB-054\nEpic : Cycle financier\nNature : Complément de réalisation\nOrdre initial : 54 (à arbitrer par le Product Owner)\nSprint prévisionnel : 08\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-046, KB-050\n\n## Critères d’acceptation\n- [ ] Transactions orphelines et écarts montant/état détectés\n- [ ] rattrapage contrôlé, audité et sans double activation.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-055",
+      "title": "Afficher le tableau de bord financier",
+      "sprint": 8,
+      "points": 5,
+      "dependencies": [
+        "KB-049",
+        "KB-054"
+      ],
+      "source": "CDC 5",
+      "criteria": [
+        "Abonnements actifs, dus, encaissés et chiffre d’affaires selon définition validée",
+        "filtres et totaux concordent avec transactions tests sans mélanger encaissement et revenu."
+      ],
+      "priority": "normal",
+      "epic": "Cycle financier",
+      "type": "Exigence CDC",
+      "rank": 55,
+      "description": "## Objectif\nAfficher le tableau de bord financier\n\n## Traçabilité\nRéférence : CDC 5\nIdentifiant : KB-055\nEpic : Cycle financier\nNature : Exigence CDC\nOrdre initial : 55 (à arbitrer par le Product Owner)\nSprint prévisionnel : 08\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-049, KB-054\n\n## Critères d’acceptation\n- [ ] Abonnements actifs, dus, encaissés et chiffre d’affaires selon définition validée\n- [ ] filtres et totaux concordent avec transactions tests sans mélanger encaissement et revenu.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-056",
+      "title": "Traiter les exceptions de paiement",
+      "sprint": 8,
+      "points": 3,
+      "dependencies": [
+        "KB-054",
+        "KB-002"
+      ],
+      "source": "Complément exploitation",
+      "criteria": [
+        "Procédure de contestation/remboursement documentée selon contrat et capacités fournisseur",
+        "correction tracée et droits associés cohérents sans suppression de transaction."
+      ],
+      "priority": "high",
+      "epic": "Cycle financier",
+      "type": "Complément de réalisation",
+      "rank": 56,
+      "description": "## Objectif\nTraiter les exceptions de paiement\n\n## Traçabilité\nRéférence : Complément exploitation\nIdentifiant : KB-056\nEpic : Cycle financier\nNature : Complément de réalisation\nOrdre initial : 56 (à arbitrer par le Product Owner)\nSprint prévisionnel : 08\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-054, KB-002\n\n## Critères d’acceptation\n- [ ] Procédure de contestation/remboursement documentée selon contrat et capacités fournisseur\n- [ ] correction tracée et droits associés cohérents sans suppression de transaction.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-057",
+      "title": "Modérer les comptes clients et établissements",
+      "sprint": 9,
+      "points": 5,
+      "dependencies": [
+        "KB-010",
+        "KB-020"
+      ],
+      "source": "CDC 5",
+      "criteria": [
+        "Administrateur peut suspendre et rétablir avec motif",
+        "visibilité, connexion et RDV existants suivent les règles validées et actions auditées."
+      ],
+      "priority": "normal",
+      "epic": "Administration métier",
+      "type": "Exigence CDC",
+      "rank": 57,
+      "description": "## Objectif\nModérer les comptes clients et établissements\n\n## Traçabilité\nRéférence : CDC 5\nIdentifiant : KB-057\nEpic : Administration métier\nNature : Exigence CDC\nOrdre initial : 57 (à arbitrer par le Product Owner)\nSprint prévisionnel : 09\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-010, KB-020\n\n## Critères d’acceptation\n- [ ] Administrateur peut suspendre et rétablir avec motif\n- [ ] visibilité, connexion et RDV existants suivent les règles validées et actions auditées.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-058",
+      "title": "Contrôler les médias et informations publiés",
+      "sprint": 9,
+      "points": 3,
+      "dependencies": [
+        "KB-019",
+        "KB-057"
+      ],
+      "source": "CDC 5",
+      "criteria": [
+        "Contenu problématique masqué par rôle autorisé",
+        "propriétaire reçoit le motif et correction peut être examinée avant republication."
+      ],
+      "priority": "normal",
+      "epic": "Administration métier",
+      "type": "Exigence CDC",
+      "rank": 58,
+      "description": "## Objectif\nContrôler les médias et informations publiés\n\n## Traçabilité\nRéférence : CDC 5\nIdentifiant : KB-058\nEpic : Administration métier\nNature : Exigence CDC\nOrdre initial : 58 (à arbitrer par le Product Owner)\nSprint prévisionnel : 09\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-019, KB-057\n\n## Critères d’acceptation\n- [ ] Contenu problématique masqué par rôle autorisé\n- [ ] propriétaire reçoit le motif et correction peut être examinée avant republication.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-059",
+      "title": "Suivre l’activité des rendez-vous dans l’administration",
+      "sprint": 9,
+      "points": 3,
+      "dependencies": [
+        "KB-042",
+        "KB-010"
+      ],
+      "source": "Complément exploitation",
+      "criteria": [
+        "Recherche par référence et filtres métier",
+        "accès minimal aux données client et historique utile au support sans usurpation silencieuse."
+      ],
+      "priority": "normal",
+      "epic": "Administration métier",
+      "type": "Complément de réalisation",
+      "rank": 59,
+      "description": "## Objectif\nSuivre l’activité des rendez-vous dans l’administration\n\n## Traçabilité\nRéférence : Complément exploitation\nIdentifiant : KB-059\nEpic : Administration métier\nNature : Complément de réalisation\nOrdre initial : 59 (à arbitrer par le Product Owner)\nSprint prévisionnel : 09\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-042, KB-010\n\n## Critères d’acceptation\n- [ ] Recherche par référence et filtres métier\n- [ ] accès minimal aux données client et historique utile au support sans usurpation silencieuse.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-060",
+      "title": "Auditer les actions sensibles",
+      "sprint": 9,
+      "points": 5,
+      "dependencies": [
+        "KB-015",
+        "KB-055",
+        "KB-057"
+      ],
+      "source": "Complément sécurité",
+      "criteria": [
+        "Validation KYC, changement de tarif, suspension et correction financière historisés avec acteur/date",
+        "accès et conservation contrôlés, secrets exclus."
+      ],
+      "priority": "normal",
+      "epic": "Administration métier",
+      "type": "Complément de réalisation",
+      "rank": 60,
+      "description": "## Objectif\nAuditer les actions sensibles\n\n## Traçabilité\nRéférence : Complément sécurité\nIdentifiant : KB-060\nEpic : Administration métier\nNature : Complément de réalisation\nOrdre initial : 60 (à arbitrer par le Product Owner)\nSprint prévisionnel : 09\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-015, KB-055, KB-057\n\n## Critères d’acceptation\n- [ ] Validation KYC, changement de tarif, suspension et correction financière historisés avec acteur/date\n- [ ] accès et conservation contrôlés, secrets exclus.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-061",
+      "title": "Mettre en œuvre les demandes sur les données personnelles",
+      "sprint": 9,
+      "points": 5,
+      "dependencies": [
+        "KB-014",
+        "KB-060"
+      ],
+      "source": "Complément exploitation",
+      "criteria": [
+        "Demande d’accès/correction/suppression traitée après vérification d’identité",
+        "données supprimées ou conservées selon règles décidées et traitement des sauvegardes documenté."
+      ],
+      "priority": "normal",
+      "epic": "Administration métier",
+      "type": "Complément de réalisation",
+      "rank": 61,
+      "description": "## Objectif\nMettre en œuvre les demandes sur les données personnelles\n\n## Traçabilité\nRéférence : Complément exploitation\nIdentifiant : KB-061\nEpic : Administration métier\nNature : Complément de réalisation\nOrdre initial : 61 (à arbitrer par le Product Owner)\nSprint prévisionnel : 09\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-014, KB-060\n\n## Critères d’acceptation\n- [ ] Demande d’accès/correction/suppression traitée après vérification d’identité\n- [ ] données supprimées ou conservées selon règles décidées et traitement des sauvegardes documenté.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-062",
+      "title": "Préparer l’assistance et les procédures métier",
+      "sprint": 9,
+      "points": 3,
+      "dependencies": [
+        "KB-056",
+        "KB-059"
+      ],
+      "source": "Complément exploitation",
+      "criteria": [
+        "Procédures OTP, KYC, réservation, impayé et incident accessibles aux opérateurs",
+        "responsabilités, escalade et canaux de contact testés."
+      ],
+      "priority": "normal",
+      "epic": "Administration métier",
+      "type": "Complément de réalisation",
+      "rank": 62,
+      "description": "## Objectif\nPréparer l’assistance et les procédures métier\n\n## Traçabilité\nRéférence : Complément exploitation\nIdentifiant : KB-062\nEpic : Administration métier\nNature : Complément de réalisation\nOrdre initial : 62 (à arbitrer par le Product Owner)\nSprint prévisionnel : 09\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-056, KB-059\n\n## Critères d’acceptation\n- [ ] Procédures OTP, KYC, réservation, impayé et incident accessibles aux opérateurs\n- [ ] responsabilités, escalade et canaux de contact testés.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-063",
+      "title": "Valider l’exploitation avec un groupe pilote",
+      "sprint": 9,
+      "points": 5,
+      "dependencies": [
+        "KB-057",
+        "KB-058",
+        "KB-061",
+        "KB-062"
+      ],
+      "source": "Complément recette",
+      "criteria": [
+        "Jeu pilote autorisé, scénarios client/partenaire/admin exécutés",
+        "retours priorisés et anomalies bloquantes traitées avant élargissement."
+      ],
+      "priority": "normal",
+      "epic": "Administration métier",
+      "type": "Complément de réalisation",
+      "rank": 63,
+      "description": "## Objectif\nValider l’exploitation avec un groupe pilote\n\n## Traçabilité\nRéférence : Complément recette\nIdentifiant : KB-063\nEpic : Administration métier\nNature : Complément de réalisation\nOrdre initial : 63 (à arbitrer par le Product Owner)\nSprint prévisionnel : 09\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-057, KB-058, KB-061, KB-062\n\n## Critères d’acceptation\n- [ ] Jeu pilote autorisé, scénarios client/partenaire/admin exécutés\n- [ ] retours priorisés et anomalies bloquantes traitées avant élargissement.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-064",
+      "title": "Vérifier la sécurité des parcours critiques",
+      "sprint": 10,
+      "points": 5,
+      "dependencies": [
+        "KB-060",
+        "KB-053"
+      ],
+      "source": "Complément qualité",
+      "criteria": [
+        "Tests d’accès tiers, abus OTP, téléversements et paiements réalisés",
+        "aucun défaut critique ou élevé non traité selon grille convenue."
+      ],
+      "priority": "high",
+      "epic": "Qualité et plateformes",
+      "type": "Complément de réalisation",
+      "rank": 64,
+      "description": "## Objectif\nVérifier la sécurité des parcours critiques\n\n## Traçabilité\nRéférence : Complément qualité\nIdentifiant : KB-064\nEpic : Qualité et plateformes\nNature : Complément de réalisation\nOrdre initial : 64 (à arbitrer par le Product Owner)\nSprint prévisionnel : 10\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-060, KB-053\n\n## Critères d’acceptation\n- [ ] Tests d’accès tiers, abus OTP, téléversements et paiements réalisés\n- [ ] aucun défaut critique ou élevé non traité selon grille convenue.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-065",
+      "title": "Mesurer et améliorer les performances",
+      "sprint": 10,
+      "points": 5,
+      "dependencies": [
+        "KB-028",
+        "KB-042",
+        "KB-055"
+      ],
+      "source": "CDC 4",
+      "criteria": [
+        "Scénarios de charge, volume et seuils p95 définis avec l’équipe puis mesurés",
+        "recherche et réservation restent dans ces seuils sous la charge retenue."
+      ],
+      "priority": "normal",
+      "epic": "Qualité et plateformes",
+      "type": "Exigence CDC",
+      "rank": 65,
+      "description": "## Objectif\nMesurer et améliorer les performances\n\n## Traçabilité\nRéférence : CDC 4\nIdentifiant : KB-065\nEpic : Qualité et plateformes\nNature : Exigence CDC\nOrdre initial : 65 (à arbitrer par le Product Owner)\nSprint prévisionnel : 10\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-028, KB-042, KB-055\n\n## Critères d’acceptation\n- [ ] Scénarios de charge, volume et seuils p95 définis avec l’équipe puis mesurés\n- [ ] recherche et réservation restent dans ces seuils sous la charge retenue.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-066",
+      "title": "Finaliser accessibilité et expérience sur réseau faible",
+      "sprint": 10,
+      "points": 5,
+      "dependencies": [
+        "KB-063"
+      ],
+      "source": "CDC 2 / Complément qualité",
+      "criteria": [
+        "Parcours essentiels testés clavier/lecteur d’écran, contraste et erreurs compréhensibles",
+        "chargement limité des médias et reprise après interruption vérifiés."
+      ],
+      "priority": "normal",
+      "epic": "Qualité et plateformes",
+      "type": "Exigence CDC",
+      "rank": 66,
+      "description": "## Objectif\nFinaliser accessibilité et expérience sur réseau faible\n\n## Traçabilité\nRéférence : CDC 2 / Complément qualité\nIdentifiant : KB-066\nEpic : Qualité et plateformes\nNature : Exigence CDC\nOrdre initial : 66 (à arbitrer par le Product Owner)\nSprint prévisionnel : 10\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-063\n\n## Critères d’acceptation\n- [ ] Parcours essentiels testés clavier/lecteur d’écran, contraste et erreurs compréhensibles\n- [ ] chargement limité des médias et reprise après interruption vérifiés.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-067",
+      "title": "Finaliser la livraison web retenue",
+      "sprint": 10,
+      "points": 3,
+      "dependencies": [
+        "KB-001",
+        "KB-066"
+      ],
+      "source": "CDC 1 / Condition plateforme",
+      "criteria": [
+        "Si web retenu : navigateurs cibles, responsive, domaine, HTTPS et liens directs testés",
+        "sinon décision de non-applicabilité consignée et charge retirée."
+      ],
+      "priority": "normal",
+      "epic": "Qualité et plateformes",
+      "type": "Livraison conditionnelle",
+      "rank": 67,
+      "description": "## Objectif\nFinaliser la livraison web retenue\n\n## Traçabilité\nRéférence : CDC 1 / Condition plateforme\nIdentifiant : KB-067\nEpic : Qualité et plateformes\nNature : Livraison conditionnelle\nOrdre initial : 67 (à arbitrer par le Product Owner)\nSprint prévisionnel : 10\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-001, KB-066\n\n## Critères d’acceptation\n- [ ] Si web retenu : navigateurs cibles, responsive, domaine, HTTPS et liens directs testés\n- [ ] sinon décision de non-applicabilité consignée et charge retirée.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-068",
+      "title": "Finaliser la livraison Android si retenue",
+      "sprint": 10,
+      "points": 5,
+      "dependencies": [
+        "KB-001",
+        "KB-066"
+      ],
+      "source": "CDC 1 / Condition plateforme",
+      "criteria": [
+        "Si Android retenu : build signé, permissions, liens externes et tests appareils prêts pour piste interne",
+        "sinon tâche classée non applicable après décision produit."
+      ],
+      "priority": "normal",
+      "epic": "Qualité et plateformes",
+      "type": "Livraison conditionnelle",
+      "rank": 68,
+      "description": "## Objectif\nFinaliser la livraison Android si retenue\n\n## Traçabilité\nRéférence : CDC 1 / Condition plateforme\nIdentifiant : KB-068\nEpic : Qualité et plateformes\nNature : Livraison conditionnelle\nOrdre initial : 68 (à arbitrer par le Product Owner)\nSprint prévisionnel : 10\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-001, KB-066\n\n## Critères d’acceptation\n- [ ] Si Android retenu : build signé, permissions, liens externes et tests appareils prêts pour piste interne\n- [ ] sinon tâche classée non applicable après décision produit.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-069",
+      "title": "Finaliser la livraison iOS si retenue",
+      "sprint": 10,
+      "points": 5,
+      "dependencies": [
+        "KB-001",
+        "KB-066"
+      ],
+      "source": "CDC 1 / Condition plateforme",
+      "criteria": [
+        "Si iOS retenu : build signé, permissions, liens externes et tests appareils prêts pour distribution de test",
+        "sinon tâche classée non applicable après décision produit."
+      ],
+      "priority": "normal",
+      "epic": "Qualité et plateformes",
+      "type": "Livraison conditionnelle",
+      "rank": 69,
+      "description": "## Objectif\nFinaliser la livraison iOS si retenue\n\n## Traçabilité\nRéférence : CDC 1 / Condition plateforme\nIdentifiant : KB-069\nEpic : Qualité et plateformes\nNature : Livraison conditionnelle\nOrdre initial : 69 (à arbitrer par le Product Owner)\nSprint prévisionnel : 10\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-001, KB-066\n\n## Critères d’acceptation\n- [ ] Si iOS retenu : build signé, permissions, liens externes et tests appareils prêts pour distribution de test\n- [ ] sinon tâche classée non applicable après décision produit.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-070",
+      "title": "Valider sauvegarde, restauration et supervision",
+      "sprint": 10,
+      "points": 5,
+      "dependencies": [
+        "KB-005",
+        "KB-060"
+      ],
+      "source": "CDC 4 / Complément exploitation",
+      "criteria": [
+        "Sauvegarde restaurée en environnement isolé et objectifs de perte/reprise mesurés",
+        "alertes sur API, OTP, paiement et files d’envoi testées avec procédure d’intervention."
+      ],
+      "priority": "high",
+      "epic": "Qualité et plateformes",
+      "type": "Exigence CDC",
+      "rank": 70,
+      "description": "## Objectif\nValider sauvegarde, restauration et supervision\n\n## Traçabilité\nRéférence : CDC 4 / Complément exploitation\nIdentifiant : KB-070\nEpic : Qualité et plateformes\nNature : Exigence CDC\nOrdre initial : 70 (à arbitrer par le Product Owner)\nSprint prévisionnel : 10\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-005, KB-060\n\n## Critères d’acceptation\n- [ ] Sauvegarde restaurée en environnement isolé et objectifs de perte/reprise mesurés\n- [ ] alertes sur API, OTP, paiement et files d’envoi testées avec procédure d’intervention.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-071",
+      "title": "Exécuter la recette métier complète",
+      "sprint": 11,
+      "points": 5,
+      "dependencies": [
+        "KB-064",
+        "KB-065",
+        "KB-066",
+        "KB-070"
+      ],
+      "source": "Complément recette",
+      "criteria": [
+        "Matrice du CDC rejouée sur version candidate avec preuves",
+        "écarts qualifiés et décision du Product Owner documentée."
+      ],
+      "priority": "normal",
+      "epic": "Lancement",
+      "type": "Complément de réalisation",
+      "rank": 71,
+      "description": "## Objectif\nExécuter la recette métier complète\n\n## Traçabilité\nRéférence : Complément recette\nIdentifiant : KB-071\nEpic : Lancement\nNature : Complément de réalisation\nOrdre initial : 71 (à arbitrer par le Product Owner)\nSprint prévisionnel : 11\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-064, KB-065, KB-066, KB-070\n\n## Critères d’acceptation\n- [ ] Matrice du CDC rejouée sur version candidate avec preuves\n- [ ] écarts qualifiés et décision du Product Owner documentée.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-072",
+      "title": "Corriger et vérifier les anomalies de recette",
+      "sprint": 11,
+      "points": 5,
+      "dependencies": [
+        "KB-071"
+      ],
+      "source": "Complément qualité",
+      "criteria": [
+        "Chaque anomalie retenue possède reproduction et test de non-régression",
+        "aucune anomalie bloquant le lancement, charge réévaluée selon constats réels."
+      ],
+      "priority": "normal",
+      "epic": "Lancement",
+      "type": "Complément de réalisation",
+      "rank": 72,
+      "description": "## Objectif\nCorriger et vérifier les anomalies de recette\n\n## Traçabilité\nRéférence : Complément qualité\nIdentifiant : KB-072\nEpic : Lancement\nNature : Complément de réalisation\nOrdre initial : 72 (à arbitrer par le Product Owner)\nSprint prévisionnel : 11\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-071\n\n## Critères d’acceptation\n- [ ] Chaque anomalie retenue possède reproduction et test de non-régression\n- [ ] aucune anomalie bloquant le lancement, charge réévaluée selon constats réels.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-073",
+      "title": "Préparer les données de lancement",
+      "sprint": 11,
+      "points": 3,
+      "dependencies": [
+        "KB-021",
+        "KB-015"
+      ],
+      "source": "Complément lancement",
+      "criteria": [
+        "Zones, catégories, offres et salons pilotes validés",
+        "import reproductible sans données fictives publiques ni doublons, accord des partenaires consigné."
+      ],
+      "priority": "normal",
+      "epic": "Lancement",
+      "type": "Complément de réalisation",
+      "rank": 73,
+      "description": "## Objectif\nPréparer les données de lancement\n\n## Traçabilité\nRéférence : Complément lancement\nIdentifiant : KB-073\nEpic : Lancement\nNature : Complément de réalisation\nOrdre initial : 73 (à arbitrer par le Product Owner)\nSprint prévisionnel : 11\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-021, KB-015\n\n## Critères d’acceptation\n- [ ] Zones, catégories, offres et salons pilotes validés\n- [ ] import reproductible sans données fictives publiques ni doublons, accord des partenaires consigné.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-074",
+      "title": "Former partenaires et administrateurs",
+      "sprint": 11,
+      "points": 3,
+      "dependencies": [
+        "KB-062",
+        "KB-072"
+      ],
+      "source": "Complément lancement",
+      "criteria": [
+        "Guides client/partenaire/admin et séance pratique disponibles",
+        "opérateurs réalisent validation, RDV et suivi paiement sans assistance de développement."
+      ],
+      "priority": "normal",
+      "epic": "Lancement",
+      "type": "Complément de réalisation",
+      "rank": 74,
+      "description": "## Objectif\nFormer partenaires et administrateurs\n\n## Traçabilité\nRéférence : Complément lancement\nIdentifiant : KB-074\nEpic : Lancement\nNature : Complément de réalisation\nOrdre initial : 74 (à arbitrer par le Product Owner)\nSprint prévisionnel : 11\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-062, KB-072\n\n## Critères d’acceptation\n- [ ] Guides client/partenaire/admin et séance pratique disponibles\n- [ ] opérateurs réalisent validation, RDV et suivi paiement sans assistance de développement.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-075",
+      "title": "Répéter le déploiement et le retour arrière",
+      "sprint": 11,
+      "points": 5,
+      "dependencies": [
+        "KB-070",
+        "KB-072"
+      ],
+      "source": "Complément livraison",
+      "criteria": [
+        "Migration répétée sur copie contrôlée, sauvegarde et procédure de retour arrière testées",
+        "critères go/no-go et responsable de lancement identifiés."
+      ],
+      "priority": "normal",
+      "epic": "Lancement",
+      "type": "Complément de réalisation",
+      "rank": 75,
+      "description": "## Objectif\nRépéter le déploiement et le retour arrière\n\n## Traçabilité\nRéférence : Complément livraison\nIdentifiant : KB-075\nEpic : Lancement\nNature : Complément de réalisation\nOrdre initial : 75 (à arbitrer par le Product Owner)\nSprint prévisionnel : 11\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-070, KB-072\n\n## Critères d’acceptation\n- [ ] Migration répétée sur copie contrôlée, sauvegarde et procédure de retour arrière testées\n- [ ] critères go/no-go et responsable de lancement identifiés.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-076",
+      "title": "Publier sur les canaux retenus",
+      "sprint": 11,
+      "points": 5,
+      "dependencies": [
+        "KB-067",
+        "KB-068",
+        "KB-069",
+        "KB-073",
+        "KB-075"
+      ],
+      "source": "Complément lancement",
+      "criteria": [
+        "Web déployé et/ou versions soumises puis publiées sur stores retenus",
+        "tests de fumée en production, suivi explicite des délais de validation externes."
+      ],
+      "priority": "normal",
+      "epic": "Lancement",
+      "type": "Complément de réalisation",
+      "rank": 76,
+      "description": "## Objectif\nPublier sur les canaux retenus\n\n## Traçabilité\nRéférence : Complément lancement\nIdentifiant : KB-076\nEpic : Lancement\nNature : Complément de réalisation\nOrdre initial : 76 (à arbitrer par le Product Owner)\nSprint prévisionnel : 11\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-067, KB-068, KB-069, KB-073, KB-075\n\n## Critères d’acceptation\n- [ ] Web déployé et/ou versions soumises puis publiées sur stores retenus\n- [ ] tests de fumée en production, suivi explicite des délais de validation externes.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-077",
+      "title": "Ouvrir le service aux premiers utilisateurs",
+      "sprint": 11,
+      "points": 3,
+      "dependencies": [
+        "KB-074",
+        "KB-076"
+      ],
+      "source": "Complément lancement",
+      "criteria": [
+        "Pilotes accèdent aux bons services, paiement et réservation vérifiés de bout en bout",
+        "indicateurs initiaux et canal support opérationnels."
+      ],
+      "priority": "normal",
+      "epic": "Lancement",
+      "type": "Complément de réalisation",
+      "rank": 77,
+      "description": "## Objectif\nOuvrir le service aux premiers utilisateurs\n\n## Traçabilité\nRéférence : Complément lancement\nIdentifiant : KB-077\nEpic : Lancement\nNature : Complément de réalisation\nOrdre initial : 77 (à arbitrer par le Product Owner)\nSprint prévisionnel : 11\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-074, KB-076\n\n## Critères d’acceptation\n- [ ] Pilotes accèdent aux bons services, paiement et réservation vérifiés de bout en bout\n- [ ] indicateurs initiaux et canal support opérationnels.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-078",
+      "title": "Assurer la surveillance renforcée du lancement",
+      "sprint": 12,
+      "points": 3,
+      "dependencies": [
+        "KB-077"
+      ],
+      "source": "Complément exploitation",
+      "criteria": [
+        "Période d’observation et seuils convenus",
+        "incidents enregistrés, responsable de suivi connu et aucune alerte critique laissée sans traitement."
+      ],
+      "priority": "normal",
+      "epic": "Exploitation et amélioration",
+      "type": "Complément de réalisation",
+      "rank": 78,
+      "description": "## Objectif\nAssurer la surveillance renforcée du lancement\n\n## Traçabilité\nRéférence : Complément exploitation\nIdentifiant : KB-078\nEpic : Exploitation et amélioration\nNature : Complément de réalisation\nOrdre initial : 78 (à arbitrer par le Product Owner)\nSprint prévisionnel : 12\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-077\n\n## Critères d’acceptation\n- [ ] Période d’observation et seuils convenus\n- [ ] incidents enregistrés, responsable de suivi connu et aucune alerte critique laissée sans traitement.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-079",
+      "title": "Corriger les incidents et régressions de production",
+      "sprint": 12,
+      "points": 5,
+      "dependencies": [
+        "KB-078"
+      ],
+      "source": "Complément qualité",
+      "criteria": [
+        "Incidents priorisés selon impact, correction validée avant publication",
+        "causes et tests de non-régression documentés, estimation révisée selon incidents constatés."
+      ],
+      "priority": "normal",
+      "epic": "Exploitation et amélioration",
+      "type": "Complément de réalisation",
+      "rank": 79,
+      "description": "## Objectif\nCorriger les incidents et régressions de production\n\n## Traçabilité\nRéférence : Complément qualité\nIdentifiant : KB-079\nEpic : Exploitation et amélioration\nNature : Complément de réalisation\nOrdre initial : 79 (à arbitrer par le Product Owner)\nSprint prévisionnel : 12\nEstimation indicative : 5 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-078\n\n## Critères d’acceptation\n- [ ] Incidents priorisés selon impact, correction validée avant publication\n- [ ] causes et tests de non-régression documentés, estimation révisée selon incidents constatés.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-080",
+      "title": "Vérifier les premiers cycles financiers réels",
+      "sprint": 12,
+      "points": 3,
+      "dependencies": [
+        "KB-077",
+        "KB-054"
+      ],
+      "source": "Complément exploitation",
+      "criteria": [
+        "Encaissements pilotes rapprochés avec fournisseur",
+        "échéances et droits contrôlés sans attendre un an grâce aux tests temporels, écarts corrigés."
+      ],
+      "priority": "normal",
+      "epic": "Exploitation et amélioration",
+      "type": "Complément de réalisation",
+      "rank": 80,
+      "description": "## Objectif\nVérifier les premiers cycles financiers réels\n\n## Traçabilité\nRéférence : Complément exploitation\nIdentifiant : KB-080\nEpic : Exploitation et amélioration\nNature : Complément de réalisation\nOrdre initial : 80 (à arbitrer par le Product Owner)\nSprint prévisionnel : 12\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-077, KB-054\n\n## Critères d’acceptation\n- [ ] Encaissements pilotes rapprochés avec fournisseur\n- [ ] échéances et droits contrôlés sans attendre un an grâce aux tests temporels, écarts corrigés.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-081",
+      "title": "Mesurer les résultats et recueillir les retours",
+      "sprint": 12,
+      "points": 3,
+      "dependencies": [
+        "KB-077"
+      ],
+      "source": "Complément produit",
+      "criteria": [
+        "Indicateurs convenus mesurés sans données personnelles inutiles",
+        "retours clients et partenaires synthétisés en améliorations ordonnées."
+      ],
+      "priority": "normal",
+      "epic": "Exploitation et amélioration",
+      "type": "Complément de réalisation",
+      "rank": 81,
+      "description": "## Objectif\nMesurer les résultats et recueillir les retours\n\n## Traçabilité\nRéférence : Complément produit\nIdentifiant : KB-081\nEpic : Exploitation et amélioration\nNature : Complément de réalisation\nOrdre initial : 81 (à arbitrer par le Product Owner)\nSprint prévisionnel : 12\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-077\n\n## Critères d’acceptation\n- [ ] Indicateurs convenus mesurés sans données personnelles inutiles\n- [ ] retours clients et partenaires synthétisés en améliorations ordonnées.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-082",
+      "title": "Transférer l’exploitation technique",
+      "sprint": 12,
+      "points": 3,
+      "dependencies": [
+        "KB-079",
+        "KB-070"
+      ],
+      "source": "Complément transfert",
+      "criteria": [
+        "Architecture, configuration, migrations, procédures et accès remis aux responsables",
+        "restauration et livraison réalisées par l’équipe de reprise."
+      ],
+      "priority": "normal",
+      "epic": "Exploitation et amélioration",
+      "type": "Complément de réalisation",
+      "rank": 82,
+      "description": "## Objectif\nTransférer l’exploitation technique\n\n## Traçabilité\nRéférence : Complément transfert\nIdentifiant : KB-082\nEpic : Exploitation et amélioration\nNature : Complément de réalisation\nOrdre initial : 82 (à arbitrer par le Product Owner)\nSprint prévisionnel : 12\nEstimation indicative : 3 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-079, KB-070\n\n## Critères d’acceptation\n- [ ] Architecture, configuration, migrations, procédures et accès remis aux responsables\n- [ ] restauration et livraison réalisées par l’équipe de reprise.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-083",
+      "title": "Valider le bilan de livraison",
+      "sprint": 12,
+      "points": 2,
+      "dependencies": [
+        "KB-080",
+        "KB-081",
+        "KB-082"
+      ],
+      "source": "Complément clôture",
+      "criteria": [
+        "Traçabilité CDC, périmètre réellement livré, limites et dettes résiduelles documentés",
+        "acceptation et responsabilités de maintenance consignées."
+      ],
+      "priority": "normal",
+      "epic": "Exploitation et amélioration",
+      "type": "Complément de réalisation",
+      "rank": 83,
+      "description": "## Objectif\nValider le bilan de livraison\n\n## Traçabilité\nRéférence : Complément clôture\nIdentifiant : KB-083\nEpic : Exploitation et amélioration\nNature : Complément de réalisation\nOrdre initial : 83 (à arbitrer par le Product Owner)\nSprint prévisionnel : 12\nEstimation indicative : 2 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-080, KB-081, KB-082\n\n## Critères d’acceptation\n- [ ] Traçabilité CDC, périmètre réellement livré, limites et dettes résiduelles documentés\n- [ ] acceptation et responsabilités de maintenance consignées.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    },
+    {
+      "id": "KB-084",
+      "title": "Préparer le backlog d’amélioration continue",
+      "sprint": 12,
+      "points": 2,
+      "dependencies": [
+        "KB-083"
+      ],
+      "source": "Complément Scrum",
+      "criteria": [
+        "Retours et dettes priorisés par valeur/risque avec Product Owner",
+        "prochains objectifs et cadence de maintenance établis sans déclarer le produit définitivement terminé."
+      ],
+      "priority": "normal",
+      "epic": "Exploitation et amélioration",
+      "type": "Complément de réalisation",
+      "rank": 84,
+      "description": "## Objectif\nPréparer le backlog d’amélioration continue\n\n## Traçabilité\nRéférence : Complément Scrum\nIdentifiant : KB-084\nEpic : Exploitation et amélioration\nNature : Complément de réalisation\nOrdre initial : 84 (à arbitrer par le Product Owner)\nSprint prévisionnel : 12\nEstimation indicative : 2 points, à réestimer par l’équipe (pas une durée).\nDépendances : KB-083\n\n## Critères d’acceptation\n- [ ] Retours et dettes priorisés par valeur/risque avec Product Owner\n- [ ] prochains objectifs et cadence de maintenance établis sans déclarer le produit définitivement terminé.\n\n## Réalisation\n- [ ] Affiner la règle et les cas limites avec le Product Owner.\n- [ ] Réaliser les changements et la documentation nécessaires.\n- [ ] Vérifier les critères ci-dessus et joindre les preuves.\n- [ ] Revue et intégration en recette selon la Definition of Done.\n\nLes sous-tâches techniques et affectations seront détaillées par les Developers pendant le Sprint Planning."
+    }
+  ]
+}
