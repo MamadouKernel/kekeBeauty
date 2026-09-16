@@ -1,5 +1,7 @@
 # Keke Beauty — Conception MERISE V1
 
+> Remplacée pour les points contradictoires par [Décisions métier V2](DECISIONS_METIER_V2.md) : acceptation par le salon, aucun paiement de soins géré par la plateforme, délai une heure, aucune grâce et facturation de plusieurs établissements par un payeur. Le SQL V1 n'est plus la cible métier à déployer.
+
 Référence : cahier des charges local et dix décisions acceptées le 16 septembre 2026. Cette version prévaut sur les hypothèses contradictoires des V0. Les règles métier ci-dessous sont validées ; leur traduction technique reste un candidat à vérifier par exécution et recette. Aucun changement de base réelle effectué.
 
 ## 1. Règles de gestion consolidées

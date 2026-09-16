@@ -1,5 +1,7 @@
 # Mise à jour ClickUp en attente du quota
 
+Dernier état : voir [SUIVI_MERISE_V2.md](SUIVI_MERISE_V2.md). Cinq tâches mises à jour avec V2 et recette PostgreSQL réelle. Les mentions de modèle non exécuté ci-dessous sont historiques.
+
 ## Actualisation du 16 septembre 2026
 
 Le quota est revenu. KB-002 (`123tcvwe4gu`) a été mise à jour avec les dix décisions validées et les liens vers la consolidation MERISE V1, le MLD et le MPD candidat. 52 tables et 66 références vérifiées statiquement ; aucune exécution PostgreSQL. La tâche n'est pas déclarée terminée. Les éléments ci-dessous décrivent l'ancien blocage ; la création des tâches KB-041 à KB-084 et les fiches de sprint restent à réaliser.

@@ -1,19 +1,21 @@
 # Keke Beauty
 
-Première version du projet en cours de cadrage. Les livrables MERISE sont dans `merise/` et la trajectoire Scrum dans `planning/`.
+Plateforme de découverte et de réservation d'établissements de beauté. Lancement Côte d'Ivoire / XOF, conception extensible à d'autres pays.
 
 ## État actuel
 
-- **Référence actuelle : [Conception MERISE V1](merise/CONCEPTION_MERISE_V1.md)**, intégrant les dix décisions acceptées. [MLD détaillé](merise/MLD_V1.md), [SQL candidat V1](merise/mpd/010_modele_v1.sql) et [vérifications statiques](merise/VERIFICATION_V1.md). Les V0 sont conservées pour historique. Le SQL V1 vise une base vide, n'est pas déployé et doit encore être exécuté sur PostgreSQL et complété par les contrôles transactionnels.
+- [Conception MERISE V2](merise/CONCEPTION_MERISE_V2.md) : règles, DD, MCD, MCT, MOT et audit des trois formes normales ; [MLD détaillé](merise/MLD_V2.md).
+- [Schéma PostgreSQL V2](merise/mpd/020_modele_v2.sql) chargé dans Docker Desktop : 53 tables, 64 clés étrangères. [Résultats de recette](merise/VERIFICATION_V2.md).
+- Les cinq choix métier sont paramétrables. Acceptation par le salon, paiement des soins hors plateforme, annulation/report une heure avant par défaut, aucune grâce d'abonnement.
+- Socle web Blazor .NET 10 : accueil et fiche de démonstration ; pas encore connecté à PostgreSQL. OTP, parcours métier et intégrations réelles restent à développer.
+- 84 tâches dans le backlog local ; 40 créées dans ClickUp, 12 listes de sprint. Calendrier et estimations restent prévisionnels.
 
-- Réponses métier du 16 septembre intégrées dans [Décisions métier V1](merise/DECISIONS_METIER_V1.md) : CI/XOF configurable, confirmation automatique, espèces sur place et avance à la réservation configurable ; extensions de modèle proposées pour les autres paramètres configurables.
-
-- Règles de gestion, dictionnaire des données, MCD, MCT, MLD, MOT et MPD en version de travail. Le DDL PostgreSQL du socle est un candidat non déployé.
-- Application web Blazor .NET 10 avec accueil et fiche fictive de démonstration.
-- Aucun schéma de base de données, compte, réservation ou paiement réel n'est encore implémenté.
-
-## Lancer l'application
+## Développement
 
 `dotnet run --project src/KekeBeauty.Web/KekeBeauty.Web.csproj`
 
-Le projet compile avec .NET SDK 10. Les dix décisions métier ont été intégrées à la conception V1. L'exécution du DDL candidat sur PostgreSQL, les contrôles transactionnels et leur recette restent à faire avant les migrations applicatives. Aucun serveur PostgreSQL de test n'est disponible dans l'environnement actuel.
+## Base locale
+
+[Instructions Docker](infra/postgres/README.md). Hôte `127.0.0.1`, port `55432`, base `keke_merise`, utilisateur `keke_owner`. Mot de passe dans `infra/postgres/.env`, ignoré par Git.
+
+Le schéma ne constitue pas encore un service de réservation : capacité concurrente, compteurs de modification, expiration et droits après impayé doivent être appliqués dans les traitements transactionnels. Les tests SQL valident seulement les contraintes documentées. Les V0/V1 et leurs scripts restent conservés comme historiques.
