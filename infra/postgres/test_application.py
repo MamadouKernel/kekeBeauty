@@ -115,9 +115,12 @@ with log.open('w',encoding='utf-8') as stream:
         assert 'TEST acceptance' in anonymous.request('/')[1]
         assert 'TEST acceptance' not in anonymous.request('/?q=inexistant')[1]
         passed.append('public catalogue reads published subscribed salons and filters')
+        slot_page=client.request('/salons/1?prestation=1')
+        assert slot_page[0]==200 and 'Créneaux disponibles' in slot_page[1] and 'datetime-local' not in slot_page[1],slot_page[1][:500]
+        passed.append('server proposes selectable slots instead of free date input')
         start=sql("SELECT to_char(CURRENT_DATE+1,'YYYY-MM-DD')||'T15:00';").strip()
         def create(key='new-booking',start=start):
-            return client.request('/rendez-vous/creer',{'salon':1,'versions':1,'start':start,'key':key,'__RequestVerificationToken':client.token('/salons/1')})
+            return client.request('/rendez-vous/creer',{'salon':1,'versions':1,'start':start,'key':key,'__RequestVerificationToken':client.token('/salons/1?prestation=1')})
         result=create()
         assert 'resultat=ok' in result[2],(result[0],result[2],result[1][:500])
         assert 'resultat=ok' in create()[2]
