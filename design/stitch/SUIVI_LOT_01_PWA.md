@@ -30,4 +30,5 @@ Les itérations initiales et révisées restent sur le canevas. La version Explo
 - Vérifier la cohérence géographique des options et leur cascade. Certaines options générées ne sont pas un référentiel géographique validé.
 - Le choix Liste/Carte et les accès Mes RDV/Compte ne sont pas validés. La déclinaison ordinateur reste à réaliser.
 - Les noms et photos sont des contenus de démonstration, non des établissements réels validés.
-- Aucun code PWA n'a été intégré dans Blazor pendant ce lot. Le DESIGN.md complet n'a pas été importé : ses règles utiles au lot ont été transmises dans le brief de génération.
+- Depuis ce lot Stitch, le socle PWA, la recherche, la fiche établissement et le parcours de demande de rendez-vous ont été intégrés dans Blazor. Les réserves ci-dessus restent des critères de recette design et ne sont pas considérées comme validées par l'intégration technique seule.
+- Le `DESIGN.md` sert désormais de référentiel de conception. Les écrans partenaire, KYC, abonnement et administration ne sont pas encore conçus dans Stitch.
