@@ -1,5 +1,11 @@
 # Mise à jour ClickUp en attente du quota
 
+## Synchronisation Scrum du 17 septembre 2026
+
+- KB-037 (`123tcvwe4jz`) a été revalidée par les recettes SQL et applicatives avant clôture.
+- Preuves : 13 scénarios dans `kb_acceptance_3c6969257022`, 24 scénarios dans `kb_application_79ebf1897de9`, compilation sans avertissement.
+- Le prochain élément P0 est KB-039, reprogrammation d'un rendez-vous.
+
 Dernier état : voir [SUIVI_MERISE_V2.md](SUIVI_MERISE_V2.md). Cinq tâches mises à jour avec V2 et recette PostgreSQL réelle. Les mentions de modèle non exécuté ci-dessous sont historiques.
 
 ## Actualisation du 16 septembre 2026
