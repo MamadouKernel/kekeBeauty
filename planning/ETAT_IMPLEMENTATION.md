@@ -14,6 +14,8 @@ Terminer le périmètre validé du cahier des charges. Une fonctionnalité est t
 - Lien d'itinéraire configurable à partir des coordonnées de l'établissement ; il n'est affiché que si le service est activé et si les deux coordonnées existent.
 - Contrats de configuration validés pour le paiement d'abonnement et le stockage KYC privé. Ils restent désactivés tant que les informations fournisseur et les règles métier bloquantes ne sont pas fournies.
 - Centre de notifications dans « Mes RDV » relié aux notifications `in_app` et aux événements de rendez-vous PostgreSQL, limité aux vingt événements récents du compte authentifié.
+- Adaptateurs configurables ajoutés pour l'initiation de paiement JSON, la vérification HMAC-SHA256 des webhooks et le stockage privé des justificatifs KYC avec liste blanche MIME, limite de taille et référence privée.
+- Règles de lancement, devise, engagement, modification de rendez-vous et absence de grâce regroupées dans une configuration validée. En production, HTTPS public, clés de protection persistantes, sauvegardes et supervision deviennent obligatoires au démarrage.
 
 - Application Blazor connectée à PostgreSQL Docker par Npgsql 10.0.3.
 - Connexion par téléphone international : code aléatoire chiffré au stockage, expiration cinq minutes, cinq essais, trois demandes par téléphone en quinze minutes, limitation HTTP par adresse, session de huit heures. Compte suspendu rejeté à la requête suivante.
@@ -28,6 +30,7 @@ Terminer le périmètre validé du cahier des charges. Une fonctionnalité est t
 
 - `infra/test-pwa.mjs` : cache public seulement, repli des navigations hors ligne, aucune interception des mutations d'authentification ou de rendez-vous.
 - `infra/postgres/test_application.py` : **21 scénarios réussis** après les changements PWA, catalogue, OTP configurable et notifications ; base isolée `kb_application_9eb9bfe9ae09`, conservée pour inspection.
+- Nouvelle exécution après ajout des adaptateurs paiement/KYC et des validations de production : **21 scénarios réussis**, base isolée `kb_application_7e3950a6d50f`, conservée pour inspection.
 - `dotnet build src/KekeBeauty.Web --no-restore` : zéro erreur et zéro avertissement après l'ajout PWA et la refonte de l'accueil.
 - Vérification HTTP locale sur `http://localhost:5084` : accueil, manifeste, service worker et page hors connexion répondent en 200.
 - Vérification visuelle de l'accueil sur ordinateur et exercice du breakpoint 390 × 844. La base locale inspectée ne contient actuellement aucune catégorie ni établissement publié à afficher.

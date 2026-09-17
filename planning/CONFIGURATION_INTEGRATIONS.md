@@ -41,8 +41,12 @@ Le contrat de configuration et sa validation sont en place. L'activation des dro
 | `Integrations__Payments__SecretKey` | Clé secrète serveur |
 | `Integrations__Payments__WebhookSecret` | Secret de vérification des notifications |
 | `Integrations__Payments__CallbackBaseUrl` | Origine HTTPS publique des URL de retour |
+| `Integrations__Payments__InitiatePath` | Chemin d'initiation attendu par l'adaptateur JSON générique |
+| `Integrations__Payments__ApiKeyHeader` | En-tête de clé, `Authorization` par défaut |
 
 Point bloquant : fournisseur, compte marchand, canaux autorisés, environnement de test et format de signature non fournis.
+
+L'adaptateur attend une réponse JSON contenant `reference` et `paymentUrl`. Il vérifie les notifications par HMAC-SHA256 avec `WebhookSecret`. Un fournisseur utilisant un format différent nécessite un adaptateur spécialisé avant activation.
 
 ## Stockage privé KYC
 
@@ -52,6 +56,11 @@ Point bloquant : fournisseur, compte marchand, canaux autorisés, environnement 
 | `Integrations__KycStorage__Provider` | Fournisseur de stockage privé |
 | `Integrations__KycStorage__Bucket` | Conteneur privé, sans accès public |
 | `Integrations__KycStorage__Endpoint` | URL HTTPS du service |
+| `Integrations__KycStorage__ApiKey` | Secret serveur du stockage |
+| `Integrations__KycStorage__ApiKeyHeader` | En-tête d'authentification |
+| `Integrations__KycStorage__MaxFileBytes` | Taille maximale, 8 Mio par défaut et 20 Mio maximum |
+| `Integrations__KycStorage__AllowedContentTypes__0...` | Liste blanche MIME : JPEG, PNG et PDF par défaut |
+| `Integrations__KycStorage__RetentionDays` | Durée de conservation validée |
 
 Points bloquants : fournisseur, durée de conservation, personnes habilitées, procédure de suppression et base juridique à confirmer. Les pièces ne doivent pas être stockées dans le cache PWA ni servies par une URL publique permanente.
 
@@ -65,5 +74,25 @@ Points bloquants : fournisseur, durée de conservation, personnes habilitées, p
 - variables d'intégration ci-dessus ;
 - sauvegardes PostgreSQL, supervision et alertes ;
 - comptes PostgreSQL à privilèges limités.
+
+| Variable | Valeur à renseigner |
+|---|---|
+| `Operations__PublicBaseUrl` | Origine publique HTTPS |
+| `Operations__DataProtectionKeysDirectory` | Stockage persistant et protégé des clés ASP.NET |
+| `Operations__BackupsConfigured` | `true` après test de sauvegarde et restauration |
+| `Operations__MonitoringConfigured` | `true` après activation des alertes |
+
+En dehors du développement, l'application refuse de démarrer si l'une de ces protections manque.
+
+## Règles métier
+
+| Variable | Valeur initiale configurable |
+|---|---|
+| `BusinessRules__LaunchCountryCode` | `CI` |
+| `BusinessRules__Currency` | `XOF` |
+| `BusinessRules__SubscriptionMinimumMonths` | `12`, jamais inférieur à l'exigence d'un an |
+| `BusinessRules__BookingChangeDeadlineMinutes` | `60` |
+| `BusinessRules__MaximumBookingChanges` | `2` |
+| `BusinessRules__PaymentGraceDays` | `0`, conformément à la décision métier actuelle |
 
 Point bloquant : hébergeur, domaine, environnement de recette et responsables d'exploitation non choisis.

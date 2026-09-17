@@ -8,12 +8,17 @@ using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var operations = builder.Configuration.GetSection(OperationsOptions.Section).Get<OperationsOptions>() ?? new();
 if (builder.Environment.IsDevelopment())
 {
     // Keep local development keys inside the workspace. Production key storage
     // will be configured with the hosting environment before deployment.
     var keyDirectory = new DirectoryInfo(Path.Combine(builder.Environment.ContentRootPath, "App_Data", "keys"));
     builder.Services.AddDataProtection().PersistKeysToFileSystem(keyDirectory);
+}
+else if (!string.IsNullOrWhiteSpace(operations.DataProtectionKeysDirectory))
+{
+    builder.Services.AddDataProtection().PersistKeysToFileSystem(new DirectoryInfo(operations.DataProtectionKeysDirectory));
 }
 
 // Add services to the container.
@@ -24,6 +29,13 @@ builder.Services.AddScoped<PhoneIdentity>();
 builder.Services.AddScoped<BookingService>();
 builder.Services.AddScoped<CatalogService>();
 builder.Services.AddKekeIntegrations(builder.Configuration);
+if (!builder.Environment.IsDevelopment())
+{
+    builder.Services.AddOptions<OperationsOptions>().Bind(builder.Configuration.GetSection(OperationsOptions.Section)).Validate(x =>
+        Uri.TryCreate(x.PublicBaseUrl, UriKind.Absolute, out var publicUrl) && publicUrl.Scheme == Uri.UriSchemeHttps &&
+        !string.IsNullOrWhiteSpace(x.DataProtectionKeysDirectory) && x.BackupsConfigured && x.MonitoringConfigured,
+        "Production : URL publique HTTPS, stockage persistant des clés, sauvegardes et supervision sont obligatoires.").ValidateOnStart();
+}
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
