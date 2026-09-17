@@ -6,6 +6,8 @@
 - Preuves : 13 scénarios dans `kb_acceptance_3c6969257022`, 24 scénarios dans `kb_application_79ebf1897de9`, compilation sans avertissement.
 - Le prochain élément P0 est KB-039, reprogrammation d'un rendez-vous.
 - KB-039 (`123tcvwe4k1`) est passée en cours le 17 septembre 2026. L'incrément client est implémenté et validé par 25 scénarios ; la clôture ClickUp sera effectuée après publication du commit GitHub.
+- KB-036 (`123tcvwe4jy`) est achevée dans ClickUp avec les preuves du commit `33f46db` et de la recette à 27 scénarios.
+- KB-040 (`123tcvwe4k2`) est en cours dans ClickUp. La file SMS est implémentée ; le commentaire de suivi mentionne explicitement que la recette fournisseur est bloquée par l'absence de compte sandbox et de paramètres d'accès.
 
 Dernier état : voir [SUIVI_MERISE_V2.md](SUIVI_MERISE_V2.md). Cinq tâches mises à jour avec V2 et recette PostgreSQL réelle. Les mentions de modèle non exécuté ci-dessous sont historiques.
 
