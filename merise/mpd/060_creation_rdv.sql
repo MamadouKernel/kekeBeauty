@@ -40,7 +40,12 @@ BEGIN
    FOR besoin IN SELECT * FROM kb.besoin_variante WHERE variante_id=variante ORDER BY groupe_id LOOP
      choisi:=NULL;
      FOR candidat IN SELECT s.* FROM kb.ressource s JOIN kb.membre_groupe mg USING(ressource_id)
-       WHERE mg.groupe_id=besoin.groupe_id AND s.actif AND s.capacite>=besoin.quantite ORDER BY s.ressource_id LOOP
+       WHERE mg.groupe_id=besoin.groupe_id AND s.actif AND s.capacite>=besoin.quantite
+         AND (pol.mode_capacite='combinee'
+           OR (pol.mode_capacite='globale' AND s.nature='globale')
+           OR (pol.mode_capacite='employes' AND s.nature='employe')
+           OR (pol.mode_capacite='ressources' AND s.nature='physique'))
+       ORDER BY s.ressource_id LOOP
        IF EXISTS(SELECT 1 FROM kb.indisponibilite_ressource i WHERE i.ressource_id=candidat.ressource_id AND i.debut<fin_soin AND i.fin>p_debut)
          OR NOT EXISTS(SELECT 1 FROM kb.plage_ressource pr WHERE pr.ressource_id=candidat.ressource_id
            AND pr.jour_semaine=extract(isodow FROM p_debut AT TIME ZONE tz)

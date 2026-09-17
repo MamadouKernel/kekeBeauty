@@ -118,6 +118,14 @@ with log.open('w',encoding='utf-8') as stream:
         slot_page=client.request('/salons/1?prestation=1')
         assert slot_page[0]==200 and 'Créneaux disponibles' in slot_page[1] and 'datetime-local' not in slot_page[1],slot_page[1][:500]
         passed.append('server proposes selectable slots instead of free date input')
+        sql("""INSERT INTO kb.ressource(etablissement_id,nature,libelle,capacite) VALUES(1,'employe','Employe test',1),(1,'physique','Cabine test',1);
+        INSERT INTO kb.membre_groupe VALUES(1,2),(1,3);
+        INSERT INTO kb.plage_ressource(ressource_id,jour_semaine,debut,fin) SELECT r,n,'00:00','23:59' FROM unnest(ARRAY[2,3]) r CROSS JOIN generate_series(1,7)n;""")
+        for version,mode in [(2,'employes'),(3,'ressources'),(4,'combinee'),(5,'globale')]:
+            sql(f"INSERT INTO kb.politique_rdv(etablissement_id,version,date_effet,mode_capacite,blocage_attente,portee_modification) VALUES(1,{version},clock_timestamp()-interval '1 millisecond','{mode}',false,'rendez_vous');")
+            mode_page=client.request('/salons/1?prestation=1')
+            assert mode_page[0]==200 and 'Créneaux disponibles' in mode_page[1],(mode,mode_page[1][:500])
+        passed.append('slot proposal covers global, employee, physical resource and combined capacity modes')
         start=sql("SELECT to_char(CURRENT_DATE+1,'YYYY-MM-DD')||'T15:00';").strip()
         def create(key='new-booking',start=start):
             return client.request('/rendez-vous/creer',{'salon':1,'versions':1,'start':start,'key':key,'__RequestVerificationToken':client.token('/salons/1?prestation=1')})
@@ -155,7 +163,7 @@ with log.open('w',encoding='utf-8') as stream:
         server.wait(timeout=20)
 sql("UPDATE kb.compte SET etat='actif' WHERE compte_id=1;")
 sql("""INSERT INTO kb.politique_rdv(etablissement_id,version,date_effet,mode_capacite,blocage_attente,maintien_minutes,portee_modification)
-VALUES(1,2,clock_timestamp(),'globale',true,30,'client_etablissement');""")
+VALUES(1,6,clock_timestamp(),'globale',true,30,'client_etablissement');""")
 def request_sql(key,hour):
     return f"SELECT kb.creer_rdv(1,1,ARRAY[1]::bigint[],(CURRENT_DATE+1)::timestamp AT TIME ZONE 'Africa/Abidjan'+interval '{hour} hours','{key}');"
 with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:

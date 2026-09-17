@@ -16,7 +16,7 @@ Terminer le périmètre validé du cahier des charges. Une fonctionnalité est t
 - Centre de notifications dans « Mes RDV » relié aux notifications `in_app` et aux événements de rendez-vous PostgreSQL, limité aux vingt événements récents du compte authentifié.
 - Adaptateurs configurables ajoutés pour l'initiation de paiement JSON, la vérification HMAC-SHA256 des webhooks et le stockage privé des justificatifs KYC avec liste blanche MIME, limite de taille et référence privée.
 - Règles de lancement, devise, engagement, modification de rendez-vous et absence de grâce regroupées dans une configuration validée. En production, HTTPS public, clés de protection persistantes, sauvegardes et supervision deviennent obligatoires au démarrage.
-- Sélection de rendez-vous en deux étapes : choix d'une à dix prestations, puis créneaux serveur de trente minutes sur quatorze jours. La première version calcule horaires, exceptions, indisponibilités et capacité pour le mode global ; la création transactionnelle revalide toujours le créneau.
+- Sélection de rendez-vous en deux étapes : choix d'une à dix prestations, puis créneaux serveur de trente minutes sur quatorze jours. Le calcul couvre horaires, exceptions, plages et indisponibilités des ressources ainsi que les modes global, employés, ressources physiques et combiné ; la création transactionnelle revalide toujours le créneau.
 
 - Application Blazor connectée à PostgreSQL Docker par Npgsql 10.0.3.
 - Connexion par téléphone international : code aléatoire chiffré au stockage, expiration cinq minutes, cinq essais, trois demandes par téléphone en quinze minutes, limitation HTTP par adresse, session de huit heures. Compte suspendu rejeté à la requête suivante.
@@ -33,6 +33,7 @@ Terminer le périmètre validé du cahier des charges. Une fonctionnalité est t
 - `infra/postgres/test_application.py` : **21 scénarios réussis** après les changements PWA, catalogue, OTP configurable et notifications ; base isolée `kb_application_9eb9bfe9ae09`, conservée pour inspection.
 - Nouvelle exécution après ajout des adaptateurs paiement/KYC et des validations de production : **21 scénarios réussis**, base isolée `kb_application_7e3950a6d50f`, conservée pour inspection.
 - Recette après remplacement de la date libre par les créneaux serveur : **22 scénarios réussis**, dont la présence de créneaux sélectionnables et l'absence de champ `datetime-local` ; base isolée `kb_application_27df1cb5d86e`, conservée pour inspection.
+- Recette après extension aux quatre modes de capacité et correction de l'allocation par type de ressource : **23 scénarios réussis** ; base isolée `kb_application_6f08a1fc5dff`, conservée pour inspection. Les scripts additifs 030 à 061 ont ensuite été réappliqués avec succès à la base locale `keke_merise`.
 - `dotnet build src/KekeBeauty.Web --no-restore` : zéro erreur et zéro avertissement après l'ajout PWA et la refonte de l'accueil.
 - Vérification HTTP locale sur `http://localhost:5084` : accueil, manifeste, service worker et page hors connexion répondent en 200.
 - Vérification visuelle de l'accueil sur ordinateur et exercice du breakpoint 390 × 844. La base locale inspectée ne contient actuellement aucune catégorie ni établissement publié à afficher.
@@ -49,7 +50,7 @@ Ces tests ne constituent pas une recette exhaustive du cahier des charges, un au
 
 ## Travail restant pour atteindre l’objectif
 
-1. Finaliser le parcours rendez-vous : étendre les créneaux proposés aux modes employés/ressources/combiné, puis ajouter report, expiration automatique, statuts terminé/absent, envoi SMS et pagination.
+1. Finaliser le parcours rendez-vous : ajouter report, expiration automatique, statuts terminé/absent, envoi SMS et pagination.
 2. Espace partenaire : inscription, dépôt KYC privé, validation administrative, gestion multi-établissements, habilitations, services, prix, horaires, ressources et politiques depuis des écrans. Les tables existent ; ces écrans ne sont pas livrés.
 3. Recherche complète : catégories, hiérarchie géographique, distance, médias, itinéraires.
 4. Abonnements : souscription du payeur multi-salons, facturation configurée, échéances, vrais paiements Mobile Money et rapprochement, relances/renouvellement. Le contrôle des droits lit actuellement les données PostgreSQL ; il ne crée pas les contrats ni les paiements.
