@@ -47,7 +47,7 @@ public sealed class CatalogService(NpgsqlDataSource db)
         while (await reader.ReadAsync()) options.Add(new(reader.GetInt64(0),reader.GetString(1),reader.GetInt32(2),reader.GetDecimal(3),reader.GetString(4)));
         return options;
     }
-    public async Task<List<AvailableSlot>> AvailableSlots(long salon, long[] versions, int days = 14, int limit = 30)
+    public async Task<List<AvailableSlot>> AvailableSlots(long salon, long[] versions, int days = 14, int limit = 30, long? excludedBooking = null)
     {
         if (versions.Length is < 1 or > 10) return [];
         await using var command = db.CreateCommand("""
@@ -102,7 +102,7 @@ public sealed class CatalogService(NpgsqlDataSource db)
                   AND COALESCE((SELECT max(charge) FROM (
                     SELECT sum(a.quantite) AS charge FROM kb.allocation_rdv a JOIN kb.ligne_rdv l USING(rdv_id,numero)
                     JOIN kb.rendez_vous rd USING(rdv_id) JOIN kb.politique_rdv rp USING(politique_id)
-                    WHERE a.ressource_id=r.ressource_id AND l.debut<sw.service_utc_end AND l.fin>sw.service_utc_start
+                    WHERE a.ressource_id=r.ressource_id AND rd.rdv_id<>COALESCE($5,0) AND l.debut<sw.service_utc_end AND l.fin>sw.service_utc_start
                       AND (rd.etat='accepte' OR (rd.etat='en_attente_salon' AND rp.blocage_attente AND rd.expire_le>now()))
                     GROUP BY greatest(l.debut,sw.service_utc_start)
                   ) loads),0)+b.quantite<=r.capacite
@@ -116,6 +116,7 @@ public sealed class CatalogService(NpgsqlDataSource db)
         command.Parameters.AddWithValue(versions);
         command.Parameters.AddWithValue(days);
         command.Parameters.AddWithValue(limit);
+        command.Parameters.AddWithValue(NpgsqlTypes.NpgsqlDbType.Bigint,(object?)excludedBooking ?? DBNull.Value);
         List<AvailableSlot> slots = [];
         await using var reader = await command.ExecuteReaderAsync();
         while (await reader.ReadAsync()) slots.Add(new(reader.GetDateTime(0)));

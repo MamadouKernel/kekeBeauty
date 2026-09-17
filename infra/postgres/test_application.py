@@ -29,7 +29,7 @@ def sql(text):
     return docker('exec','-i',container,'psql','-X','-v','ON_ERROR_STOP=1','-At','-U','keke_owner','-d',db,text=text)
 
 docker('exec',container,'createdb','-U','keke_owner',db)
-for name in ['020_modele_v2.sql','030_acceptation_rdv.sql','040_identite.sql','050_actions_rdv.sql','060_creation_rdv.sql','061_annuaire.sql','070_expiration_rdv.sql']:
+for name in ['020_modele_v2.sql','030_acceptation_rdv.sql','040_identite.sql','050_actions_rdv.sql','060_creation_rdv.sql','061_annuaire.sql','070_expiration_rdv.sql','080_report_rdv.sql']:
     sql((ROOT/'merise/mpd'/name).read_text(encoding='utf-8'))
 sql((ROOT/'infra/postgres/fixture_acceptation.sql').read_text(encoding='utf-8'))
 sql("UPDATE kb.compte SET telephone_normalise=CASE compte_id WHEN 1 THEN '+2250700000001' ELSE '+2250700000002' END;")
@@ -69,8 +69,8 @@ class Browser:
         status,body,url=self.verify(challenge,code,token)
         assert status==200 and url.endswith('/mes-rendez-vous'),(status,url,body[:300])
         return challenge,code,token
-    def act(self,id,action,key=''):
-        return self.request('/rendez-vous/action',{'id':id,'action':action,'key':key,'__RequestVerificationToken':self.token('/mes-rendez-vous')})
+    def act(self,id,action,key='',start=''):
+        return self.request('/rendez-vous/action',{'id':id,'action':action,'key':key,'start':start,'__RequestVerificationToken':self.token('/mes-rendez-vous')})
 
 with log.open('w',encoding='utf-8') as stream:
     server=subprocess.Popen(['dotnet','bin/Debug/net10.0/KekeBeauty.Web.dll'],cwd=ROOT/'src/KekeBeauty.Web',env=env,stdout=stream,stderr=stream)
@@ -142,6 +142,19 @@ with log.open('w',encoding='utf-8') as stream:
         assert 'resultat=ok' in manager.act(new_id,'accepter')[2]
         assert 'erreur=creneau' in create('overbook')[2]
         passed.append('booking creation refuses an occupied resource')
+        report_start=start.replace('15:00','16:00')
+        assert f'reporter={new_id}' in client.request(f'/mes-rendez-vous?reporter={new_id}')[2]
+        assert 'Choisir un créneau' in client.request(f'/mes-rendez-vous?reporter={new_id}')[1]
+        assert 'resultat=ok' in client.act(new_id,'reporter','report-1',report_start)[2]
+        moved=sql(f"SELECT to_char(min(debut) AT TIME ZONE 'Africa/Abidjan','YYYY-MM-DD\"T\"HH24:MI') FROM kb.ligne_rdv WHERE rdv_id={new_id};").strip()
+        assert moved==report_start,(moved,report_start)
+        assert 'resultat=ok' in client.act(new_id,'reporter','report-1',report_start)[2]
+        assert sql(f"SELECT count(*) FROM kb.modification_client WHERE rdv_id={new_id} AND nature='report';").strip()=='1'
+        assert sql(f"SELECT count(*) FROM kb.evenement_rdv WHERE rdv_id={new_id} AND nature='report';").strip()=='1'
+        preserved=sql(f'SELECT min(debut)::text FROM kb.ligne_rdv WHERE rdv_id={new_id};').strip()
+        assert 'resultat=erreur' in client.act(new_id,'reporter','report-2',start.replace('15:00','17:00'))[2]
+        assert sql(f'SELECT min(debut)::text FROM kb.ligne_rdv WHERE rdv_id={new_id};').strip()==preserved
+        passed.append('client rescheduling is atomic, idempotent and quota-limited')
         sql('UPDATE kb.echeance SET montant_du=2000;')
         assert 'TEST acceptance' not in anonymous.request('/')[1]
         passed.append('unpaid salon hidden immediately when configured')

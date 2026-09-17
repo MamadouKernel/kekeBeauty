@@ -38,7 +38,8 @@ Le design travaille un sprint en avance sur les fonctionnalités suivantes, sans
 | P0 | Création concurrente fiable | Le créneau est revalidé en transaction avant confirmation | Terminé |
 | P0 | Expiration automatique | Une demande non traitée expire de façon idempotente et notifie le client | Terminé |
 | P0 | Décision partenaire | Le partenaire peut accepter ou refuser une demande autorisée | Terminé |
-| P0 | Reprogrammation | Un nouveau créneau valide peut être proposé puis accepté ou refusé | À faire |
+| P0 | Reprogrammation client | Le client choisit un nouveau créneau valide ; l'échec conserve l'ancien rendez-vous | Terminé |
+| P1 | Proposition de report partenaire | Le partenaire propose un créneau que le client accepte ou refuse | Bloqué par décision métier |
 | P1 | Clôture du rendez-vous | Le partenaire peut marquer réalisé ou absent avec traçabilité | À faire |
 | P1 | Notification SMS | La file configurable envoie via le fournisseur actif et conserve les échecs | À faire |
 | P1 | Design du tableau de bord partenaire | Liste, détail, actions, erreurs et états responsive validés | À faire |

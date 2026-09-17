@@ -3,6 +3,7 @@
 @using Microsoft.AspNetCore.Components.Authorization
 @using KekeBeauty.Web.Services
 @inject BookingService Bookings
+@inject CatalogService Catalog
 <PageTitle>Mes rendez-vous — Keke Beauty</PageTitle>
 <h1>Mes rendez-vous</h1>
 @if (account is null)
@@ -52,6 +53,29 @@ else
                     <button name="action" value="annuler" class="btn btn-outline-danger">Annuler ce rendez-vous</button>
                 </form>
             }
+            @if (booking.CanReschedule)
+            {
+                @if (Reporter != booking.Id)
+                {
+                    <a class="btn btn-outline-primary" href="/mes-rendez-vous?reporter=@booking.Id">Reprogrammer</a>
+                }
+                else
+                {
+                    <form method="post" action="/rendez-vous/action" data-enhance="false">
+                        <AntiforgeryToken /><input type="hidden" name="id" value="@booking.Id" />
+                        <input type="hidden" name="action" value="reporter" /><input type="hidden" name="key" value="@Guid.NewGuid()" />
+                        <label>Nouveau créneau
+                            <select name="start" required>
+                                <option value="">Choisir un créneau</option>
+                                @foreach (var slot in rescheduleSlots) { <option value="@slot.LocalStart.ToString("yyyy-MM-ddTHH:mm")">@slot.LocalStart.ToString("dd/MM/yyyy HH:mm")</option> }
+                            </select>
+                        </label>
+                        @if (rescheduleSlots.Count == 0) { <p>Aucun autre créneau disponible actuellement.</p> }
+                        else { <button class="btn btn-primary">Confirmer le nouveau créneau</button> }
+                        <a class="btn btn-secondary" href="/mes-rendez-vous">Annuler</a>
+                    </form>
+                }
+            }
         </article>
     }
     <form method="post" action="/auth/logout" data-enhance="false"><AntiforgeryToken /><button class="btn btn-secondary">Me déconnecter</button></form>
@@ -59,14 +83,20 @@ else
 @code {
     [CascadingParameter] private Task<AuthenticationState> Authentication { get; set; } = default!;
     [SupplyParameterFromQuery(Name = "resultat")] public string? Message { get; set; }
+    [SupplyParameterFromQuery(Name = "reporter")] public long? Reporter { get; set; }
     private long? account;
     private List<Booking> rows = [];
     private List<BookingNotification> notifications = [];
+    private List<AvailableSlot> rescheduleSlots = [];
     protected override async Task OnInitializedAsync()
     {
         var state = await Authentication;
         if (long.TryParse(state.User.FindFirstValue(ClaimTypes.NameIdentifier), out var id))
-        { account = id; rows = await Bookings.List(id); notifications = await Bookings.Notifications(id); }
+        {
+            account = id; rows = await Bookings.List(id); notifications = await Bookings.Notifications(id);
+            var selected = rows.FirstOrDefault(x => x.Id == Reporter && x.CanReschedule);
+            if (selected is not null) rescheduleSlots = await Catalog.AvailableSlots(selected.SalonId, selected.Versions, excludedBooking: selected.Id);
+        }
     }
     private static string Label(string state) => state switch { "en_attente_salon"=>"En attente du salon", "accepte"=>"Accepté", "refuse"=>"Refusé", "annule"=>"Annulé", "expire"=>"Expiré", "termine"=>"Terminé", "absent"=>"Absent", _=>state };
     private static string NotificationLabel(string kind) => kind switch { "acceptation"=>"Rendez-vous accepté", "refus"=>"Rendez-vous refusé", "annulation"=>"Rendez-vous annulé", "report"=>"Rendez-vous reprogrammé", _=>"Mise à jour du rendez-vous" };
