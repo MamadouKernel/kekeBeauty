@@ -20,6 +20,7 @@ Terminer le périmètre validé du cahier des charges. Une fonctionnalité est t
 - Expiration automatique configurable des demandes maintenues : traitement par lots avec verrouillage `SKIP LOCKED`, transition idempotente vers `expire`, événement unique et notifications in-app/SMS. Le service tourne toutes les 60 secondes par défaut.
 - Report client depuis les créneaux serveur : délai et quota issus de la politique du salon, réallocation transactionnelle des ressources, rejeu idempotent et notifications. Toute erreur annule l'opération complète et conserve l'ancien planning.
 - Tableau des rendez-vous paginé par vingt éléments avec compteurs partenaire et filtres de statut et de dates. Les rendez-vous passés acceptés peuvent être clôturés comme réalisés ou absents par un gestionnaire habilité.
+- Proposition de reprogrammation par le partenaire : choix limité aux créneaux calculés selon les horaires d'ouverture/fermeture et les ressources, conservation de l'ancien créneau jusqu'à la réponse, acceptation ou refus par le client, revalidation transactionnelle à l'acceptation et notifications aux deux parties.
 - File SMS configurable : prise concurrente avec `SKIP LOCKED`, envoi dédupliqué par notification, reprise des traitements interrompus, temporisation quadratique plafonnée et suivi des erreurs. Elle reste inactive tant que le fournisseur n'est pas configuré.
 
 - Application Blazor connectée à PostgreSQL Docker par Npgsql 10.0.3.
@@ -42,6 +43,7 @@ Terminer le périmètre validé du cahier des charges. Une fonctionnalité est t
 - Validation Scrum de KB-037 : compilation sans avertissement, **13 scénarios d'acceptation** dans `kb_acceptance_3c6969257022` et **24 scénarios applicatifs** dans `kb_application_79ebf1897de9`. Les contrôles couvrent notamment l'autorisation du gestionnaire, le refus idempotent, les transitions interdites, la concurrence sur la dernière place, les événements et les notifications en file.
 - Validation de KB-039 : **25 scénarios applicatifs réussis** dans `kb_application_4dcdd57f3d31`. Le report client est testé via HTTP avec nouveau créneau, idempotence, quota partagé et vérification que l'échec conserve le planning précédent. La migration additive `080_report_rdv.sql` est appliquée à `keke_merise`.
 - Fin de sprint technique : **27 scénarios applicatifs réussis** dans `kb_application_9bd958f4c34d`, incluant clôture idempotente, filtres/compteurs partenaire et état lu des notifications. La recette d'un fournisseur SMS réel reste bloquée par ses accès.
+- Clôture du périmètre rendez-vous non bloqué : **28 scénarios applicatifs réussis** dans `kb_application_f952baf5f6ea`, incluant proposition de report partenaire, décision client, revalidation transactionnelle, quotas et concurrence.
 - `dotnet build src/KekeBeauty.Web --no-restore` : zéro erreur et zéro avertissement après l'ajout PWA et la refonte de l'accueil.
 - Vérification HTTP locale sur `http://localhost:5084` : accueil, manifeste, service worker et page hors connexion répondent en 200.
 - Vérification visuelle de l'accueil sur ordinateur et exercice du breakpoint 390 × 844. La base locale inspectée ne contient actuellement aucune catégorie ni établissement publié à afficher.
@@ -58,7 +60,7 @@ Ces tests ne constituent pas une recette exhaustive du cahier des charges, un au
 
 ## Travail restant pour atteindre l’objectif
 
-1. Finaliser le parcours rendez-vous : ajouter proposition de report par le partenaire avec décision client, statuts terminé/absent, envoi SMS et pagination.
+1. Raccorder et recetter l'envoi SMS réel avec le fournisseur retenu. La file, les reprises, la déduplication et tous les parcours rendez-vous applicatifs sont implémentés.
 2. Espace partenaire : inscription, dépôt KYC privé, validation administrative, gestion multi-établissements, habilitations, services, prix, horaires, ressources et politiques depuis des écrans. Les tables existent ; ces écrans ne sont pas livrés.
 3. Recherche complète : catégories, hiérarchie géographique, distance, médias, itinéraires.
 4. Abonnements : souscription du payeur multi-salons, facturation configurée, échéances, vrais paiements Mobile Money et rapprochement, relances/renouvellement. Le contrôle des droits lit actuellement les données PostgreSQL ; il ne crée pas les contrats ni les paiements.

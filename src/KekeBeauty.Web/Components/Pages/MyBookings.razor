@@ -46,6 +46,18 @@ else
         <article class="auth-card">
             <h2>@booking.Salon</h2>
             <p>@booking.Start?.ToString("dd/MM/yyyy HH:mm") · @Label(booking.State)</p>
+            @if (booking.IsClient && booking.ProposedStart is not null)
+            {
+                <aside class="kb-proposal" aria-label="Proposition de reprogrammation">
+                    <strong>Nouveau créneau proposé</strong>
+                    <p>@LocalTime(booking.ProposedStart.Value, booking.TimeZone).ToString("dd/MM/yyyy HH:mm")</p>
+                    <form method="post" action="/rendez-vous/action" data-enhance="false">
+                        <AntiforgeryToken /><input type="hidden" name="id" value="@booking.Id" /><input type="hidden" name="key" value="@Guid.NewGuid()" />
+                        <button name="action" value="accepter_report" class="btn btn-primary">Accepter ce créneau</button>
+                        <button name="action" value="refuser_report" class="btn btn-outline-danger">Refuser</button>
+                    </form>
+                </aside>
+            }
             @if (booking.CanDecide && booking.State == "en_attente_salon")
             {
                 <form method="post" action="/rendez-vous/action" data-enhance="false">
@@ -94,6 +106,28 @@ else
                     </form>
                 }
             }
+            @if (booking.CanPropose)
+            {
+                @if (Proposer != booking.Id)
+                {
+                    <a class="btn btn-outline-primary" href="/mes-rendez-vous?proposer=@booking.Id">Proposer un autre créneau</a>
+                }
+                else
+                {
+                    <form method="post" action="/rendez-vous/action" data-enhance="false">
+                        <AntiforgeryToken /><input type="hidden" name="id" value="@booking.Id" />
+                        <input type="hidden" name="action" value="proposer_report" /><input type="hidden" name="key" value="@Guid.NewGuid()" />
+                        <label>Nouveau créneau à proposer
+                            <select name="start" required><option value="">Choisir un créneau</option>
+                                @foreach (var slot in proposalSlots) { <option value="@slot.LocalStart.ToString("yyyy-MM-ddTHH:mm")">@slot.LocalStart.ToString("dd/MM/yyyy HH:mm")</option> }
+                            </select>
+                        </label>
+                        @if (proposalSlots.Count == 0) { <p>Aucun autre créneau disponible actuellement.</p> }
+                        else { <button class="btn btn-primary">Envoyer la proposition</button> }
+                        <a class="btn btn-secondary" href="/mes-rendez-vous">Annuler</a>
+                    </form>
+                }
+            }
         </article>
     }
     <nav class="kb-pagination" aria-label="Pagination des rendez-vous">
@@ -107,6 +141,7 @@ else
     [CascadingParameter] private Task<AuthenticationState> Authentication { get; set; } = default!;
     [SupplyParameterFromQuery(Name = "resultat")] public string? Message { get; set; }
     [SupplyParameterFromQuery(Name = "reporter")] public long? Reporter { get; set; }
+    [SupplyParameterFromQuery(Name = "proposer")] public long? Proposer { get; set; }
     [SupplyParameterFromQuery(Name = "statut")] public string StatusFilter { get; set; } = "";
     [SupplyParameterFromQuery(Name = "page")] public int Page { get; set; } = 1;
     [SupplyParameterFromQuery(Name = "du")] public DateOnly? From { get; set; }
@@ -115,6 +150,7 @@ else
     private List<Booking> rows = [];
     private List<BookingNotification> notifications = [];
     private List<AvailableSlot> rescheduleSlots = [];
+    private List<AvailableSlot> proposalSlots = [];
     private bool hasNext;
     private List<BookingCount> counts = [];
     private static readonly string[] States = ["en_attente_salon","accepte","refuse","annule","expire","termine","absent"];
@@ -129,9 +165,12 @@ else
             notifications = await Bookings.Notifications(id); await Bookings.MarkNotificationsRead(id);
             var selected = rows.FirstOrDefault(x => x.Id == Reporter && x.CanReschedule);
             if (selected is not null) rescheduleSlots = await Catalog.AvailableSlots(selected.SalonId, selected.Versions, excludedBooking: selected.Id);
+            var proposed = rows.FirstOrDefault(x => x.Id == Proposer && x.CanPropose);
+            if (proposed is not null) proposalSlots = await Catalog.AvailableSlots(proposed.SalonId, proposed.Versions, excludedBooking: proposed.Id);
         }
     }
     private static string Label(string state) => state switch { "en_attente_salon"=>"En attente du salon", "accepte"=>"Accepté", "refuse"=>"Refusé", "annule"=>"Annulé", "expire"=>"Expiré", "termine"=>"Terminé", "absent"=>"Absent", _=>state };
-    private static string NotificationLabel(string kind) => kind switch { "acceptation"=>"Rendez-vous accepté", "refus"=>"Rendez-vous refusé", "annulation"=>"Rendez-vous annulé", "report"=>"Rendez-vous reprogrammé", _=>"Mise à jour du rendez-vous" };
+    private static string NotificationLabel(string kind) => kind switch { "acceptation"=>"Rendez-vous accepté", "refus"=>"Rendez-vous refusé", "annulation"=>"Rendez-vous annulé", "report"=>"Rendez-vous reprogrammé", "proposition_report"=>"Nouveau créneau proposé", "refus_report"=>"Proposition refusée", _=>"Mise à jour du rendez-vous" };
+    private static DateTime LocalTime(DateTime value, string zone) => TimeZoneInfo.ConvertTimeFromUtc(DateTime.SpecifyKind(value, DateTimeKind.Utc), TimeZoneInfo.FindSystemTimeZoneById(zone));
     private string PageUrl(int page) => $"/mes-rendez-vous?page={page}&statut={Uri.EscapeDataString(StatusFilter)}&du={From:yyyy-MM-dd}&au={To:yyyy-MM-dd}";
 }

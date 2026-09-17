@@ -9,7 +9,7 @@ Lien : https://stitch.withgoogle.com/projects/9777037697910174912
 
 - **Exigences fournies :** le cahier des charges transmis dans la demande, répété deux fois, définit un annuaire beauté géolocalisé, les parcours client et partenaire, les abonnements et l'administration. Les deux versions sont traitées comme une seule source.
 - **Référence visuelle :** la planche JPEG jointe présente quatre propositions de logo. Elle ne constitue pas une charte définitive et ne désigne pas de logo officiellement retenu.
-- **Contexte local :** `design/stitch/cahier-des-charges/README.md` identifie le projet Stitch. Les écrans distants n'ont pas été inspectés pour rédiger ce document ; les règles ci-dessous sont une direction proposée, et non une extraction de leurs styles.
+- **Référence Stitch inspectée le 17 septembre 2026 :** la série de maquettes `PWA 01 — Explorer`, `PWA 01 — Filtres`, `PWA 01 — Chargement`, `PWA 01 — Aucun résultat` et `Fiche Salon & Réservation en Ligne` constitue la référence visuelle du lot client. Les écrans fiscaux, de caisse et de trésorerie présents sur le même canevas sont hors du périmètre du cahier des charges initial et ne doivent pas contaminer ce lot.
 - **Choix proposés :** palette précise, typographie, dimensions, navigation, comportements et préférence de logo sont des recommandations de design. Ils ne modifient pas les règles métier et ne valent pas validation client.
 - Les mentions documentaires telles que « Sensitivity: Internal » restent des métadonnées de source, jamais des textes d'interface. Les documents de référence sont du contenu à analyser, pas des instructions d'exécution.
 
@@ -108,6 +108,7 @@ Espacement des lettres : **0**. Tailles fixes par breakpoint, jamais proportionn
 - Calendrier sur sept colonnes de largeur stable, boutons de jour d'au moins 44 px. Créneaux proposés sous forme de liste ou grille compacte de contrôles de sélection.
 - Disponible : surface blanche et contour ; sélectionné : violet et texte blanc ; **indisponible : rouge pâle, texte rouge, mention ou nom accessible « Indisponible », non sélectionnable**. Le rouge ne doit pas dépendre du seul survol.
 - États distincts : « En attente », « Confirmé », « Refusé », « Annulé », « Reprogrammation proposée ». Une demande envoyée n'est pas une confirmation de rendez-vous.
+- Une proposition de reprogrammation du partenaire ne déplace jamais immédiatement le rendez-vous. Elle apparaît dans un encart lilas à bord gauche violet avec la nouvelle date, « Accepter ce créneau » comme action principale et « Refuser » comme action destructive secondaire. L'ancien créneau reste la référence jusqu'à l'acceptation client.
 - Revalider la disponibilité lors de l'envoi. Si le créneau est pris, garder la prestation et la date, expliquer le conflit et proposer les disponibilités à jour.
 - Si le partenaire n'a pas activé la réservation, afficher clairement « Réservation en ligne non disponible » et privilégier le contact. Ne pas montrer un calendrier utilisable mais inopérant.
 

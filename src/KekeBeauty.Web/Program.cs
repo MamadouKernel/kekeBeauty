@@ -130,14 +130,18 @@ app.MapPost("/rendez-vous/action", async (HttpContext context, Microsoft.AspNetC
     var form = await context.Request.ReadFormAsync();
     if (!long.TryParse(context.User.FindFirstValue(ClaimTypes.NameIdentifier), out var account)) return Results.Unauthorized();
     if (!long.TryParse(form["id"], out var id)) return Results.BadRequest();
+    var action = form["action"].ToString();
     try
     {
-        if (form["action"] == "reporter")
+        if (action is "reporter" or "proposer_report")
         {
             if (!DateTime.TryParseExact(form["start"], "yyyy-MM-ddTHH:mm", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out var local)) return Results.BadRequest();
-            await bookings.Reschedule(id, account, local, form["key"].ToString());
+            if (action == "reporter") await bookings.Reschedule(id, account, local, form["key"].ToString());
+            else await bookings.ProposeReschedule(id, account, local, form["key"].ToString());
         }
-        else await bookings.Act(id, account, form["action"].ToString(), form["key"].ToString(), form["motif"].ToString());
+        else if (action is "accepter_report" or "refuser_report")
+            await bookings.RespondToReschedule(id, account, action == "accepter_report", form["key"].ToString());
+        else await bookings.Act(id, account, action, form["key"].ToString(), form["motif"].ToString());
     }
     catch (PostgresException ex) when (ex.SqlState is "42501" or "23514" or "23P01" or "23505" or "P0002") { return Results.Redirect("/mes-rendez-vous?resultat=erreur"); }
     catch (ArgumentException) { return Results.BadRequest(); }

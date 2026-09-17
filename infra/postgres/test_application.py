@@ -29,7 +29,7 @@ def sql(text):
     return docker('exec','-i',container,'psql','-X','-v','ON_ERROR_STOP=1','-At','-U','keke_owner','-d',db,text=text)
 
 docker('exec',container,'createdb','-U','keke_owner',db)
-for name in ['020_modele_v2.sql','030_acceptation_rdv.sql','040_identite.sql','050_actions_rdv.sql','060_creation_rdv.sql','061_annuaire.sql','070_expiration_rdv.sql','080_report_rdv.sql','090_cloture_notifications.sql']:
+for name in ['020_modele_v2.sql','030_acceptation_rdv.sql','040_identite.sql','050_actions_rdv.sql','060_creation_rdv.sql','061_annuaire.sql','070_expiration_rdv.sql','080_report_rdv.sql','090_cloture_notifications.sql','100_proposition_report.sql']:
     sql((ROOT/'merise/mpd'/name).read_text(encoding='utf-8'))
 sql((ROOT/'infra/postgres/fixture_acceptation.sql').read_text(encoding='utf-8'))
 sql("UPDATE kb.compte SET telephone_normalise=CASE compte_id WHEN 1 THEN '+2250700000001' ELSE '+2250700000002' END;")
@@ -133,7 +133,7 @@ with log.open('w',encoding='utf-8') as stream:
         INSERT INTO kb.membre_groupe VALUES(1,2),(1,3);
         INSERT INTO kb.plage_ressource(ressource_id,jour_semaine,debut,fin) SELECT r,n,'00:00','23:59' FROM unnest(ARRAY[2,3]) r CROSS JOIN generate_series(1,7)n;""")
         for version,mode in [(2,'employes'),(3,'ressources'),(4,'combinee'),(5,'globale')]:
-            sql(f"INSERT INTO kb.politique_rdv(etablissement_id,version,date_effet,mode_capacite,blocage_attente,portee_modification) VALUES(1,{version},clock_timestamp()-interval '1 millisecond','{mode}',false,'rendez_vous');")
+            sql(f"INSERT INTO kb.politique_rdv(etablissement_id,version,date_effet,mode_capacite,blocage_attente,portee_modification,limite_modifications) VALUES(1,{version},clock_timestamp()-interval '1 millisecond','{mode}',false,'rendez_vous',2);")
             mode_page=client.request('/salons/1?prestation=1')
             assert mode_page[0]==200 and 'Créneaux disponibles' in mode_page[1],(mode,mode_page[1][:500])
         passed.append('slot proposal covers global, employee, physical resource and combined capacity modes')
@@ -153,6 +153,15 @@ with log.open('w',encoding='utf-8') as stream:
         assert 'resultat=ok' in manager.act(new_id,'accepter')[2]
         assert 'erreur=creneau' in create('overbook')[2]
         passed.append('booking creation refuses an occupied resource')
+        proposal_start=start.replace('15:00','14:00')
+        assert 'resultat=ok' in manager.act(new_id,'proposer_report','proposal-1',proposal_start)[2]
+        client_page=client.request('/mes-rendez-vous')[1]
+        assert 'Nouveau créneau proposé' in client_page and 'Accepter ce créneau' in client_page
+        assert 'resultat=ok' in client.act(new_id,'accepter_report','proposal-answer-1')[2]
+        moved=sql(f"SELECT to_char(min(debut) AT TIME ZONE 'Africa/Abidjan','YYYY-MM-DD\"T\"HH24:MI') FROM kb.ligne_rdv WHERE rdv_id={new_id};").strip()
+        assert moved==proposal_start,(moved,proposal_start)
+        assert sql(f"SELECT etat FROM kb.proposition_report WHERE rdv_id={new_id} ORDER BY proposition_id DESC LIMIT 1;").strip()=='acceptee'
+        passed.append('partner rescheduling proposal waits for client and revalidates on acceptance')
         report_start=start.replace('15:00','16:00')
         assert f'reporter={new_id}' in client.request(f'/mes-rendez-vous?reporter={new_id}')[2]
         assert 'Choisir un créneau' in client.request(f'/mes-rendez-vous?reporter={new_id}')[1]
@@ -160,8 +169,8 @@ with log.open('w',encoding='utf-8') as stream:
         moved=sql(f"SELECT to_char(min(debut) AT TIME ZONE 'Africa/Abidjan','YYYY-MM-DD\"T\"HH24:MI') FROM kb.ligne_rdv WHERE rdv_id={new_id};").strip()
         assert moved==report_start,(moved,report_start)
         assert 'resultat=ok' in client.act(new_id,'reporter','report-1',report_start)[2]
-        assert sql(f"SELECT count(*) FROM kb.modification_client WHERE rdv_id={new_id} AND nature='report';").strip()=='1'
-        assert sql(f"SELECT count(*) FROM kb.evenement_rdv WHERE rdv_id={new_id} AND nature='report';").strip()=='1'
+        assert sql(f"SELECT count(*) FROM kb.modification_client WHERE rdv_id={new_id} AND nature='report';").strip()=='2'
+        assert sql(f"SELECT count(*) FROM kb.evenement_rdv WHERE rdv_id={new_id} AND nature='report';").strip()=='2'
         preserved=sql(f'SELECT min(debut)::text FROM kb.ligne_rdv WHERE rdv_id={new_id};').strip()
         assert 'resultat=erreur' in client.act(new_id,'reporter','report-2',start.replace('15:00','17:00'))[2]
         assert sql(f'SELECT min(debut)::text FROM kb.ligne_rdv WHERE rdv_id={new_id};').strip()==preserved

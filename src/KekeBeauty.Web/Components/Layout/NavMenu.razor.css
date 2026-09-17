@@ -1,7 +1,7 @@
-.brand { color: #3f2158; display: inline-flex; align-items: center; gap: .65rem; font-size: 1.15rem; font-weight: 800; text-decoration: none; }
+.brand { color: #3f2158; display: inline-flex; align-items: center; gap: .65rem; font-size: 1.15rem; font-weight: 800; min-height: 44px; text-decoration: none; }
 .brand span { align-items: center; background: #74388a; border-radius: 8px; color: #fff; display: inline-flex; height: 2.25rem; justify-content: center; width: 2.25rem; }
 nav { display: flex; gap: .35rem; }
-nav ::deep a { color: #625d66; border-radius: 8px; font-weight: 650; padding: .65rem .85rem; text-decoration: none; }
+nav ::deep a { align-items: center; color: #625d66; border-radius: 8px; display: inline-flex; font-weight: 650; justify-content: center; min-height: 44px; padding: .65rem .85rem; text-decoration: none; }
 nav ::deep a:hover, nav ::deep a:focus-visible { background: #f4edf7; color: #3f2158; }
 nav ::deep a.active { background: #74388a; color: white; }
 @media (max-width: 640px) {

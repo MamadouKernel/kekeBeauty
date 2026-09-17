@@ -2,7 +2,7 @@ using Npgsql;
 
 namespace KekeBeauty.Web.Services;
 
-public record Booking(long Id, long SalonId, string Salon, string TimeZone, string State, DateTime? Start, bool IsClient, bool CanDecide, bool CanReschedule, long[] Versions);
+public record Booking(long Id, long SalonId, string Salon, string TimeZone, string State, DateTime? Start, bool IsClient, bool CanDecide, bool CanReschedule, bool CanPropose, DateTime? ProposedStart, long[] Versions);
 public record BookingNotification(long Id, long BookingId, string Kind, DateTime OccurredAt, string? Reason);
 public record BookingCount(string State, long Count);
 
@@ -16,6 +16,10 @@ public sealed class BookingService(NpgsqlDataSource db)
                     WHERE g.compte_id=$1 AND pg.etablissement_id=e.etablissement_id AND pg.permission_code='rdv_decider'),
                 r.client_id=$1 AND p.report_client AND r.etat IN ('en_attente_salon','accepte')
                     AND (SELECT min(debut) FROM kb.ligne_rdv l WHERE l.rdv_id=r.rdv_id)>now()+make_interval(mins=>p.delai_report_minutes),
+                EXISTS(SELECT 1 FROM kb.gerant g JOIN kb.permission_gestion pg USING(gerant_id)
+                    WHERE g.compte_id=$1 AND pg.etablissement_id=e.etablissement_id AND pg.permission_code='rdv_decider')
+                    AND r.etat IN ('en_attente_salon','accepte') AND (SELECT min(debut) FROM kb.ligne_rdv l WHERE l.rdv_id=r.rdv_id)>now(),
+                (SELECT debut_propose FROM kb.proposition_report x WHERE x.rdv_id=r.rdv_id AND x.etat='en_attente'),
                 ARRAY(SELECT l.version_variante_id FROM kb.ligne_rdv l WHERE l.rdv_id=r.rdv_id ORDER BY l.numero)
             FROM kb.rendez_vous r JOIN kb.politique_rdv p USING(politique_id) JOIN kb.etablissement e USING(etablissement_id)
             WHERE EXISTS(SELECT 1 FROM kb.compte WHERE compte_id=$1 AND etat='actif') AND ($2='' OR r.etat=$2)
@@ -32,7 +36,7 @@ public sealed class BookingService(NpgsqlDataSource db)
         command.Parameters.AddWithValue(pageSize+1); command.Parameters.AddWithValue((Math.Max(1,page)-1)*pageSize);
         var rows = new List<Booking>();
         await using var reader = await command.ExecuteReaderAsync();
-        while (await reader.ReadAsync()) rows.Add(new(reader.GetInt64(0),reader.GetInt64(1),reader.GetString(2),reader.GetString(3),reader.GetString(4),reader.IsDBNull(5)?null:reader.GetDateTime(5),reader.GetBoolean(6),reader.GetBoolean(7),reader.GetBoolean(8),reader.GetFieldValue<long[]>(9)));
+        while (await reader.ReadAsync()) rows.Add(new(reader.GetInt64(0),reader.GetInt64(1),reader.GetString(2),reader.GetString(3),reader.GetString(4),reader.IsDBNull(5)?null:reader.GetDateTime(5),reader.GetBoolean(6),reader.GetBoolean(7),reader.GetBoolean(8),reader.GetBoolean(9),reader.IsDBNull(10)?null:reader.GetDateTime(10),reader.GetFieldValue<long[]>(11)));
         return rows;
     }
 
@@ -104,5 +108,32 @@ public sealed class BookingService(NpgsqlDataSource db)
         command.Parameters.AddWithValue(TimeZoneInfo.ConvertTimeToUtc(DateTime.SpecifyKind(localStart, DateTimeKind.Unspecified), zone));
         command.Parameters.AddWithValue(key);
         await command.ExecuteScalarAsync();
+    }
+
+    public async Task ProposeReschedule(long booking, long account, DateTime localStart, string key)
+    {
+        var utcStart = await ToUtc(booking, localStart);
+        await using var command = db.CreateCommand("SELECT kb.proposer_report_rdv($1,$2,$3,$4)");
+        command.Parameters.AddWithValue(booking); command.Parameters.AddWithValue(account);
+        command.Parameters.AddWithValue(utcStart); command.Parameters.AddWithValue(key);
+        await command.ExecuteScalarAsync();
+    }
+
+    public async Task RespondToReschedule(long booking, long account, bool accept, string key)
+    {
+        await using var command = db.CreateCommand("SELECT kb.repondre_proposition_report($1,$2,$3,$4)");
+        command.Parameters.AddWithValue(booking); command.Parameters.AddWithValue(account);
+        command.Parameters.AddWithValue(accept); command.Parameters.AddWithValue(key);
+        await command.ExecuteScalarAsync();
+    }
+
+    private async Task<DateTime> ToUtc(long booking, DateTime localStart)
+    {
+        await using var context = db.CreateCommand("SELECT e.fuseau FROM kb.rendez_vous r JOIN kb.politique_rdv p USING(politique_id) JOIN kb.etablissement e USING(etablissement_id) WHERE r.rdv_id=$1");
+        context.Parameters.AddWithValue(booking);
+        var timeZoneName = (string?)await context.ExecuteScalarAsync() ?? throw new ArgumentException("Rendez-vous inconnu");
+        var zone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneName);
+        if (zone.IsInvalidTime(localStart) || zone.IsAmbiguousTime(localStart)) throw new ArgumentException("Horaire ambigu");
+        return TimeZoneInfo.ConvertTimeToUtc(DateTime.SpecifyKind(localStart, DateTimeKind.Unspecified), zone);
     }
 }
