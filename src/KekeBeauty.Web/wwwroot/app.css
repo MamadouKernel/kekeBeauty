@@ -89,3 +89,11 @@ h1:focus {
 .kb-hero form select { grid-column: 2; grid-row: 2; }
 .kb-hero form button, .kb-hero form a { align-items: center; border-radius: 8px; display: inline-flex; justify-content: center; min-height: 44px; }
 @media (max-width: 720px) { .kb-hero form { display: flex; flex-direction: column; align-items: stretch; } .kb-hero h1 { font-size: 2rem; } }
+.kb-toolbar { align-items: end; display: flex; flex-wrap: wrap; gap: .75rem; margin: 1rem 0; }
+.kb-toolbar label { display: grid; font-weight: 700; gap: .3rem; }
+.kb-toolbar select { border: 1px solid #8b848f; border-radius: 8px; min-height: 44px; padding: .55rem .75rem; }
+.kb-pagination { align-items: center; display: flex; gap: 1rem; margin: 1.5rem 0; }
+.kb-counts { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1rem 0; }
+.kb-counts div { background: #fff; border: 1px solid #ded5e5; border-radius: 8px; min-width: 8rem; padding: .75rem; }
+.kb-counts dt { color: #555; font-size: .85rem; }
+.kb-counts dd { color: var(--kb-violet-dark); font-size: 1.4rem; font-weight: 700; margin: 0; }

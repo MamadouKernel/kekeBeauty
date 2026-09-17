@@ -33,6 +33,10 @@ builder.Services.AddOptions<BookingExpirationOptions>().Bind(builder.Configurati
     !x.Enabled || (x.IntervalSeconds is >= 10 and <= 3600 && x.BatchSize is >= 1 and <= 1000),
     "Expiration RDV : intervalle de 10 à 3600 secondes et lot de 1 à 1000.").ValidateOnStart();
 builder.Services.AddHostedService<BookingExpirationWorker>();
+builder.Services.AddOptions<SmsNotificationOptions>().Bind(builder.Configuration.GetSection(SmsNotificationOptions.Section)).Validate(x =>
+    !x.Enabled || (x.IntervalSeconds is >= 10 and <= 3600 && x.BatchSize is >= 1 and <= 500 && x.MaximumAttempts is >= 1 and <= 20),
+    "File SMS : intervalle, lot ou nombre d'essais invalide.").ValidateOnStart();
+builder.Services.AddHostedService<SmsNotificationWorker>();
 if (!builder.Environment.IsDevelopment())
 {
     builder.Services.AddOptions<OperationsOptions>().Bind(builder.Configuration.GetSection(OperationsOptions.Section)).Validate(x =>

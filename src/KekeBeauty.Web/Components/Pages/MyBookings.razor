@@ -12,6 +12,16 @@
 }
 else
 {
+    <form method="get" class="kb-toolbar">
+        <label>Statut<select name="statut"><option value="">Tous</option>@foreach (var value in States) { <option value="@value" selected="@(value==StatusFilter)">@Label(value)</option> }</select></label>
+        <label>Du<input type="date" name="du" value="@From?.ToString("yyyy-MM-dd")" /></label>
+        <label>Au<input type="date" name="au" value="@To?.ToString("yyyy-MM-dd")" /></label>
+        <button class="btn btn-secondary">Filtrer</button>
+    </form>
+    @if (counts.Count > 0)
+    {
+        <dl class="kb-counts">@foreach (var count in counts) { <div><dt>@Label(count.State)</dt><dd>@count.Count</dd></div> }</dl>
+    }
     @if (Message is not null) { <p role="status">@(Message == "ok" ? "Le rendez-vous a été mis à jour." : "Action impossible : vérifiez vos droits, le délai, l’abonnement et la disponibilité du créneau.")</p> }
     <section aria-labelledby="notifications-title">
         <h2 id="notifications-title">Notifications</h2>
@@ -43,6 +53,14 @@ else
                     <label>Motif du refus (facultatif)<textarea name="motif" maxlength="1000"></textarea></label>
                     <button name="action" value="accepter" class="btn btn-primary">Accepter</button>
                     <button name="action" value="refuser" class="btn btn-outline-danger">Refuser</button>
+                </form>
+            }
+            @if (booking.CanDecide && booking.State == "accepte" && booking.Start <= DateTime.UtcNow)
+            {
+                <form method="post" action="/rendez-vous/action" data-enhance="false">
+                    <AntiforgeryToken /><input type="hidden" name="id" value="@booking.Id" />
+                    <button name="action" value="termine" class="btn btn-primary">Marquer réalisé</button>
+                    <button name="action" value="absent" class="btn btn-outline-danger">Marquer absent</button>
                 </form>
             }
             @if (booking.IsClient && booking.State is "en_attente_salon" or "accepte")
@@ -78,26 +96,42 @@ else
             }
         </article>
     }
+    <nav class="kb-pagination" aria-label="Pagination des rendez-vous">
+        @if (Page > 1) { <a class="btn btn-secondary" href="@PageUrl(Page-1)">Précédent</a> }
+        <span>Page @Page</span>
+        @if (hasNext) { <a class="btn btn-secondary" href="@PageUrl(Page+1)">Suivant</a> }
+    </nav>
     <form method="post" action="/auth/logout" data-enhance="false"><AntiforgeryToken /><button class="btn btn-secondary">Me déconnecter</button></form>
 }
 @code {
     [CascadingParameter] private Task<AuthenticationState> Authentication { get; set; } = default!;
     [SupplyParameterFromQuery(Name = "resultat")] public string? Message { get; set; }
     [SupplyParameterFromQuery(Name = "reporter")] public long? Reporter { get; set; }
+    [SupplyParameterFromQuery(Name = "statut")] public string StatusFilter { get; set; } = "";
+    [SupplyParameterFromQuery(Name = "page")] public int Page { get; set; } = 1;
+    [SupplyParameterFromQuery(Name = "du")] public DateOnly? From { get; set; }
+    [SupplyParameterFromQuery(Name = "au")] public DateOnly? To { get; set; }
     private long? account;
     private List<Booking> rows = [];
     private List<BookingNotification> notifications = [];
     private List<AvailableSlot> rescheduleSlots = [];
+    private bool hasNext;
+    private List<BookingCount> counts = [];
+    private static readonly string[] States = ["en_attente_salon","accepte","refuse","annule","expire","termine","absent"];
     protected override async Task OnInitializedAsync()
     {
         var state = await Authentication;
         if (long.TryParse(state.User.FindFirstValue(ClaimTypes.NameIdentifier), out var id))
         {
-            account = id; rows = await Bookings.List(id); notifications = await Bookings.Notifications(id);
+            account = id; Page = Math.Max(1, Page); if (!States.Contains(StatusFilter)) StatusFilter = "";
+            rows = await Bookings.List(id, StatusFilter, From, To, Page); hasNext = rows.Count > 20; if (hasNext) rows.RemoveAt(20);
+            counts = await Bookings.Counts(id);
+            notifications = await Bookings.Notifications(id); await Bookings.MarkNotificationsRead(id);
             var selected = rows.FirstOrDefault(x => x.Id == Reporter && x.CanReschedule);
             if (selected is not null) rescheduleSlots = await Catalog.AvailableSlots(selected.SalonId, selected.Versions, excludedBooking: selected.Id);
         }
     }
     private static string Label(string state) => state switch { "en_attente_salon"=>"En attente du salon", "accepte"=>"Accepté", "refuse"=>"Refusé", "annule"=>"Annulé", "expire"=>"Expiré", "termine"=>"Terminé", "absent"=>"Absent", _=>state };
     private static string NotificationLabel(string kind) => kind switch { "acceptation"=>"Rendez-vous accepté", "refus"=>"Rendez-vous refusé", "annulation"=>"Rendez-vous annulé", "report"=>"Rendez-vous reprogrammé", _=>"Mise à jour du rendez-vous" };
+    private string PageUrl(int page) => $"/mes-rendez-vous?page={page}&statut={Uri.EscapeDataString(StatusFilter)}&du={From:yyyy-MM-dd}&au={To:yyyy-MM-dd}";
 }

@@ -29,7 +29,7 @@ def sql(text):
     return docker('exec','-i',container,'psql','-X','-v','ON_ERROR_STOP=1','-At','-U','keke_owner','-d',db,text=text)
 
 docker('exec',container,'createdb','-U','keke_owner',db)
-for name in ['020_modele_v2.sql','030_acceptation_rdv.sql','040_identite.sql','050_actions_rdv.sql','060_creation_rdv.sql','061_annuaire.sql','070_expiration_rdv.sql','080_report_rdv.sql']:
+for name in ['020_modele_v2.sql','030_acceptation_rdv.sql','040_identite.sql','050_actions_rdv.sql','060_creation_rdv.sql','061_annuaire.sql','070_expiration_rdv.sql','080_report_rdv.sql','090_cloture_notifications.sql']:
     sql((ROOT/'merise/mpd'/name).read_text(encoding='utf-8'))
 sql((ROOT/'infra/postgres/fixture_acceptation.sql').read_text(encoding='utf-8'))
 sql("UPDATE kb.compte SET telephone_normalise=CASE compte_id WHEN 1 THEN '+2250700000001' ELSE '+2250700000002' END;")
@@ -99,19 +99,30 @@ with log.open('w',encoding='utf-8') as stream:
         assert 'resultat=ok' in manager.act(1,'accepter')[2]
         assert sql('SELECT etat FROM kb.rendez_vous WHERE rdv_id=1;').strip()=='accepte'
         passed.append('authorized manager acceptance through HTTP')
+        sql("UPDATE kb.ligne_rdv SET debut=now()-interval '1 hour',fin=now()-interval '30 minutes' WHERE rdv_id=1;")
+        assert 'resultat=ok' in manager.act(1,'termine')[2]
+        assert 'resultat=ok' in manager.act(1,'termine')[2]
+        assert sql('SELECT etat FROM kb.rendez_vous WHERE rdv_id=1;').strip()=='termine'
+        assert sql("SELECT count(*) FROM kb.evenement_rdv WHERE rdv_id=1 AND nature='termine';").strip()=='1'
+        passed.append('authorized manager closes a past appointment idempotently')
         assert 'resultat=ok' in manager.act(2,'refuser')[2]
         assert 'resultat=ok' in manager.act(2,'refuser')[2]
         assert sql('SELECT count(*) FROM kb.evenement_rdv WHERE rdv_id=2;').strip()=='1'
         passed.append('manager refusal is idempotent')
         assert 'resultat=erreur' in manager.act(1,'annuler','bad-owner')[2]
         passed.append('manager cannot impersonate appointment client')
-        assert 'resultat=ok' in client.act(1,'annuler','cancel-1')[2]
-        assert 'resultat=ok' in client.act(1,'annuler','cancel-1')[2]
-        assert sql('SELECT count(*) FROM kb.modification_client WHERE rdv_id=1;').strip()=='1'
+        assert 'resultat=ok' in client.act(3,'annuler','cancel-1')[2]
+        assert 'resultat=ok' in client.act(3,'annuler','cancel-1')[2]
+        assert sql('SELECT count(*) FROM kb.modification_client WHERE rdv_id=3;').strip()=='1'
         passed.append('client cancellation and idempotent replay')
-        sql("UPDATE kb.ligne_rdv SET debut=now()+interval '30 minutes',fin=now()+interval '60 minutes' WHERE rdv_id=3;")
-        assert 'resultat=erreur' in client.act(3,'annuler','too-late')[2]
+        sql("INSERT INTO kb.rendez_vous(client_id,politique_id) VALUES(1,1); INSERT INTO kb.ligne_rdv VALUES(currval('kb.rendez_vous_rdv_id_seq'),1,1,now()+interval '30 minutes',now()+interval '60 minutes'); INSERT INTO kb.allocation_rdv VALUES(currval('kb.rendez_vous_rdv_id_seq'),1,1,1);")
+        late_id=sql("SELECT max(rdv_id) FROM kb.rendez_vous;").strip()
+        assert 'resultat=erreur' in client.act(late_id,'annuler','too-late')[2]
         passed.append('cancellation inside configured deadline rejected')
+        dashboard=manager.request('/mes-rendez-vous?statut=refuse')
+        assert dashboard[0]==200 and 'name="statut"' in dashboard[1] and 'name="du"' in dashboard[1] and 'name="au"' in dashboard[1] and 'kb-counts' in dashboard[1]
+        assert sql("SELECT count(*) FROM kb.notification WHERE lu_le IS NOT NULL AND canal='in_app';").strip()!='0'
+        passed.append('partner dashboard filters, counts and notification read state')
         assert 'TEST acceptance' in anonymous.request('/')[1]
         assert 'TEST acceptance' not in anonymous.request('/?q=inexistant')[1]
         passed.append('public catalogue reads published subscribed salons and filters')

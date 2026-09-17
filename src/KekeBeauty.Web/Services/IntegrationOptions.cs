@@ -77,6 +77,7 @@ public interface ISmsSender
 {
     bool IsConfigured { get; }
     Task SendOtp(string phone, string code, CancellationToken cancellationToken);
+    Task SendMessage(string phone, string message, CancellationToken cancellationToken);
 }
 
 public sealed class ConfiguredSmsSender(HttpClient client, IOptions<SmsOptions> options) : ISmsSender
@@ -85,6 +86,9 @@ public sealed class ConfiguredSmsSender(HttpClient client, IOptions<SmsOptions> 
     public bool IsConfigured => settings.Enabled;
 
     public async Task SendOtp(string phone, string code, CancellationToken cancellationToken)
+        => await SendMessage(phone, $"Votre code Keke Beauty est {code}. Il expire dans 5 minutes.", cancellationToken);
+
+    public async Task SendMessage(string phone, string message, CancellationToken cancellationToken)
     {
         if (!IsConfigured) throw new InvalidOperationException("Le fournisseur SMS n'est pas configuré.");
         using var request = new HttpRequestMessage(HttpMethod.Post, settings.Endpoint)
@@ -93,7 +97,7 @@ public sealed class ConfiguredSmsSender(HttpClient client, IOptions<SmsOptions> 
             {
                 to = phone,
                 sender = settings.SenderId,
-                message = $"Votre code Keke Beauty est {code}. Il expire dans 5 minutes."
+                message
             })
         };
         if (settings.ApiKeyHeader.Equals("Authorization", StringComparison.OrdinalIgnoreCase))

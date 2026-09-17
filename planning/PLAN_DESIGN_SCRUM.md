@@ -40,9 +40,9 @@ Le design travaille un sprint en avance sur les fonctionnalités suivantes, sans
 | P0 | Décision partenaire | Le partenaire peut accepter ou refuser une demande autorisée | Terminé |
 | P0 | Reprogrammation client | Le client choisit un nouveau créneau valide ; l'échec conserve l'ancien rendez-vous | Terminé |
 | P1 | Proposition de report partenaire | Le partenaire propose un créneau que le client accepte ou refuse | Bloqué par décision métier |
-| P1 | Clôture du rendez-vous | Le partenaire peut marquer réalisé ou absent avec traçabilité | À faire |
-| P1 | Notification SMS | La file configurable envoie via le fournisseur actif et conserve les échecs | À faire |
-| P1 | Design du tableau de bord partenaire | Liste, détail, actions, erreurs et états responsive validés | À faire |
+| P1 | Clôture du rendez-vous | Le partenaire peut marquer réalisé ou absent avec traçabilité | Terminé |
+| P1 | Notification SMS | La file configurable envoie via le fournisseur actif et conserve les échecs | Implémenté ; recette fournisseur bloquée |
+| P1 | Tableau de bord partenaire | Liste paginée, compteurs, filtres et actions responsive | Terminé techniquement ; recette visuelle à faire |
 
 ## Définition de terminé
 

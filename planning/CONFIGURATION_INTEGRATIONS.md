@@ -104,3 +104,7 @@ Point bloquant : hébergeur, domaine, environnement de recette et responsables d
 | `Jobs__BookingExpiration__Enabled` | `true` |
 | `Jobs__BookingExpiration__IntervalSeconds` | `60`, entre 10 et 3600 |
 | `Jobs__BookingExpiration__BatchSize` | `100`, entre 1 et 1000 |
+| `Jobs__SmsNotifications__Enabled` | `true` ; la file attend silencieusement si le fournisseur SMS est désactivé |
+| `Jobs__SmsNotifications__IntervalSeconds` | `30`, entre 10 et 3600 |
+| `Jobs__SmsNotifications__BatchSize` | `50`, entre 1 et 500 |
+| `Jobs__SmsNotifications__MaximumAttempts` | `5`, entre 1 et 20 |
