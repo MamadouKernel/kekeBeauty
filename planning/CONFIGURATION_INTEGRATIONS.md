@@ -96,3 +96,11 @@ En dehors du développement, l'application refuse de démarrer si l'une de ces p
 | `BusinessRules__PaymentGraceDays` | `0`, conformément à la décision métier actuelle |
 
 Point bloquant : hébergeur, domaine, environnement de recette et responsables d'exploitation non choisis.
+
+## Tâche d'expiration des rendez-vous
+
+| Variable | Valeur initiale |
+|---|---|
+| `Jobs__BookingExpiration__Enabled` | `true` |
+| `Jobs__BookingExpiration__IntervalSeconds` | `60`, entre 10 et 3600 |
+| `Jobs__BookingExpiration__BatchSize` | `100`, entre 1 et 1000 |

@@ -29,6 +29,10 @@ builder.Services.AddScoped<PhoneIdentity>();
 builder.Services.AddScoped<BookingService>();
 builder.Services.AddScoped<CatalogService>();
 builder.Services.AddKekeIntegrations(builder.Configuration);
+builder.Services.AddOptions<BookingExpirationOptions>().Bind(builder.Configuration.GetSection(BookingExpirationOptions.Section)).Validate(x =>
+    !x.Enabled || (x.IntervalSeconds is >= 10 and <= 3600 && x.BatchSize is >= 1 and <= 1000),
+    "Expiration RDV : intervalle de 10 à 3600 secondes et lot de 1 à 1000.").ValidateOnStart();
+builder.Services.AddHostedService<BookingExpirationWorker>();
 if (!builder.Environment.IsDevelopment())
 {
     builder.Services.AddOptions<OperationsOptions>().Bind(builder.Configuration.GetSection(OperationsOptions.Section)).Validate(x =>

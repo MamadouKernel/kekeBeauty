@@ -29,7 +29,7 @@ def sql(text):
     return docker('exec','-i',container,'psql','-X','-v','ON_ERROR_STOP=1','-At','-U','keke_owner','-d',db,text=text)
 
 docker('exec',container,'createdb','-U','keke_owner',db)
-for name in ['020_modele_v2.sql','030_acceptation_rdv.sql','040_identite.sql','050_actions_rdv.sql','060_creation_rdv.sql','061_annuaire.sql']:
+for name in ['020_modele_v2.sql','030_acceptation_rdv.sql','040_identite.sql','050_actions_rdv.sql','060_creation_rdv.sql','061_annuaire.sql','070_expiration_rdv.sql']:
     sql((ROOT/'merise/mpd'/name).read_text(encoding='utf-8'))
 sql((ROOT/'infra/postgres/fixture_acceptation.sql').read_text(encoding='utf-8'))
 sql("UPDATE kb.compte SET telephone_normalise=CASE compte_id WHEN 1 THEN '+2250700000001' ELSE '+2250700000002' END;")
@@ -184,4 +184,11 @@ quota_id=sql(request_sql('quota',18)).strip()
 try: sql(f"SELECT kb.annuler_rdv({quota_id},1,'quota-cancel');"); raise AssertionError('Shared quota bypassed')
 except RuntimeError as error: assert 'Quota modifications atteint' in str(error),str(error)
 passed.append('client-salon cancellation quota includes earlier appointments')
+expired_id=sql("INSERT INTO kb.rendez_vous(client_id,politique_id,cree_le,expire_le) VALUES(1,6,now()-interval '2 minutes',now()-interval '1 minute') RETURNING rdv_id;").splitlines()[0]
+assert sql("SELECT kb.expirer_demandes_rdv(10);").strip()=='1'
+assert sql("SELECT kb.expirer_demandes_rdv(10);").strip()=='0'
+assert sql(f"SELECT etat FROM kb.rendez_vous WHERE rdv_id={expired_id};").strip()=='expire'
+assert sql(f"SELECT count(*) FROM kb.evenement_rdv WHERE rdv_id={expired_id} AND nature='expire';").strip()=='1'
+assert sql(f"SELECT count(*) FROM kb.notification n JOIN kb.evenement_rdv e USING(evenement_id) WHERE e.rdv_id={expired_id};").strip()=='2'
+passed.append('automatic expiration is idempotent and creates in-app plus SMS notifications')
 print(json.dumps({'database':db,'passed':passed,'count':len(passed),'retained_for_review':True},ensure_ascii=False,indent=2))
