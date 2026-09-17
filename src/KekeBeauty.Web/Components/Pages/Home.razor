@@ -9,7 +9,16 @@
     <form method="get" action="/">
         <label for="search">Salon ou commune</label>
         <input id="search" name="q" value="@Query" maxlength="120" placeholder="Nom du salon, commune…" />
+        <label for="category">Catégorie</label>
+        <select id="category" name="categorie">
+            <option value="">Toutes les catégories</option>
+            @foreach (var category in categories)
+            {
+                <option value="@category.Id" selected="@(Category == category.Id)">@category.Name</option>
+            }
+        </select>
         <button class="btn btn-primary">Rechercher</button>
+        <a href="/">Réinitialiser</a>
     </form>
 </section>
 <section class="kb-section">
@@ -22,6 +31,12 @@
 </section>
 @code {
     [SupplyParameterFromQuery(Name="q")] public string? Query { get; set; }
+    [SupplyParameterFromQuery(Name="categorie")] public long? Category { get; set; }
     private List<Salon> salons=[];
-    protected override async Task OnParametersSetAsync() => salons=await Catalog.Search(Query??"");
+    private List<CategoryOption> categories=[];
+    protected override async Task OnParametersSetAsync()
+    {
+        categories = await Catalog.Categories();
+        salons = await Catalog.Search(Query??"", category: Category);
+    }
 }

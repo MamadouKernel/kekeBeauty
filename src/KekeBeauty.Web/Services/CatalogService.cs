@@ -1,23 +1,36 @@
 using Npgsql;
 namespace KekeBeauty.Web.Services;
-public record Salon(long Id, string Name, string Description, string Location, string Phone, string TimeZone);
+public record Salon(long Id, string Name, string Description, string Location, string Phone, string TimeZone, decimal? Latitude, decimal? Longitude);
 public record ServiceOption(long Id, string Name, int Minutes, decimal Price, string Currency);
+public record CategoryOption(long Id, string Name);
 public sealed class CatalogService(NpgsqlDataSource db)
 {
-    public async Task<List<Salon>> Search(string query = "", long? id = null)
+    public async Task<List<Salon>> Search(string query = "", long? id = null, long? category = null)
     {
         await using var command = db.CreateCommand("""
-            SELECT e.etablissement_id,e.nom,coalesce(e.description,''),coalesce(co.nom,''),coalesce(e.telephone_service,''),e.fuseau
+            SELECT e.etablissement_id,e.nom,coalesce(e.description,''),coalesce(co.nom,''),coalesce(e.telephone_service,''),e.fuseau,e.latitude,e.longitude
             FROM kb.annuaire e LEFT JOIN kb.commune co USING(commune_id)
             WHERE (e.nom ILIKE $1 OR co.nom ILIKE $1) AND ($2::bigint IS NULL OR e.etablissement_id=$2)
+            AND ($3::bigint IS NULL OR EXISTS (SELECT 1 FROM kb.etablissement_categorie ec
+                JOIN kb.categorie c USING(categorie_id)
+                WHERE ec.etablissement_id=e.etablissement_id AND ec.categorie_id=$3 AND c.etat='actif'))
             ORDER BY e.nom,e.etablissement_id LIMIT 100
             """);
         command.Parameters.AddWithValue("%" + query.Trim().Replace("\\", "\\\\").Replace("%", "\\%").Replace("_", "\\_") + "%");
         command.Parameters.AddWithValue(NpgsqlTypes.NpgsqlDbType.Bigint,(object?)id ?? DBNull.Value);
+        command.Parameters.AddWithValue(NpgsqlTypes.NpgsqlDbType.Bigint,(object?)category ?? DBNull.Value);
         List<Salon> salons=[];
         await using var reader = await command.ExecuteReaderAsync();
-        while (await reader.ReadAsync()) salons.Add(new(reader.GetInt64(0),reader.GetString(1),reader.GetString(2),reader.GetString(3),reader.GetString(4),reader.GetString(5)));
+        while (await reader.ReadAsync()) salons.Add(new(reader.GetInt64(0),reader.GetString(1),reader.GetString(2),reader.GetString(3),reader.GetString(4),reader.GetString(5),reader.IsDBNull(6)?null:reader.GetDecimal(6),reader.IsDBNull(7)?null:reader.GetDecimal(7)));
         return salons;
+    }
+    public async Task<List<CategoryOption>> Categories()
+    {
+        await using var command = db.CreateCommand("SELECT categorie_id,nom FROM kb.categorie WHERE etat='actif' ORDER BY nom");
+        await using var reader = await command.ExecuteReaderAsync();
+        List<CategoryOption> result = [];
+        while (await reader.ReadAsync()) result.Add(new(reader.GetInt64(0), reader.GetString(1)));
+        return result;
     }
     public async Task<List<ServiceOption>> Services(long salon)
     {

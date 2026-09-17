@@ -21,7 +21,7 @@ public sealed partial class PhoneIdentity(NpgsqlDataSource db, IDataProtectionPr
     [GeneratedRegex(@"^\+[1-9][0-9]{7,14}$")]
     private static partial Regex InternationalPhone();
 
-    public async Task<(Guid Challenge, string Code)> Issue(string phone)
+    public async Task<(Guid Challenge, string Code, string Phone)> Issue(string phone)
     {
         phone = Normalize(phone);
         await using var connection = await db.OpenConnectionAsync();
@@ -54,7 +54,7 @@ public sealed partial class PhoneIdentity(NpgsqlDataSource db, IDataProtectionPr
         command.Parameters.AddWithValue(protector.Protect(id + ":" + code));
         await command.ExecuteNonQueryAsync();
         await transaction.CommitAsync();
-        return (id, code);
+        return (id, code, phone);
     }
 
     public async Task<long?> Verify(Guid id, string code)

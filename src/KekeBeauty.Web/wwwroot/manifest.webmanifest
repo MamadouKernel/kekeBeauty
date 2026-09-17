@@ -1,0 +1,12 @@
+{
+  "id": "/",
+  "name": "Keke Beauty",
+  "short_name": "Keke Beauty",
+  "lang": "fr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#74388a",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

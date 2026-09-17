@@ -23,6 +23,7 @@ builder.Services.AddSingleton(sp => Database.Create(builder.Configuration, build
 builder.Services.AddScoped<PhoneIdentity>();
 builder.Services.AddScoped<BookingService>();
 builder.Services.AddScoped<CatalogService>();
+builder.Services.AddKekeIntegrations(builder.Configuration);
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
@@ -63,6 +64,18 @@ app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages:
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
+app.Use(async (context, next) =>
+{
+    if (context.Request.Path.StartsWithSegments("/auth") ||
+        context.Request.Path.StartsWithSegments("/connexion") ||
+        context.Request.Path.StartsWithSegments("/mes-rendez-vous") ||
+        context.Request.Path.StartsWithSegments("/rendez-vous") ||
+        context.User.Identity?.IsAuthenticated == true)
+        context.Response.Headers.CacheControl = "no-store";
+    if (context.Request.Path == "/service-worker.js")
+        context.Response.Headers.CacheControl = "no-cache";
+    await next();
+});
 app.UseAuthorization();
 app.UseRateLimiter();
 app.Use(async (context, next) =>

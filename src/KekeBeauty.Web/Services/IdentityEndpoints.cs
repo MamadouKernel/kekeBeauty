@@ -10,24 +10,27 @@ public static class IdentityEndpoints
 {
     public static void MapIdentity(this WebApplication app)
     {
-        app.MapPost("/auth/request", async (HttpContext context, IAntiforgery antiforgery, PhoneIdentity identity) =>
+        app.MapPost("/auth/request", async (HttpContext context, IAntiforgery antiforgery, PhoneIdentity identity, ISmsSender sms) =>
         {
             await antiforgery.ValidateRequestAsync(context);
-            // No simulated delivery in production. A real SMS adapter is required there.
-            if (!app.Environment.IsDevelopment())
+            if (!app.Environment.IsDevelopment() && !sms.IsConfigured)
                 return Results.Problem("Le service SMS n’est pas encore configuré.", statusCode: 503);
             var form = await context.Request.ReadFormAsync();
             try
             {
                 var challenge = await identity.Issue(form["phone"].ToString());
+                if (sms.IsConfigured)
+                    await sms.SendOtp(challenge.Phone, challenge.Code, context.RequestAborted);
                 var tokens = antiforgery.GetAndStoreTokens(context);
                 context.Response.Headers.CacheControl = "no-store";
+                var delivery = sms.IsConfigured
+                    ? "Un code vient d’être envoyé par SMS."
+                    : $"Environnement de développement : aucun SMS n’a été envoyé.<br>Code de test : <strong>{challenge.Code}</strong> — valable cinq minutes.";
                 var html = $"""
                     <!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width">
                     <title>Vérifier mon téléphone — Keke Beauty</title><link rel="stylesheet" href="/app.css">
                     <main class="auth-card"><h1>Vérifier mon téléphone</h1>
-                    <p>Environnement de développement : aucun SMS n’a été envoyé.</p>
-                    <p>Code de test : <strong>{challenge.Code}</strong> — valable cinq minutes.</p>
+                    <p>{delivery}</p>
                     <form method="post" action="/auth/verify">
                     <input type="hidden" name="{HtmlEncoder.Default.Encode(tokens.FormFieldName)}" value="{HtmlEncoder.Default.Encode(tokens.RequestToken!)}">
                     <input type="hidden" name="challenge" value="{challenge.Challenge}">
@@ -38,6 +41,7 @@ public static class IdentityEndpoints
             }
             catch (ArgumentException) { return Results.Redirect("/connexion?erreur=format"); }
             catch (InvalidOperationException) { return Results.Redirect("/connexion?erreur=limite"); }
+            catch (HttpRequestException) { return Results.Problem("L’envoi du SMS a échoué. Réessayez plus tard.", statusCode: 503); }
         }).RequireRateLimiting("login");
 
         app.MapPost("/auth/verify", async (HttpContext context, IAntiforgery antiforgery, PhoneIdentity identity) =>

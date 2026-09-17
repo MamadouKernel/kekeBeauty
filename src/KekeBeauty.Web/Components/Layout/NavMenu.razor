@@ -1,26 +1,6 @@
-<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">Keke Beauty</a>
-    </div>
-</div>
-
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
-
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="nav flex-column">
-        <div class="nav-item px-3"><NavLink class="nav-link" href="mes-rendez-vous">Mes rendez-vous</NavLink></div>
-        <div class="nav-item px-3"><NavLink class="nav-link" href="connexion">Connexion</NavLink></div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Accueil
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="salon-demo">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Fiche de démonstration
-            </NavLink>
-        </div>
-
-    </nav>
-</div>
+<a class="brand" href="/" aria-label="Keke Beauty, accueil"><span aria-hidden="true">KB</span>Keke Beauty</a>
+<nav aria-label="Navigation principale">
+    <NavLink href="" Match="NavLinkMatch.All">Explorer</NavLink>
+    <NavLink href="mes-rendez-vous">Mes RDV</NavLink>
+    <NavLink href="connexion">Compte</NavLink>
+</nav>

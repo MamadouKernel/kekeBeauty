@@ -2,12 +2,14 @@
 @using KekeBeauty.Web.Services
 @using Microsoft.AspNetCore.Components.Authorization
 @inject CatalogService Catalog
+@inject MapsLinkService Maps
 <PageTitle>@(salon?.Name ?? "Établissement") — Keke Beauty</PageTitle>
 @if (salon is null) { <h1>Établissement indisponible</h1><a href="/">Revenir aux salons</a> }
 else
 {
     <h1>@salon.Name</h1><p>@salon.Location</p><p>@salon.Description</p>
     @if (salon.Phone.Length>0) { <a href="@($"tel:{salon.Phone}")">Appeler le salon</a> }
+    @if (directions is not null) { <a href="@directions" target="_blank" rel="noopener noreferrer">S'y rendre</a> }
     <h2>Demander un rendez-vous</h2>
     <p>Sélectionnez vos prestations dans l’ordre affiché. Les soins se suivent ; le salon doit accepter votre demande. Paiement sur place.</p>
     @if (Error is not null) { <p role="alert">Ce créneau n’a pas pu être réservé. Vérifiez la date, les prestations et la disponibilité du salon.</p> }
@@ -29,10 +31,10 @@ else
 @code {
     [Parameter] public long Id { get; set; }
     [SupplyParameterFromQuery(Name="erreur")] public string? Error { get; set; }
-    private Salon? salon; private List<ServiceOption> options=[];
+    private Salon? salon; private List<ServiceOption> options=[]; private string? directions;
     protected override async Task OnParametersSetAsync()
     {
         salon=(await Catalog.Search(id:Id)).FirstOrDefault();
-        if(salon is not null) options=await Catalog.Services(Id);
+        if(salon is not null) { options=await Catalog.Services(Id); directions=Maps.Directions(salon.Latitude,salon.Longitude); }
     }
 }

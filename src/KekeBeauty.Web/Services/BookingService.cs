@@ -3,6 +3,7 @@ using Npgsql;
 namespace KekeBeauty.Web.Services;
 
 public record Booking(long Id, string Salon, string State, DateTime? Start, bool IsClient, bool CanDecide);
+public record BookingNotification(long Id, long BookingId, string Kind, DateTime OccurredAt, string? Reason);
 
 public sealed class BookingService(NpgsqlDataSource db)
 {
@@ -22,6 +23,23 @@ public sealed class BookingService(NpgsqlDataSource db)
         var rows = new List<Booking>();
         await using var reader = await command.ExecuteReaderAsync();
         while (await reader.ReadAsync()) rows.Add(new(reader.GetInt64(0),reader.GetString(1),reader.GetString(2),reader.IsDBNull(3)?null:reader.GetDateTime(3),reader.GetBoolean(4),reader.GetBoolean(5)));
+        return rows;
+    }
+
+    public async Task<List<BookingNotification>> Notifications(long account)
+    {
+        await using var command = db.CreateCommand("""
+            SELECT n.notification_id,ev.rdv_id,ev.nature,ev.survenu_le,ev.motif
+            FROM kb.notification n
+            JOIN kb.evenement_rdv ev USING(evenement_id)
+            WHERE n.destinataire_id=$1 AND n.canal='in_app'
+              AND EXISTS(SELECT 1 FROM kb.compte c WHERE c.compte_id=$1 AND c.etat='actif')
+            ORDER BY ev.survenu_le DESC,n.notification_id DESC LIMIT 20
+            """);
+        command.Parameters.AddWithValue(account);
+        List<BookingNotification> rows = [];
+        await using var reader = await command.ExecuteReaderAsync();
+        while (await reader.ReadAsync()) rows.Add(new(reader.GetInt64(0), reader.GetInt64(1), reader.GetString(2), reader.GetDateTime(3), reader.IsDBNull(4) ? null : reader.GetString(4)));
         return rows;
     }
 

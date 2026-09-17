@@ -6,6 +6,15 @@ Terminer le périmètre validé du cahier des charges. Une fonctionnalité est t
 
 ## Ajouts vérifiés dans cette livraison
 
+- Socle PWA installé : manifeste, icône, couleur de thème, service worker et page de repli hors connexion. Le cache est volontairement limité à l'icône et à la page hors connexion ; les sessions, formulaires, rendez-vous, réponses applicatives et futurs documents KYC ne sont pas mis en cache.
+- Mise à jour du service worker proposée explicitement avec avertissement avant rechargement.
+- Accueil remis aux couleurs Keke Beauty avec navigation responsive Explorer / Mes RDV / Compte et barre basse mobile.
+- Filtre de catégorie relié aux catégories actives et aux associations établissement-catégorie PostgreSQL. Le filtre texte par nom ou commune reste disponible.
+- Adaptateur OTP SMS configurable par variables d'environnement, désactivé par défaut et validé au démarrage. L'ancienne interdiction absolue en production est remplacée par un échec explicite lorsque l'adaptateur n'est pas configuré.
+- Lien d'itinéraire configurable à partir des coordonnées de l'établissement ; il n'est affiché que si le service est activé et si les deux coordonnées existent.
+- Contrats de configuration validés pour le paiement d'abonnement et le stockage KYC privé. Ils restent désactivés tant que les informations fournisseur et les règles métier bloquantes ne sont pas fournies.
+- Centre de notifications dans « Mes RDV » relié aux notifications `in_app` et aux événements de rendez-vous PostgreSQL, limité aux vingt événements récents du compte authentifié.
+
 - Application Blazor connectée à PostgreSQL Docker par Npgsql 10.0.3.
 - Connexion par téléphone international : code aléatoire chiffré au stockage, expiration cinq minutes, cinq essais, trois demandes par téléphone en quinze minutes, limitation HTTP par adresse, session de huit heures. Compte suspendu rejeté à la requête suivante.
 - **Code affiché uniquement en Development. Aucun SMS réel envoyé.** En production, la demande de code répond 503 jusqu’au raccordement d’un fournisseur. Le parcours OTP ne peut donc pas être déclaré terminé en production.
@@ -16,6 +25,12 @@ Terminer le périmètre validé du cahier des charges. Une fonctionnalité est t
 - Protection antifalsification sur les formulaires modifiant des données.
 
 ## Preuves exécutées
+
+- `infra/test-pwa.mjs` : cache public seulement, repli des navigations hors ligne, aucune interception des mutations d'authentification ou de rendez-vous.
+- `infra/postgres/test_application.py` : **21 scénarios réussis** après les changements PWA, catalogue, OTP configurable et notifications ; base isolée `kb_application_9eb9bfe9ae09`, conservée pour inspection.
+- `dotnet build src/KekeBeauty.Web --no-restore` : zéro erreur et zéro avertissement après l'ajout PWA et la refonte de l'accueil.
+- Vérification HTTP locale sur `http://localhost:5084` : accueil, manifeste, service worker et page hors connexion répondent en 200.
+- Vérification visuelle de l'accueil sur ordinateur et exercice du breakpoint 390 × 844. La base locale inspectée ne contient actuellement aucune catégorie ni établissement publié à afficher.
 
 - `dotnet build src/KekeBeauty.Web --no-restore` : zéro erreur, zéro avertissement.
 - `infra/postgres/test_application.py` : **21 scénarios** HTTP/PostgreSQL, dernière base isolée `kb_application_8285e1937030`.
@@ -36,6 +51,10 @@ Ces tests ne constituent pas une recette exhaustive du cahier des charges, un au
 5. Administration et exploitation : gestion des comptes et paramètres, audit, droits PostgreSQL minimaux, migrations versionnées avec suivi, sauvegarde/restauration, supervision, sécurité et protection des données.
 6. Recette complète : employés/ressources physiques/combinées, changements de fuseau et d’heure, accessibilité/mobile, performances, revue fonctionnelle, déploiement et tests des fournisseurs réels.
 7. Compléter la synchronisation ClickUp : 40 tâches créées sur 84 prévues ; les tâches restantes et les dépendances doivent encore être synchronisées.
+
+Les points 1, 2, 4, 5 et 6 nécessitent encore du développement et, pour les intégrations réelles, les comptes fournisseur, les clés conservées dans un gestionnaire de secrets, les URL de rappel et un environnement d'hébergement. Aucun fournisseur fictif ne sera présenté comme opérationnel.
+
+Le registre maintenu des blocages, de leurs impacts et des paramètres attendus se trouve dans [POINTS_BLOQUANTS.md](POINTS_BLOQUANTS.md). Les variables d'environnement sont détaillées dans [CONFIGURATION_INTEGRATIONS.md](CONFIGURATION_INTEGRATIONS.md).
 
 ## Limites connues de ce lot
 

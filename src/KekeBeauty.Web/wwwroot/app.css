@@ -1,6 +1,4 @@
-html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
+html, body { font-family: Arial, sans-serif; color: #242127; background: #fafafa; }
 
 a, .btn-link {
     color: #006bb7;
@@ -59,15 +57,15 @@ h1:focus {
     text-align: start;
 }
 /* Premier socle visuel Keke Beauty, en attente du choix de logo. */
-:root { --kb-violet: #6b348b; --kb-violet-dark: #3f2158; --kb-lilac: #f5eef9; }
-.kb-hero { background: var(--kb-lilac); border-radius: 1.25rem; padding: clamp(1.5rem, 4vw, 3rem); margin-bottom: 2rem; }
+:root { --kb-violet: #74388a; --kb-violet-dark: #3f2158; --kb-lilac: #f4edf7; }
+.kb-hero { background: var(--kb-lilac); border-radius: 8px; padding: clamp(1.5rem, 4vw, 3rem); margin-bottom: 2rem; }
 .kb-hero h1 { color: var(--kb-violet-dark); max-width: 18ch; }
 .kb-hero p { max-width: 65ch; }
 .kb-eyebrow { color: var(--kb-violet); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; }
 .kb-button { display: inline-block; background: var(--kb-violet); color: white; border-radius: .55rem; padding: .75rem 1rem; text-decoration: none; }
 .kb-button:hover, .kb-button:focus { background: var(--kb-violet-dark); color: white; }
 .kb-section { margin: 2rem 0; }
-.kb-card { max-width: 28rem; border: 1px solid #d9c5e5; border-radius: .8rem; padding: 1.3rem; }
+.kb-card { background: white; max-width: 28rem; border: 1px solid #d9c5e5; border-radius: 8px; padding: 1.3rem; margin-bottom: 1rem; }
 .kb-badge { display: inline-block; color: var(--kb-violet-dark); background: var(--kb-lilac); padding: .25rem .6rem; border-radius: 2rem; margin-bottom: .6rem; }
 .kb-lead { max-width: 70ch; }
 .kb-service-list { max-width: 35rem; border: 1px solid #ded5e5; border-radius: .7rem; overflow: hidden; }
@@ -79,3 +77,15 @@ h1:focus {
 .auth-card label { display:block; margin:1rem 0 .4rem; }
 .auth-card input:not([type=hidden]) { display:block; padding:.7rem; margin-bottom:1rem; max-width:100%; }
 .auth-card button { margin:.3rem; }
+.kb-notifications { background: #fff; border: 1px solid #ded5e5; border-radius: 8px; list-style: none; max-width: 48rem; padding: 0; }
+.kb-notifications li { padding: .85rem 1rem; }
+.kb-notifications li + li { border-top: 1px solid #e8e3eb; }
+.kb-hero form { align-items: end; display: grid; gap: .65rem; grid-template-columns: minmax(12rem,2fr) minmax(11rem,1fr) auto auto; margin-top: 1.5rem; }
+.kb-hero form label { font-weight: 700; }
+.kb-hero form input, .kb-hero form select { border: 1px solid #8b848f; border-radius: 8px; min-height: 44px; padding: .65rem .75rem; width: 100%; }
+.kb-hero form label:nth-of-type(1) { grid-column: 1; grid-row: 1; }
+.kb-hero form input { grid-column: 1; grid-row: 2; }
+.kb-hero form label:nth-of-type(2) { grid-column: 2; grid-row: 1; }
+.kb-hero form select { grid-column: 2; grid-row: 2; }
+.kb-hero form button, .kb-hero form a { align-items: center; border-radius: 8px; display: inline-flex; justify-content: center; min-height: 44px; }
+@media (max-width: 720px) { .kb-hero form { display: flex; flex-direction: column; align-items: stretch; } .kb-hero h1 { font-size: 2rem; } }
