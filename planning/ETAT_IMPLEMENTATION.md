@@ -66,7 +66,7 @@ Ces tests ne constituent pas une recette exhaustive du cahier des charges, un au
 4. Abonnements : souscription du payeur multi-salons, facturation configurée, échéances, vrais paiements Mobile Money et rapprochement, relances/renouvellement. Le contrôle des droits lit actuellement les données PostgreSQL ; il ne crée pas les contrats ni les paiements.
 5. Administration et exploitation : gestion des comptes et paramètres, audit, droits PostgreSQL minimaux, migrations versionnées avec suivi, sauvegarde/restauration, supervision, sécurité et protection des données.
 6. Recette complète : employés/ressources physiques/combinées, changements de fuseau et d’heure, accessibilité/mobile, performances, revue fonctionnelle, déploiement et tests des fournisseurs réels.
-7. Compléter la synchronisation ClickUp : 40 tâches créées sur 84 prévues ; les tâches restantes et les dépendances doivent encore être synchronisées.
+7. Compléter la synchronisation ClickUp : 84 tâches créées sur 84 prévues et identifiants vérifiés ; restent les descriptions détaillées, dépendances natives et douze fiches de pilotage des sprints. La preuve complémentaire de KB-039 est publiée.
 
 Les points 1, 2, 4, 5 et 6 nécessitent encore du développement et, pour les intégrations réelles, les comptes fournisseur, les clés conservées dans un gestionnaire de secrets, les URL de rappel et un environnement d'hébergement. Aucun fournisseur fictif ne sera présenté comme opérationnel.
 

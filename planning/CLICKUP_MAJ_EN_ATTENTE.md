@@ -1,4 +1,14 @@
-# Mise à jour ClickUp en attente du quota
+# Suivi de synchronisation ClickUp
+
+## État vérifié le 19 septembre 2026
+
+- La preuve complémentaire de clôture KB-039 a été publiée le 17 septembre : commit `b505635`, migration 100 et 28 scénarios applicatifs réussis.
+- KB-041 à KB-084 ont été créées et leurs 44 identifiants vérifiés dans le Product Backlog. Les 84 tâches existent désormais ; ne pas les recréer.
+- Les nouvelles tâches renvoient au backlog GitHub versionné. Le détail intégral des critères, les estimations et les dépendances ne sont pas tous recopiés dans les champs natifs ClickUp.
+- Restent : compléter les descriptions détaillées, créer les douze fiches de pilotage des sprints et établir les dépendances natives selon les possibilités du forfait.
+- Le PDF client des dix points bloquants est disponible dans `output/pdf/Keke_Beauty_Preparation_Client_Points_Bloquants.pdf` (quatre pages vérifiées visuellement).
+
+Les sections ci-dessous constituent l'historique ; leurs compteurs et demandes de création sont remplacés par cet état.
 
 ## Synchronisation Scrum du 17 septembre 2026
 
