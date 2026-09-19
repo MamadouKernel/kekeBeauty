@@ -105,4 +105,11 @@ h1:focus {
 .kb-counts dd { color: var(--kb-violet-dark); font-size: 1.4rem; font-weight: 700; margin: 0; }
 .kb-proposal { background: #f3edf7; border-left: 4px solid #74388a; margin: 1rem 0; padding: 1rem; }
 .kb-proposal p { font-variant-numeric: tabular-nums; margin: .35rem 0 .75rem; }
+.kb-partner-section { border-top: 1px solid #ded5e5; margin-top: 1.5rem; padding: 1.5rem 0; }
+.kb-partner-section h2 { font-size: 1.25rem; }
+.kb-partner-form { display: grid; gap: .75rem; max-width: 32rem; }
+.kb-partner-form input { border: 1px solid #8b848f; border-radius: 8px; min-height: 44px; padding: .7rem; width: 100%; }
+.kb-partner-form button { justify-self: start; }
+.kb-partner-salons { list-style: none; padding: 0; }
+.kb-partner-salons li { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: space-between; border-bottom: 1px solid #ded5e5; padding: 1rem 0; overflow-wrap: anywhere; }
 .btn { border-radius: 8px; min-height: 44px; padding: .65rem 1rem; }

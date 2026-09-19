@@ -1,0 +1,72 @@
+@page "/partenaire"
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
+@using KekeBeauty.Web.Services
+@inject PartnerService Partners
+<PageTitle>Espace partenaire - Keke Beauty</PageTitle>
+<h1>Espace partenaire</h1>
+@if (account is null)
+{
+    <p><a href="/connexion">Connectez-vous</a> pour retrouver votre espace partenaire.</p>
+}
+else
+{
+    @if (Result is not null)
+    {
+        <p role="status">@(Result == "ok" ? "Votre profil est enregistré." : "Enregistrement impossible. Vérifiez le nom et l’état du dossier.")</p>
+    }
+    <section class="kb-partner-section" aria-labelledby="partner-profile">
+        <h2 id="partner-profile">Mon profil</h2>
+        <p>@phone</p>
+        @if (profile is not null) { <p>Dossier KYC : <strong>@StateLabel(profile.KycState)</strong></p> }
+        @if (profile is null || profile.KycState is "non_demarre" or "brouillon" or "refuse" or "rejete")
+        {
+            <form action="/partenaire/profil" method="post" data-enhance="false" class="kb-partner-form">
+                <AntiforgeryToken />
+                <label for="partner-name">Nom complet du gérant</label>
+                <input id="partner-name" name="name" value="@profile?.Name" autocomplete="name" minlength="2" maxlength="160" required />
+                <button class="btn btn-primary" type="submit">Enregistrer le profil</button>
+            </form>
+        }
+        else { <p>@profile.Name</p> }
+    </section>
+    <section class="kb-partner-section" aria-labelledby="partner-salons">
+        <h2 id="partner-salons">Mes établissements</h2>
+        @if (salons.Count == 0) { <p>Aucun établissement rattaché à votre compte.</p> }
+        else
+        {
+            <ul class="kb-partner-salons">
+                @foreach (var salon in salons)
+                {
+                    <li><strong>@salon.Name</strong><span>@StateLabel(salon.State)</span></li>
+                }
+            </ul>
+            <a href="/mes-rendez-vous">Consulter les rendez-vous</a>
+        }
+    </section>
+}
+@code {
+    [CascadingParameter] private Task<AuthenticationState> AuthenticationState { get; set; } = default!;
+    [SupplyParameterFromQuery(Name = "resultat")] public string? Result { get; set; }
+    private long? account;
+    private string? phone;
+    private PartnerProfile? profile;
+    private List<PartnerSalon> salons = [];
+    protected override async Task OnInitializedAsync()
+    {
+        var user = (await AuthenticationState).User;
+        if (long.TryParse(user.FindFirstValue(ClaimTypes.NameIdentifier), out var id))
+        {
+            account = id;
+            profile = await Partners.Get(id);
+            phone = profile?.Phone ?? user.Identity?.Name;
+            salons = await Partners.Salons(id);
+        }
+    }
+    private static string StateLabel(string state) => state switch
+    {
+        "non_demarre" => "À compléter", "brouillon" => "Brouillon", "soumis" or "en_attente" => "En cours de vérification",
+        "valide" or "approuve" => "Validé", "refuse" or "rejete" => "À corriger", "publie" => "Publié",
+        "suspendu" => "Suspendu", _ => "En cours"
+    };
+}

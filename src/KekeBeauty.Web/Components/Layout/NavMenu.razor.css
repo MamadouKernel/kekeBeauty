@@ -6,6 +6,6 @@ nav ::deep a:hover, nav ::deep a:focus-visible { background: #f4edf7; color: #3f
 nav ::deep a.active { background: #74388a; color: white; }
 @media (max-width: 640px) {
   .brand { margin-left: 1rem; }
-  nav { background: white; border-top: 1px solid #e8e3eb; bottom: 0; display: grid; grid-template-columns: repeat(3,1fr); left: 0; padding: .45rem .75rem calc(.45rem + env(safe-area-inset-bottom)); position: fixed; right: 0; z-index: 20; }
-  nav ::deep a { text-align: center; }
+  nav { background: white; border-top: 1px solid #e8e3eb; bottom: 0; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); left: 0; padding: .45rem .5rem calc(.45rem + env(safe-area-inset-bottom)); position: fixed; right: 0; z-index: 20; }
+  nav ::deep a { text-align: center; font-size: .8rem; padding: .65rem .2rem; min-width: 0; }
 }

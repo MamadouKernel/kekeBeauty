@@ -4,8 +4,10 @@
 
 - La preuve complémentaire de clôture KB-039 a été publiée le 17 septembre : commit `b505635`, migration 100 et 28 scénarios applicatifs réussis.
 - KB-041 à KB-084 ont été créées et leurs 44 identifiants vérifiés dans le Product Backlog. Les 84 tâches existent désormais ; ne pas les recréer.
-- Les nouvelles tâches renvoient au backlog GitHub versionné. Le détail intégral des critères, les estimations et les dépendances ne sont pas tous recopiés dans les champs natifs ClickUp.
-- Restent : compléter les descriptions détaillées, créer les douze fiches de pilotage des sprints et établir les dépendances natives selon les possibilités du forfait.
+- Les 44 descriptions complètes sont synchronisées : objectifs, critères, références, estimation indicative en points et dépendances écrites. Les points restent des estimations de planification, pas des durées.
+- Les douze fiches de pilotage sont créées dans les listes de sprint et relient les tâches originales, sans duplication. Dates, capacité et engagement restent à valider au Sprint Planning.
+- Restent : les relations natives de dépendance selon les possibilités du forfait, et la mise à jour continue des preuves.
+- KB-011 est en cours : premier incrément profil et dossier brouillon livré, sans clôture de l'inscription partenaire complète.
 - Le PDF client des dix points bloquants est disponible dans `output/pdf/Keke_Beauty_Preparation_Client_Points_Bloquants.pdf` (quatre pages vérifiées visuellement).
 
 Les sections ci-dessous constituent l'historique ; leurs compteurs et demandes de création sont remplacés par cet état.

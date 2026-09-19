@@ -91,6 +91,31 @@ with log.open('w',encoding='utf-8') as stream:
         client=Browser(); challenge,code,token=client.login('+2250700000001')
         assert 'TEST acceptance' in client.request('/mes-rendez-vous')[1]
         passed.append('OTP login and database-backed client appointments')
+        assert 'Connectez-vous' in anonymous.request('/partenaire')[1]
+        assert '/connexion' in anonymous.request('/partenaire/profil',{'name':'Intruder'})[2]
+        assert client.request('/partenaire/profil',{'name':'Missing token'})[0] in (400,403)
+        passed.append('partner profile requires authenticated session and CSRF token')
+        partner_token=client.token('/partenaire')
+        def save_partner(name):
+            return client.request('/partenaire/profil',{'name':name,'compte_id':2,'__RequestVerificationToken':partner_token})
+        assert 'resultat=erreur' in save_partner(' ')[2]
+        assert sql('SELECT count(*) FROM kb.gerant WHERE compte_id=1;').strip()=='0'
+        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
+            responses=list(pool.map(save_partner,['Client Partner','Client Partner']))
+        assert all('resultat=ok' in r[2] for r in responses),responses
+        assert sql('SELECT count(*) FROM kb.gerant WHERE compte_id=1;').strip()=='1'
+        assert sql("SELECT count(*) FROM kb.dossier_kyc d JOIN kb.gerant g USING(gerant_id) WHERE g.compte_id=1 AND d.etat='brouillon';").strip()=='1'
+        assert sql('SELECT nom_declare FROM kb.gerant WHERE compte_id=2;').strip()=='Gerant'
+        passed.append('concurrent partner registration creates one draft and ignores supplied account identity')
+        assert 'resultat=ok' in save_partner('Updated Partner')[2]
+        partner_page=client.request('/partenaire')[1]
+        assert 'Updated Partner' in partner_page and 'TEST acceptance' not in partner_page
+        assert sql('SELECT count(*) FROM kb.gerant_etablissement ge JOIN kb.gerant g USING(gerant_id) WHERE g.compte_id=1;').strip()=='0'
+        passed.append('partner draft resumes without granting access to other establishments')
+        sql("UPDATE kb.dossier_kyc SET etat='soumis' WHERE gerant_id=(SELECT gerant_id FROM kb.gerant WHERE compte_id=1);")
+        assert 'resultat=erreur' in save_partner('Changed after submission')[2]
+        assert sql('SELECT nom_declare FROM kb.gerant WHERE compte_id=1;').strip()=='Updated Partner'
+        passed.append('submitted KYC identity is protected from profile edits')
         assert 'erreur=code' in client.verify(challenge,code,client.token())[2]
         passed.append('OTP cannot be replayed')
         assert 'resultat=erreur' in client.act(1,'accepter')[2]

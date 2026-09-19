@@ -6,6 +6,8 @@ Terminer le périmètre validé du cahier des charges. Une fonctionnalité est t
 
 ## Ajouts vérifiés dans cette livraison
 
+- Incrément partenaire du 19 septembre : page `/partenaire`, création/reprise du profil gérant et dossier KYC brouillon. Identité issue de la session, téléphone vérifié requis à l'enregistrement, validation serveur du nom, verrouillage transactionnel empêchant les doublons lors de soumissions concurrentes. Un dossier soumis ou validé empêche les modifications du nom. La liste des établissements est limitée au compte courant. Ce lot n'ajoute ni dépôt de pièce, ni validation KYC, ni publication de salon.
+
 - Socle PWA installé : manifeste, icône, couleur de thème, service worker et page de repli hors connexion. Le cache est volontairement limité à l'icône et à la page hors connexion ; les sessions, formulaires, rendez-vous, réponses applicatives et futurs documents KYC ne sont pas mis en cache.
 - Mise à jour du service worker proposée explicitement avec avertissement avant rechargement.
 - Accueil remis aux couleurs Keke Beauty avec navigation responsive Explorer / Mes RDV / Compte et barre basse mobile.
@@ -34,6 +36,9 @@ Terminer le périmètre validé du cahier des charges. Une fonctionnalité est t
 
 ## Preuves exécutées
 
+- Incrément partenaire : **32 scénarios applicatifs réussis**, base isolée `kb_application_e15c7afd8666`. Quatre nouveaux scénarios couvrent authentification/CSRF, concurrence et identité imposée par session, reprise et isolation des établissements, verrouillage du profil soumis. Compilation sans erreur ni avertissement et recette PWA réussie.
+- Playwright avec Edge headless : parcours connexion OTP de développement et enregistrement du profil sur cette base isolée ; captures connectées et anonymes vérifiées à 390 et 1440 pixels, sans débordement horizontal. Ce contrôle ne constitue pas une validation de fidélité Stitch des écrans partenaire, dont les maquettes restent à approuver.
+
 - `infra/test-pwa.mjs` : cache public seulement, repli des navigations hors ligne, aucune interception des mutations d'authentification ou de rendez-vous.
 - `infra/postgres/test_application.py` : **21 scénarios réussis** après les changements PWA, catalogue, OTP configurable et notifications ; base isolée `kb_application_9eb9bfe9ae09`, conservée pour inspection.
 - Nouvelle exécution après ajout des adaptateurs paiement/KYC et des validations de production : **21 scénarios réussis**, base isolée `kb_application_7e3950a6d50f`, conservée pour inspection.
@@ -61,12 +66,12 @@ Ces tests ne constituent pas une recette exhaustive du cahier des charges, un au
 ## Travail restant pour atteindre l’objectif
 
 1. Raccorder et recetter l'envoi SMS réel avec le fournisseur retenu. La file, les reprises, la déduplication et tous les parcours rendez-vous applicatifs sont implémentés.
-2. Espace partenaire : inscription, dépôt KYC privé, validation administrative, gestion multi-établissements, habilitations, services, prix, horaires, ressources et politiques depuis des écrans. Les tables existent ; ces écrans ne sont pas livrés.
+2. Espace partenaire : compléter le profil initial livré avec coordonnées et création de salon, dépôt KYC privé, validation administrative, gestion multi-établissements, habilitations, services, prix, horaires, ressources et politiques depuis des écrans. KB-011 reste en cours.
 3. Recherche complète : catégories, hiérarchie géographique, distance, médias, itinéraires.
 4. Abonnements : souscription du payeur multi-salons, facturation configurée, échéances, vrais paiements Mobile Money et rapprochement, relances/renouvellement. Le contrôle des droits lit actuellement les données PostgreSQL ; il ne crée pas les contrats ni les paiements.
 5. Administration et exploitation : gestion des comptes et paramètres, audit, droits PostgreSQL minimaux, migrations versionnées avec suivi, sauvegarde/restauration, supervision, sécurité et protection des données.
 6. Recette complète : employés/ressources physiques/combinées, changements de fuseau et d’heure, accessibilité/mobile, performances, revue fonctionnelle, déploiement et tests des fournisseurs réels.
-7. Compléter la synchronisation ClickUp : 84 tâches créées sur 84 prévues et identifiants vérifiés ; restent les descriptions détaillées, dépendances natives et douze fiches de pilotage des sprints. La preuve complémentaire de KB-039 est publiée.
+7. ClickUp : 84 tâches créées sur 84, descriptions complètes de KB-041 à KB-084 synchronisées, douze fiches de pilotage créées avec liens. Restent les relations natives de dépendance et le suivi continu. La preuve complémentaire de KB-039 est publiée.
 
 Les points 1, 2, 4, 5 et 6 nécessitent encore du développement et, pour les intégrations réelles, les comptes fournisseur, les clés conservées dans un gestionnaire de secrets, les URL de rappel et un environnement d'hébergement. Aucun fournisseur fictif ne sera présenté comme opérationnel.
 

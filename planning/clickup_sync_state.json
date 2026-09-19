@@ -579,14 +579,13 @@
   },
   "remaining_ids": [],
   "native_dependencies_created": [],
-  "sprint_pilot_tasks_created": [],
+  "sprint_pilot_tasks_created": [{"sprint":1,"success":true,"task_id":"123tcvwezbh","custom_id":null,"task_url":"https://app.clickup.com/t/123tcvwezbh"},{"sprint":2,"success":true,"task_id":"123tcvwezbj","custom_id":null,"task_url":"https://app.clickup.com/t/123tcvwezbj"},{"sprint":3,"success":true,"task_id":"123tcvwezbk","custom_id":null,"task_url":"https://app.clickup.com/t/123tcvwezbk"},{"sprint":4,"success":true,"task_id":"123tcvwezbm","custom_id":null,"task_url":"https://app.clickup.com/t/123tcvwezbm"},{"sprint":5,"success":true,"task_id":"123tcvwezbp","custom_id":null,"task_url":"https://app.clickup.com/t/123tcvwezbp"},{"sprint":6,"success":true,"task_id":"123tcvwezbq","custom_id":null,"task_url":"https://app.clickup.com/t/123tcvwezbq"},{"sprint":7,"success":true,"task_id":"123tcvwezbr","custom_id":null,"task_url":"https://app.clickup.com/t/123tcvwezbr"},{"sprint":8,"success":true,"task_id":"123tcvwezbz","custom_id":null,"task_url":"https://app.clickup.com/t/123tcvwezbz"},{"sprint":9,"success":true,"task_id":"123tcvwezc0","custom_id":null,"task_url":"https://app.clickup.com/t/123tcvwezc0"},{"sprint":10,"success":true,"task_id":"123tcvwezc1","custom_id":null,"task_url":"https://app.clickup.com/t/123tcvwezc1"},{"sprint":11,"success":true,"task_id":"123tcvwezc2","custom_id":null,"task_url":"https://app.clickup.com/t/123tcvwezc2"},{"sprint":12,"success":true,"task_id":"123tcvwezc3","custom_id":null,"task_url":"https://app.clickup.com/t/123tcvwezc3"}],
+  "descriptions_synchronized": ["KB-041","KB-042","KB-043","KB-044","KB-045","KB-046","KB-047","KB-048","KB-049","KB-050","KB-051","KB-052","KB-053","KB-054","KB-055","KB-056","KB-057","KB-058","KB-059","KB-060","KB-061","KB-062","KB-063","KB-064","KB-065","KB-066","KB-067","KB-068","KB-069","KB-070","KB-071","KB-072","KB-073","KB-074","KB-075","KB-076","KB-077","KB-078","KB-079","KB-080","KB-081","KB-082","KB-083","KB-084"],
   "limitations": {
     "multiple_lists": "Plan limit reached; use sprint pilot tasks with links to source backlog tasks",
-    "connector": "Création des 84 tâches vérifiée le 17 septembre 2026 ; descriptions détaillées, dépendances natives et fiches de sprint encore partielles"
+    "connector": "KB-041 à KB-084 : descriptions détaillées synchronisées le 19 septembre 2026 ; douze fiches de pilotage créées. Dépendances décrites dans les fiches, non créées comme relations natives."
   },
   "next_steps": [
-    "Compléter les critères détaillés et estimations dans les nouvelles tâches",
-    "Créer 12 fiches de pilotage avec liens vers les tâches de sprint",
     "Ajouter les dépendances natives si le forfait ClickUp le permet",
     "Maintenir les statuts et preuves après chaque incrément"
   ]

@@ -28,6 +28,7 @@ builder.Services.AddSingleton(sp => Database.Create(builder.Configuration, build
 builder.Services.AddScoped<PhoneIdentity>();
 builder.Services.AddScoped<BookingService>();
 builder.Services.AddScoped<CatalogService>();
+builder.Services.AddScoped<PartnerService>();
 builder.Services.AddKekeIntegrations(builder.Configuration);
 builder.Services.AddOptions<BookingExpirationOptions>().Bind(builder.Configuration.GetSection(BookingExpirationOptions.Section)).Validate(x =>
     !x.Enabled || (x.IntervalSeconds is >= 10 and <= 3600 && x.BatchSize is >= 1 and <= 1000),
@@ -106,6 +107,17 @@ app.Use(async (context, next) =>
 });
 app.UseAntiforgery();
 app.MapIdentity();
+app.MapPost("/partenaire/profil", async (HttpContext context, Microsoft.AspNetCore.Antiforgery.IAntiforgery antiforgery, PartnerService partners) =>
+{
+    await antiforgery.ValidateRequestAsync(context);
+    if (!long.TryParse(context.User.FindFirstValue(ClaimTypes.NameIdentifier), out var account)) return Results.Unauthorized();
+    var form = await context.Request.ReadFormAsync();
+    try { await partners.Save(account, form["name"].ToString()); }
+    catch (ArgumentException) { return Results.Redirect("/partenaire?resultat=erreur"); }
+    catch (InvalidOperationException) { return Results.Redirect("/partenaire?resultat=erreur"); }
+    catch (UnauthorizedAccessException) { return Results.Forbid(); }
+    return Results.Redirect("/partenaire?resultat=ok");
+}).RequireAuthorization();
 app.MapPost("/rendez-vous/creer", async (HttpContext context, Microsoft.AspNetCore.Antiforgery.IAntiforgery antiforgery, CatalogService catalog) =>
 {
     await antiforgery.ValidateRequestAsync(context);
